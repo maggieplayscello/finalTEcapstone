@@ -1,1 +1,26 @@
+.navbar {
+	display: flex;
+	width: 100%;
+	border-bottom: 2px;
+	background-color: #4F5D75;
+}
+
+.nav-item {
+	list-style-type: none;
+	color: black;
+}
+
+li a {
+	text-decoration: none;
+	display: block;
+	padding: 8px 16px;
+	color: #BFC0C0;
+}
+
+li a:hover {
+	font-weight: bolder;
+	text-decoration: none;
+	background-color: #2D3142;
+	color: #EF8354;
+}
 

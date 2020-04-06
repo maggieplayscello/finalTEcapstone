@@ -19,8 +19,9 @@ public class HomeController {
 
 	@RequestMapping(path="/")
 	public String displayHomePage() {
-		return "Home";
+		return "home";
 	}
+	
 	
 //	@RequestMapping(path="/addCourse")
 //	public String displayAddCourse(ModelMap map) {
