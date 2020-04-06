@@ -24,8 +24,8 @@
 				<form:input path="courseName"/>
 			</div>
 			<div>
-				<label for="city">City</label> 
-				<form:input path="city"/>
+				<label for="par">Par</label> 
+				<form:input path="par"/>
 			</div>
 			<div>
 				<label for="city">City</label> 

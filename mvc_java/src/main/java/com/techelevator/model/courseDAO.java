@@ -1,4 +1,4 @@
-package com.techelevator.controller;
+package com.techelevator.model;
 
 import java.util.List;
 

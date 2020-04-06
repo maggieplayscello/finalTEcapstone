@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.techelevator.model.Course;
+import com.techelevator.model.courseDAO;
 
 
 @Controller
