@@ -13,24 +13,24 @@ import com.techelevator.model.Course;
 @Controller
 public class HomeController {
 	
-	@Autowired
-	private courseDAO courseDao;
+//	@Autowired
+//	private courseDAO courseDao;
 
 	@RequestMapping(path="/")
 	public String displayHomePage() {
 		return "Home";
 	}
 	
-	@RequestMapping(path="/addCourse")
-	public String displayAddCourse(ModelMap map) {
-		if (!map.containsAttribute("course")) {
-			map.put("course", new Course());
-		}
-		List<Course> courses = courseDao.getAllCourses();
-		
-		map.addAttribute("courses", courses);
-		return "addCourse";
-	}
+//	@RequestMapping(path="/addCourse")
+//	public String displayAddCourse(ModelMap map) {
+//		if (!map.containsAttribute("course")) {
+//			map.put("course", new Course());
+//		}
+//		List<Course> courses = courseDao.getAllCourses();
+//		
+//		map.addAttribute("courses", courses);
+//		return "addCourse";
+//	}
 	
 	
 }
