@@ -39,6 +39,10 @@ public class UserController {
 		return "home";
 	}
 	
+	@RequestMapping(path="/users/{currentUser}/changePassword", method=RequestMethod.GET)
+	public String loadChangePasswordPage(@PathVariable("currentUser") String currentUser) {
+		return "changePassword";
+	}
 	
 	
 	@RequestMapping(path="/users", method=RequestMethod.POST)
