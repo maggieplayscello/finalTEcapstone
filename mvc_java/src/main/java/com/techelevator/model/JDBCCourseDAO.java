@@ -46,7 +46,7 @@ public class JDBCCourseDAO implements courseDAO {
 
 	@Override
 	public void addCourseToDatabase(Course theCourse) {
-		String sqlAddCourse = "INSERT INTO courses (name, rating, slope, par, city, state) VALUES (?, ?, ?, ?, ?, ?)";
+		String sqlAddCourse = "INSERT INTO courses (course_id, name, rating, slope, par, city, state) VALUES (90, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sqlAddCourse, theCourse.getName(), theCourse.getRating(), theCourse.getSlope(), theCourse.getPar(), theCourse.getCity(), theCourse.getState());		
 	}
 
