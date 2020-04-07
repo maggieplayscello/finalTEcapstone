@@ -79,6 +79,12 @@
 					<c:url var="changePasswordHref"
 						value="/users/${currentUser}/changePassword" />
 					<li class="nav-item"><a class="nav-link" href="${changePasswordHref}">Change Password</a></li>
+					<c:if test = "${role == 'Admin'}">
+					<c:url var='adminFunctions' value = '/users/${currentUser}/adminFunctions'>
+						<c:param name = 'role' value = '${role}'/>
+					</c:url>
+						<li class = 'nav-item'><a class = 'nav-link' href = "${adminFunctions}">Admin Functions</a>
+					</c:if>
 				</c:if>
 			</ul>
 			<ul class="navbar-nav ml-auto">
@@ -106,5 +112,6 @@
 
 	<c:if test="${not empty currentUser}">
 		<p id="currentUser">Current User: ${currentUser}</p>
+		<p>Current Role: ${role}</p>
 	</c:if>
 	<div class="container">

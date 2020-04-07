@@ -33,6 +33,8 @@ public class AuthenticationController {
 						HttpSession session) {
 		if(userDAO.searchForUsernameAndPassword(userName, password)) {
 			session.setAttribute("currentUser", userDAO.getUserByUserName(userName));
+			String role = userDAO.getRoleByUserName(userName);
+			session.setAttribute("role", role);
 			
 			if(destination != null && ! destination.isEmpty()) {
 				return "redirect:" + destination;
