@@ -60,15 +60,22 @@
 
 				<c:if test="${not empty currentUser}">
 					<c:url var="dashboardHref" value="/users/${currentUser}" />
-					<li class="nav-item"><a class="dropdown" href="${dashboardHref}">Private Messages</a></li>
-				<div class="dropdown-content">
+					<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
+						<c:url var="courseSearchHref"
+						value="/users/${currentUser}/courseSearch" />
+					<li class="nav-item"><a class="nav-link" href="${myLeaguesHref}">My Leagues</a></li>
+						<c:url var="myLeaguesHref"
+						value="/users/${currentUser}/myLeagues" />
+					<!-- Commenting out Messages til we decide if we are going to use them
+					<li class="nav-item"><a class="nav-link" href="${dashboardHref}">Messages</a></li>
 					<c:url var="newMessageHref"
 						value="/users/${currentUser}/messages/new" />
-					<li class="nav-item"><a class="nav-link-messages" href="${newMessageHref}">New Message</a></li>
+					
+					<li class="nav-item"><a class="nav-link" href="${newMessageHref}">New Message</a></li>
 					<c:url var="sentMessagesHref"
 						value="/users/${currentUser}/messages" />
-					<li class="nav-item"><a class="nav-link-messages" href="${sentMessagesHref}">Sent Messages</a></li>
-				</div>
+					<li class="nav-item"><a class="nav-link" href="${sentMessagesHref}">Sent Messages</a></li>
+					 -->
 					<c:url var="changePasswordHref"
 						value="/users/${currentUser}/changePassword" />
 					<li class="nav-item"><a class="nav-link" href="${changePasswordHref}">Change Password</a></li>
@@ -77,6 +84,9 @@
 			<ul class="navbar-nav ml-auto">
 				<c:choose>
 					<c:when test="${empty currentUser}">
+						<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
+						<c:url var="courseSearchHref"
+						value="/users/${currentUser}/courseSearch" />
 						<c:url var="newUserHref" value="/users/new" />
 						<li class="nav-item"><a class="nav-link" href="${newUserHref}">Sign Up</a></li>
 						<c:url var="loginHref" value="/login" />
