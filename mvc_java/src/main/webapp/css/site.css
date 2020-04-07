@@ -4,6 +4,10 @@
 	font-family: "Raleway", Arial, Helvetica, sans-serif;
 }
 
+body {
+	background-color: #E8E8E8;
+}
+
 .navbar {
 	display: flex;
 	width: 100%;
@@ -16,11 +20,15 @@
 	letter-spacing: 2px;
 }
 
+ul {
+	width: 100%;
+}
+
 li a {
 	font-size: 20px;
 	text-decoration: none;
 	display: block;
-	padding: 20px;
+	padding: 10px;
 	color: #BFC0C0;
 }
 
@@ -35,7 +43,7 @@ button {
 	background-color: #4F5D75;
 	background: transparent;
     border: none !important;
-}
+} <!-- this button may be useful but idk how to use it so til then i made it invisible -mt -->
 
 .btn {
 	background-color: #EF8354;
@@ -54,5 +62,27 @@ homeImg {
 	padding: 15px;
 }
 
+.description {
+	color: #2D3142;
+	font-size: 20px;
+}
 
+.dropdown {
+	position: relative;
+  	display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 

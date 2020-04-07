@@ -60,13 +60,15 @@
 
 				<c:if test="${not empty currentUser}">
 					<c:url var="dashboardHref" value="/users/${currentUser}" />
-					<li class="nav-item"><a class="nav-link" href="${dashboardHref}">Private Messages</a></li>
+					<li class="nav-item"><a class="dropdown" href="${dashboardHref}">Private Messages</a></li>
+				<div class="dropdown-content">
 					<c:url var="newMessageHref"
 						value="/users/${currentUser}/messages/new" />
-					<li class="nav-item"><a class="nav-link" href="${newMessageHref}">New Message</a></li>
+					<li class="nav-item"><a class="nav-link-messages" href="${newMessageHref}">New Message</a></li>
 					<c:url var="sentMessagesHref"
 						value="/users/${currentUser}/messages" />
-					<li class="nav-item"><a class="nav-link" href="${sentMessagesHref}">Sent Messages</a></li>
+					<li class="nav-item"><a class="nav-link-messages" href="${sentMessagesHref}">Sent Messages</a></li>
+				</div>
 					<c:url var="changePasswordHref"
 						value="/users/${currentUser}/changePassword" />
 					<li class="nav-item"><a class="nav-link" href="${changePasswordHref}">Change Password</a></li>
