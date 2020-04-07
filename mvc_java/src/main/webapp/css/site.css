@@ -79,6 +79,14 @@ homeImg {
 	font-size: 20px;
 }
 
+#searchForm {
+	display: flex;
+}
+
+.formInputGroup {
+	padding: 20px;
+}
+
 #courseTable {
 	background-color: #BFC0C0;
 }

@@ -7,7 +7,7 @@
 <body>
 
 	<h3>Search for Courses</h3>
-
+	<form method="GET" id="searchForm">
 		<div class="formInputGroup">
 			<label for="name">Course Name:</label> 
 			<input type="text" name="courseName" id="courseName" />
@@ -16,6 +16,8 @@
 			<label for="city">City:</label> 
 			<input type="text" name="city" id="city" />
 		</div>
+		
+		<!-- This is copied over just in case we expand outside Michigan
 		<label for="state">State:</label>
 			<select name="state">
 				<option value="AL">Alabama</option>
@@ -70,9 +72,11 @@
 				<option value="WI">Wisconsin</option>
 				<option value="WY">Wyoming</option>
 			</select>
+			 -->
+		</form>
 		<div class= "button">
-				<input type="submit" value="Search" />
-			</div>
+			<input type="submit" value="Search" />
+		</div>
 	
 		<table id="courseTable">
 			<tr>
