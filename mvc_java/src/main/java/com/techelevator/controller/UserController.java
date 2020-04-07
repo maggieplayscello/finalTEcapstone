@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.User;
@@ -43,6 +44,20 @@ public class UserController {
 	public String loadChangePasswordPage(@PathVariable("currentUser") String currentUser) {
 		return "changePassword";
 	}
+	
+	@RequestMapping(path="/users/{currentUser}/adminFunctions", method=RequestMethod.GET)
+	public String loadAdminFunctionsPage(@PathVariable("currentUser") String currentUser) {
+		return "adminFunctions";
+	}
+	
+	@RequestMapping(path="/users/{currentUser}/adminFunctions/{role}", method=RequestMethod.POST)
+	public String changeGolferRole(@PathVariable("currentUser") String currentUser, @PathVariable("role") String role,
+			@RequestParam String userName, @RequestParam String myRole) {
+		userDAO.updateRole(userName, myRole);
+		return "redirect:/users/" + currentUser + "/adminFunctions";
+	}
+	
+	
 	
 	
 	@RequestMapping(path="/users", method=RequestMethod.POST)

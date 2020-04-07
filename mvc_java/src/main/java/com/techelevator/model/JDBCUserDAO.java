@@ -29,8 +29,8 @@ public class JDBCUserDAO implements UserDAO {
 		String hashedPassword = hashMaster.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
 		
-		jdbcTemplate.update("INSERT INTO app_user(user_name, password, salt) VALUES (?, ?, ?)",
-				userName, hashedPassword, saltString);
+		jdbcTemplate.update("INSERT INTO app_user(user_name, password, role, salt) VALUES (?, ?, ?, ?)",
+				userName, hashedPassword, "golfer", saltString);
 	}
 
 	@Override
@@ -76,6 +76,28 @@ public class JDBCUserDAO implements UserDAO {
 		}
 
 		return thisUser;
+	}
+	
+	@Override
+	public String getRoleByUserName(String userName) {
+		String sqlSearchForUsername ="SELECT role "+
+		"FROM app_user "+
+		"WHERE UPPER(user_name) = ? ";
+
+		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName.toUpperCase()); 
+		String myRole = null;
+		if(user.next()) {
+			myRole = user.getString("role");
+		}
+
+		return myRole;
+	}
+	
+	@Override
+	public void updateRole(String userName, String role) {
+		String sqlUpdateRole = "UPDATE app_user SET role = ? WHERE user_name = ?";
+		jdbcTemplate.update(sqlUpdateRole, role, userName);
+						
 	}
 	
 
