@@ -4,12 +4,13 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-
 <meta charset="ISO-8859-1">
 <head>
 <title>Add Course Page</title>
 </head>
 <body>
+
+<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 
 
 		<c:url var="addCourseUrl" value="/addCourse" />

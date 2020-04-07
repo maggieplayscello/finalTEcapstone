@@ -30,6 +30,7 @@ public class HomeController {
 	
 	@RequestMapping(path="/addCourse", method = RequestMethod.GET)
 	public String displayAddCourse(ModelMap map) {
+		System.out.println("addcourseget");
 		if (!map.containsAttribute("course")) {
 			map.put("course", new Course());
 		}
@@ -38,7 +39,7 @@ public class HomeController {
 	
 	@RequestMapping (path = "/addCourse", method = RequestMethod.POST)
 	public String submitCourse(@Valid @ModelAttribute Course course, BindingResult result, RedirectAttributes flash) {
-		
+		System.out.println("this does not work");
 		flash.addFlashAttribute("course", course);
 		
 		if (result.hasErrors()) {
