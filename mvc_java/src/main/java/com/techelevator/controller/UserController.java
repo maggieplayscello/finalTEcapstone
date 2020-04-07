@@ -32,6 +32,14 @@ public class UserController {
 		return "newUser";
 	}
 	
+	@RequestMapping(path="/users/${currentUser}", method=RequestMethod.GET)
+	public String displayNewUserFokrm(ModelMap modelHolder) {
+		if( ! modelHolder.containsAttribute("user")) {
+			modelHolder.addAttribute("user", new User());
+		}
+		return "home";
+	}
+	
 	@RequestMapping(path="/users", method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash) {
 		if(result.hasErrors()) {
