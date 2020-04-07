@@ -8,7 +8,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JDBCCourseDAO implements courseDAO {
 	
 	private JdbcTemplate jdbcTemplate;
@@ -31,8 +33,21 @@ public class JDBCCourseDAO implements courseDAO {
 	}
 
 	private Course mapRowToCourse(SqlRowSet results) {
-		// TODO Auto-generated method stub
-		return null;
+		Course theCourse = new Course();
+		
+		theCourse.setName(results.getString("name"));
+		theCourse.setRating(results.getInt("rating"));
+		theCourse.setSlope(results.getDouble("slope"));
+		theCourse.setPar(results.getInt("par"));
+		theCourse.setCity(results.getString("city"));
+		theCourse.setState(results.getString("state"));
+		return theCourse;
+	}
+
+	@Override
+	public void addCourseToDatabase(Course theCourse) {
+		String sqlAddSurvey = "INSERT INTO courses (name, rating, slope, par, city, state) VALUES (?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sqlAddSurvey, theCourse.getName(), theCourse.getRating(), theCourse.getSlope(), theCourse.getPar(), theCourse.getCity(), theCourse.getState());		
 	}
 
 }

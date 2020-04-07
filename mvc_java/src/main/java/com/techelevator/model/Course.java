@@ -1,15 +1,22 @@
 package com.techelevator.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Course {
 	private int id;
-	private String clubName;
-	private String courseName;
+
+	@NotBlank(message = "Must enter a course name")
+	private String name;
+	@NotBlank(message = "Must enter a city")
 	private String city;
+	@NotBlank(message = "Must select your state")
 	private String state;
+	@NotBlank(message = "Must enter par for course")
 	private int par;
-	private double rating;
+	@NotBlank(message = "Must enter course rating")
+	private int rating;
+	@NotBlank(message = "Must enter slope")
 	private double slope;
-	private double bogeyRating;
 	
 	
 	public int getId() {
@@ -18,17 +25,11 @@ public class Course {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getClubName() {
-		return clubName;
+	public String getName() {
+		return name;
 	}
-	public void setClubName(String clubName) {
-		this.clubName = clubName;
-	}
-	public String getCourseName() {
-		return courseName;
-	}
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getCity() {
 		return city;
@@ -48,10 +49,10 @@ public class Course {
 	public void setPar(int par) {
 		this.par = par;
 	}
-	public double getRating() {
+	public int getRating() {
 		return rating;
 	}
-	public void setRating(double rating) {
+	public void setRating(int rating) {
 		this.rating = rating;
 	}
 	public double getSlope() {
@@ -59,11 +60,5 @@ public class Course {
 	}
 	public void setSlope(double slope) {
 		this.slope = slope;
-	}
-	public double getBogeyRating() {
-		return bogeyRating;
-	}
-	public void setBogeyRating(double bogeyRating) {
-		this.bogeyRating = bogeyRating;
 	}
 }

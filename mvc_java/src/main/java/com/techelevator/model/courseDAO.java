@@ -7,5 +7,6 @@ import com.techelevator.model.Course;
 public interface courseDAO {
 
 	List<Course> getAllCourses();
+	void addCourseToDatabase(Course theCourse);
 
 }
