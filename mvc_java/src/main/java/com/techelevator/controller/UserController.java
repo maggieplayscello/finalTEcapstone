@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -31,6 +32,14 @@ public class UserController {
 		}
 		return "newUser";
 	}
+	
+	
+	@RequestMapping(path="/users/{currentUser}", method=RequestMethod.GET)
+	public String logCurrentUserIn(@PathVariable("currentUser") String currentUser) {
+		return "home";
+	}
+	
+	
 	
 	@RequestMapping(path="/users", method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash) {
