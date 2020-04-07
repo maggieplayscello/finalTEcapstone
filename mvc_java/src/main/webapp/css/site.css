@@ -1,26 +1,58 @@
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
+
+* {
+	font-family: "Raleway", Arial, Helvetica, sans-serif;
+}
+
 .navbar {
 	display: flex;
 	width: 100%;
-	border-bottom: 2px;
+	padding: 2px;
 	background-color: #4F5D75;
 }
 
 .nav-item {
 	list-style-type: none;
-	color: black;
+	letter-spacing: 2px;
 }
 
 li a {
+	font-size: 20px;
 	text-decoration: none;
 	display: block;
-	padding: 8px 16px;
+	padding: 20px;
 	color: #BFC0C0;
 }
 
 li a:hover {
-	font-weight: bolder;
+	font-weight: boldest;
 	text-decoration: none;
 	background-color: #2D3142;
 	color: #EF8354;
 }
+
+button {
+	background-color: #4F5D75;
+	background: transparent;
+    border: none !important;
+}
+
+.btn {
+	background-color: #EF8354;
+}
+
+.btn:hover {
+	background-color: #2D3142;
+}
+
+h1 {
+	color: #EF8354;
+	padding: 10px;
+}
+
+homeImg {
+	padding: 15px;
+}
+
+
 
