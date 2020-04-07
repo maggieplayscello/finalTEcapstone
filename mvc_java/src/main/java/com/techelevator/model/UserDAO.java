@@ -10,4 +10,8 @@ public interface UserDAO {
 
 	public Object getUserByUserName(String userName);
 
+	public String getRoleByUserName(String userName);
+
+	void updateRole(String userName, String role);
+
 }

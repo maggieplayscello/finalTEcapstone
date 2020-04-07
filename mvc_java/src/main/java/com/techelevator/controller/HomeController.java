@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,18 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(path="/dashboard")
+	public String displayDashboard() {
+		return "dashboard";
+	}
 	
+	@RequestMapping(path="/courseSearch")
+	public String displayCourseSearch(ModelMap map) {
+		List<Course> course = courseDao.getAllCourses();
+		map.put("allCourses", course);
+		return "courseSearch";
+	}
+		
 	@RequestMapping(path="/addCourse", method = RequestMethod.GET)
 	public String displayAddCourse(ModelMap map) {
 		System.out.println("addcourseget");

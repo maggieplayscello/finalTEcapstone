@@ -10,6 +10,7 @@ body {
 
 
 
+
 .navbar {
 	display: flex;
 	width: 100%;
@@ -51,7 +52,20 @@ button {
 	background-color: #2D3142;
 }
 
+
+
+
 h1 {
+	color: #EF8354;
+	padding: 10px;
+}
+
+h2 {
+	font-size: 20px;
+}
+
+h3 {
+	font-size: 25px;
 	color: #EF8354;
 	padding: 10px;
 }
@@ -65,4 +79,15 @@ homeImg {
 	font-size: 20px;
 }
 
+#searchForm {
+	display: flex;
+}
+
+.formInputGroup {
+	padding: 20px;
+}
+
+#courseTable {
+	background-color: #BFC0C0;
+}
 

@@ -61,8 +61,7 @@
 				<c:if test="${not empty currentUser}">
 					<c:url var="dashboardHref" value="/users/${currentUser}" />
 					<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
-						<c:url var="courseSearchHref"
-						value="/users/${currentUser}/courseSearch" />
+						<c:url var="courseSearchHref" value="/courseSearch" />
 					<li class="nav-item"><a class="nav-link" href="${myLeaguesHref}">My Leagues</a></li>
 						<c:url var="myLeaguesHref"
 						value="/users/${currentUser}/myLeagues" />
@@ -79,16 +78,23 @@
 					<c:url var="changePasswordHref"
 						value="/users/${currentUser}/changePassword" />
 					<li class="nav-item"><a class="nav-link" href="${changePasswordHref}">Change Password</a></li>
+					<c:if test = "${role == 'Admin'}">
+					<c:url var='adminFunctions' value = '/users/${currentUser}/adminFunctions'>
+						<c:param name = 'role' value = '${role}'/>
+					</c:url>
+						<li class = 'nav-item'><a class = 'nav-link' href = "${adminFunctions}">Admin Functions</a>
+					</c:if>
 				</c:if>
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				<c:choose>
 					<c:when test="${empty currentUser}">
+						<c:url var="courseSearchHref" value="/courseSearch" />
 						<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
-						<c:url var="courseSearchHref"
-						value="/users/${currentUser}/courseSearch" />
+						
 						<c:url var="newUserHref" value="/users/new" />
 						<li class="nav-item"><a class="nav-link" href="${newUserHref}">Sign Up</a></li>
+						
 						<c:url var="loginHref" value="/login" />
 						<li class="nav-item"><a class="nav-link" href="${loginHref}">Log In</a></li>
 					</c:when>
@@ -106,5 +112,6 @@
 
 	<c:if test="${not empty currentUser}">
 		<p id="currentUser">Current User: ${currentUser}</p>
+		<p>Current Role: ${role}</p>
 	</c:if>
 	<div class="container">
