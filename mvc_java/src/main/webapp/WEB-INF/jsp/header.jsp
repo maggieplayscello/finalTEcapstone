@@ -61,8 +61,7 @@
 				<c:if test="${not empty currentUser}">
 					<c:url var="dashboardHref" value="/users/${currentUser}" />
 					<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
-						<c:url var="courseSearchHref"
-						value="/courseSearch" />
+						<c:url var="courseSearchHref" value="/courseSearch" />
 					<li class="nav-item"><a class="nav-link" href="${myLeaguesHref}">My Leagues</a></li>
 						<c:url var="myLeaguesHref"
 						value="/users/${currentUser}/myLeagues" />
@@ -90,10 +89,12 @@
 			<ul class="navbar-nav ml-auto">
 				<c:choose>
 					<c:when test="${empty currentUser}">
-						<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
 						<c:url var="courseSearchHref" value="/courseSearch" />
+						<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
+						
 						<c:url var="newUserHref" value="/users/new" />
 						<li class="nav-item"><a class="nav-link" href="${newUserHref}">Sign Up</a></li>
+						
 						<c:url var="loginHref" value="/login" />
 						<li class="nav-item"><a class="nav-link" href="${loginHref}">Log In</a></li>
 					</c:when>
