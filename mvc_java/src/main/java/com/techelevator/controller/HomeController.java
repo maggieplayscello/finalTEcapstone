@@ -33,7 +33,6 @@ public class HomeController {
 		if (!map.containsAttribute("course")) {
 			map.put("course", new Course());
 		}
-		
 		return "addCourse";
 	}
 	
@@ -41,14 +40,12 @@ public class HomeController {
 	public String submitCourse(@Valid @ModelAttribute Course course, BindingResult result, RedirectAttributes flash) {
 		
 		flash.addFlashAttribute("course", course);
-
+		
 		if (result.hasErrors()) {
 			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "course", result);
 			return "redirect:/addCourse";
 		}
-		
 		courseDao.addCourseToDatabase(course);
-		
 		return "redirect:/addCourseConfirmation";
 	}
 	
