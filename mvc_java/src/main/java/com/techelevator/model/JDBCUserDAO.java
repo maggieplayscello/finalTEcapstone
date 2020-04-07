@@ -49,10 +49,16 @@ public class JDBCUserDAO implements UserDAO {
 			return false;
 		}
 	}
-
+// UPDATE PASSWORD - ask for user to enter login credentials userName password
+// verify the user, then ask for newPassword, confirm newPassword
+// check that the newPassword meets the criteria, execute the change
+	
 	@Override
-	public void updatePassword(String userName, String password) {
-		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", password, userName);
+	public void updatePassword(String userName, String password, String newPassword) {
+		boolean isTrue = searchForUsernameAndPassword(userName, password);
+		if((isTrue) == true) {
+		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", newPassword, userName);
+		}				
 	}
 
 	@Override
