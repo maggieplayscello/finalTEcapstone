@@ -36,8 +36,8 @@ public class JDBCCourseDAO implements courseDAO {
 		Course theCourse = new Course();
 		
 		theCourse.setName(results.getString("name"));
-		theCourse.setRating(results.getInt("rating"));
-		theCourse.setSlope(results.getDouble("slope"));
+		theCourse.setRating(results.getDouble("rating"));
+		theCourse.setSlope(results.getInt("slope"));
 		theCourse.setPar(results.getInt("par"));
 		theCourse.setCity(results.getString("city"));
 		theCourse.setState(results.getString("state"));
@@ -46,8 +46,8 @@ public class JDBCCourseDAO implements courseDAO {
 
 	@Override
 	public void addCourseToDatabase(Course theCourse) {
-		String sqlAddSurvey = "INSERT INTO courses (name, rating, slope, par, city, state) VALUES (?, ?, ?, ?, ?, ?)";
-		jdbcTemplate.update(sqlAddSurvey, theCourse.getName(), theCourse.getRating(), theCourse.getSlope(), theCourse.getPar(), theCourse.getCity(), theCourse.getState());		
+		String sqlAddCourse = "INSERT INTO courses (name, rating, slope, par, city, state) VALUES (?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sqlAddCourse, theCourse.getName(), theCourse.getRating(), theCourse.getSlope(), theCourse.getPar(), theCourse.getCity(), theCourse.getState());		
 	}
 
 }

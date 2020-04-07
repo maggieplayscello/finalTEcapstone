@@ -5,18 +5,18 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Course {
 	private int id;
 
-	@NotBlank(message = "Must enter a course name")
+//	@NotBlank(message = "Must enter a course name")
 	private String name;
-	@NotBlank(message = "Must enter a city")
+//	@NotBlank(message = "Must enter a city")
 	private String city;
-	@NotBlank(message = "Must select your state")
+//	@NotBlank(message = "Must select your state")
 	private String state;
-	@NotBlank(message = "Must enter par for course")
+//	@NotBlank(message = "Must enter par for course")
 	private int par;
-	@NotBlank(message = "Must enter course rating")
-	private int rating;
-	@NotBlank(message = "Must enter slope")
-	private double slope;
+//	@NotBlank(message = "Must enter course rating")
+	private double rating;
+//	@NotBlank(message = "Must enter slope")
+	private int slope;
 	
 	
 	public int getId() {
@@ -49,16 +49,16 @@ public class Course {
 	public void setPar(int par) {
 		this.par = par;
 	}
-	public int getRating() {
+	public double getRating() {
 		return rating;
 	}
-	public void setRating(int rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
-	public double getSlope() {
+	public int getSlope() {
 		return slope;
 	}
-	public void setSlope(double slope) {
+	public void setSlope(int slope) {
 		this.slope = slope;
 	}
 }
