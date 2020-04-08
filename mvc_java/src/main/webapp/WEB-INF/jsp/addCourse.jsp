@@ -4,7 +4,6 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-
 <meta charset="ISO-8859-1">
 <head>
 <title>Add Course Page</title>
@@ -12,8 +11,12 @@
 <body>
 
 
+
+
 		<c:url var="addCourseUrl" value="/addCourse" />
 		<form:form method="POST" action="${addCourseUrl}" modelAttribute="course">
+		
+		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 
 			<div>
 				<label for="name">Name of Golf Course</label> 
