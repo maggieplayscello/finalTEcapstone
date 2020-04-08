@@ -45,6 +45,14 @@ public class UserController {
 		return "changePassword";
 	}
 	
+	@RequestMapping(path="/users/{currentUser}/changePassword", method=RequestMethod.POST)
+	public String submitChangePassword(@PathVariable("currentUser") String currentUser, 
+			@RequestParam String userName, @RequestParam String password, 
+			@RequestParam String newPassword) {
+	userDAO.updatePassword(userName, password, newPassword);	
+		return "redirect:/";
+	}
+	
 	@RequestMapping(path="/users/{currentUser}/adminFunctions", method=RequestMethod.GET)
 	public String loadAdminFunctionsPage(@PathVariable("currentUser") String currentUser) {
 		return "adminFunctions";
