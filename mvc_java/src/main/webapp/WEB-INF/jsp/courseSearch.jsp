@@ -82,10 +82,12 @@
 	</div>
 	</form>
 
-	<div class="button">
-		<c:url var="addCourseHref" value="/users/addCourse"/>
-		<a href="${addCourseHref}">+ Add a new Course</a>
-	</div>
+	<c:if test = "${role == 'Admin'}">
+		<div class="button">
+			<c:url var="addCourseHref" value="/addCourse"/>
+			<a href="${addCourseHref}">+ Add a new Course</a>
+		</div>
+	</c:if>
 	
 		<table id="courseTable">
 			<tr>
