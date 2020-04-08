@@ -72,14 +72,15 @@ public class JDBCUserDAO implements UserDAO {
 			      "WHERE user_name = ? ";
 		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName); // provides user
 		
+		byte[] salt = hashMaster.generateRandomSalt();
+		String hashedPassword = hashMaster.computeHash(newPassword, salt);
+		String saltString = new String(Base64.encode(salt));
+		
 		if(isTrue && user.next()) {
 			System.out.println("User Name = " + userName);
-		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", newPassword, userName);
+		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", hashedPassword, userName);
 		
 		
-		String dbSalt = user.getString("salt");
-		String dbHashedPassword = user.getString("password");
-		String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
 //		return dbHashedPassword.equals(givenPassword);
 		}				
 	}
