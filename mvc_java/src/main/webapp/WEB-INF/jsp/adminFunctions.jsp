@@ -33,6 +33,8 @@ These are all functions only available to admins.
 			</div>
 			<button type="submit" class="btn btn-primary">Change Role</button>
 		</form>
+		<c:url var = "addCourseUrl" value = "/users/${currentUser}/addCourse"/>
+		<a href = "${addCourseUrl}">Click here to add a course to our Database</a>
 	</div>
 	<div class="col-sm-4"></div>
 </div>

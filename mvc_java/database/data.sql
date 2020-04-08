@@ -4,6 +4,9 @@
 
 BEGIN;
 
+INSERT INTO "app_user" VALUES 
+(1, 'admin', 'W2VKJp0IXMMBdQJIvbBY3Q==', 'Admin', 'JyiicUsnVQGiuDWM85vwtDo85vCgdWcAcy3TYYQmYL8XMOH8FDqzUmgi01Ou2I3xJ3ZoR+1nJNOJVMytvNOWHvBTaQNhb8xCIcPzqU/BjSuGYeVFgfSwSUirecnXj7eDs7D4SArwQcu7FXo3TyutdS25IxmnYMg17CPnheLygqs=');
+
 INSERT INTO "courses" VALUES
 (1.0,'Alpena Golf Club',70.9,127.0,72.0,'Alpena','MI'),
 (2.0,'Arcardia Bluffs Golf Course',75.7,146.0,72.0,'Arcadia','MI'),

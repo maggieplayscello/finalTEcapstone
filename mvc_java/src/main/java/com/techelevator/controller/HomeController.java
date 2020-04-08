@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,16 +51,16 @@ public class HomeController {
 		return "courseSearch";
 	}
 		
-	@RequestMapping(path="/addCourse", method = RequestMethod.GET)
-	public String displayAddCourse(ModelMap map) {
+	@RequestMapping(path="/users/{currentUser}/addCourse", method = RequestMethod.GET)
+	public String displayAddCourse(@PathVariable("currentUser") String currentUser, ModelMap map) {
 		if (!map.containsAttribute("course")) {
 			map.put("course", new Course());
 		}
 		return "addCourse";
 	}
 	
-	@RequestMapping (path = "/addCourse", method = RequestMethod.POST)
-	public String submitCourse(@Valid @ModelAttribute Course course, BindingResult result, RedirectAttributes flash) {
+	@RequestMapping (path = "/users/{currentUser}/addCourse", method = RequestMethod.POST)
+	public String submitCourse(@Valid @ModelAttribute Course course, @PathVariable("currentUser") String currentUser, BindingResult result, RedirectAttributes flash) {
 		
 		flash.addFlashAttribute("course", course);
 		
