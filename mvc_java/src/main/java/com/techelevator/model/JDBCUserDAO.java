@@ -15,25 +15,25 @@ import com.techelevator.security.PasswordHasher;
 public class JDBCUserDAO implements UserDAO {
 
 	private JdbcTemplate jdbcTemplate;
-//	private PasswordHasher hashMaster;
+	private PasswordHasher hashMaster;
 
 	@Autowired
-//	public JDBCUserDAO(DataSource dataSource, PasswordHasher hashMaster) {
-	public JDBCUserDAO(DataSource dataSource) {	
+	public JDBCUserDAO(DataSource dataSource, PasswordHasher hashMaster) {
+//	public JDBCUserDAO(DataSource dataSource) {	
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
-//		this.hashMaster = hashMaster;
+		this.hashMaster = hashMaster;
 	}
 	
 	@Override
 	public void saveUser(String userName, String password) {
-//		byte[] salt = hashMaster.generateRandomSalt();
-//		String hashedPassword = hashMaster.computeHash(password, salt);
-//		String saltString = new String(Base64.encode(salt));
+		byte[] salt = hashMaster.generateRandomSalt();
+		String hashedPassword = hashMaster.computeHash(password, salt);
+		String saltString = new String(Base64.encode(salt));
 		
-		String saltString = "temp";
+//		String saltString = "temp";
 		jdbcTemplate.update("INSERT INTO app_user(user_name, password, role, salt) VALUES (?, ?, ?, ?)",
-//				userName, hashedPassword, "golfer", saltString);
-				userName, password, "Golfer", saltString);
+				userName, hashedPassword, "Golfer", saltString);
+//				userName, password, "Golfer", saltString);
 	}
 
 	@Override
@@ -45,12 +45,12 @@ public class JDBCUserDAO implements UserDAO {
 		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName);
 		if(user.next()) {
 			
-			return password.equals(password);
+//			return password.equals(password);
 			
-//			String dbSalt = user.getString("salt");
-//			String dbHashedPassword = user.getString("password");
-//			String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
-//			return dbHashedPassword.equals(givenPassword);
+			String dbSalt = user.getString("salt");
+			String dbHashedPassword = user.getString("password");
+			String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
+			return dbHashedPassword.equals(givenPassword);
 		} else {
 			return false;
 		}
@@ -77,9 +77,9 @@ public class JDBCUserDAO implements UserDAO {
 		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", newPassword, userName);
 		
 		
-//		String dbSalt = user.getString("salt");
-//		String dbHashedPassword = user.getString("password");
-//		String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
+		String dbSalt = user.getString("salt");
+		String dbHashedPassword = user.getString("password");
+		String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
 //		return dbHashedPassword.equals(givenPassword);
 		}				
 	}
