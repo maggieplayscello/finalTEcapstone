@@ -5,7 +5,7 @@
 }
 
 body {
-	background-color: #E8E8E8;
+	background-color: #F1F7ED;
 }
 
 
@@ -16,7 +16,7 @@ body {
 	flex-direction: row;
 	width: 100%;
 	padding: 2px;
-	background-color: #4F5D75;
+	background-color: #536B4E;
 }
 
 .nav-item {
@@ -29,34 +29,34 @@ li a {
 	text-decoration: none;
 	display: block;
 	padding: 25px;
-	color: #BFC0C0;
+	color: #B8C3A3;
 }
 
 li a:hover {
 	font-weight: boldest;
 	text-decoration: none;
-	background-color: #2D3142;
-	color: #EF8354;
+	background-color: #113015;
+	color: #B2972C;
 }
 
 button {
-	background-color: #4F5D75;
+	background-color: #B8C3A3;
 	background: transparent;
     border: none !important;
 }
 
 .btn {
-	background-color: #EF8354;
+	background-color: #B2972C;
 }
 
 .btn:hover {
-	background-color: #2D3142;
+	background-color: #113015;
 }
 
 /*   General Body   */
 
 h1 {
-	color: #EF8354;
+	color: #B2972C;
 	padding: 10px;
 }
 
@@ -66,13 +66,14 @@ h2 {
 
 h3 {
 	font-size: 25px;
-	color: #EF8354;
+	color: #B2972C;
 	padding: 10px;
 }
 
 /*   Home   */
 
-homeImg {
+.homeImg {
+	max-width: 100%;
 	padding: 15px;
 }
 
@@ -92,8 +93,8 @@ homeImg {
 }
 
 table th {
-	background-color: #2D3142;
-	color: #BFC0C0;
+	background-color: #113015;
+	color: #B8C3A3;
 	border: thin black solid;
 	padding: 2px 10px 2px 10px;
 }
