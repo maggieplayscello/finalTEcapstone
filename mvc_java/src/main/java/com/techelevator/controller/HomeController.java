@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.Course;
@@ -35,8 +36,16 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path="/courseSearch")
-	public String displayCourseSearch(ModelMap map) {
+	public String displayCourse(ModelMap map) {
 		List<Course> course = courseDao.getAllCourses();
+		map.put("allCourses", course);
+		return "courseSearch";
+	}
+	
+	
+	@RequestMapping(path="/courseSearchResults")
+	public String displayCourseSearch(@RequestParam(required = false) String searchName, @RequestParam(required = false) String searchCity, ModelMap map) {
+		List<Course> course = courseDao.searchCourses(searchName, searchCity, map);
 		map.put("allCourses", course);
 		return "courseSearch";
 	}

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Component
 public class JDBCCourseDAO implements courseDAO {
@@ -24,8 +26,19 @@ public class JDBCCourseDAO implements courseDAO {
 	public List<Course> getAllCourses() {
 		List <Course> courses = new ArrayList<>();
 		
-		String sqlSelectAllCourses = "SELECT * FROM courses";
+		String sqlSelectAllCourses = "SELECT * FROM courses ORDER BY city";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllCourses);
+		while (results.next()) {
+			courses.add(mapRowToCourse(results));
+		}
+		return courses;
+	}
+	
+	@Override
+	public List<Course> searchCourses(@RequestParam(required = false) String searchName, @RequestParam(required = false) String searchCity, ModelMap map) {
+		List<Course> courses = new ArrayList<>();
+		String sql = "SELECT * FROM courses WHERE name LIKE ? OR city LIKE ? ORDER BY city";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, "%" + searchName + "%", "%" + searchCity + "%");
 		while (results.next()) {
 			courses.add(mapRowToCourse(results));
 		}
@@ -46,7 +59,7 @@ public class JDBCCourseDAO implements courseDAO {
 
 	@Override
 	public void addCourseToDatabase(Course theCourse) {
-		String sqlAddCourse = "INSERT INTO courses (course_id, name, rating, slope, par, city, state) VALUES (90, ?, ?, ?, ?, ?, ?)";
+		String sqlAddCourse = "INSERT INTO courses (course_id, name, rating, slope, par, city, state) VALUES (41, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sqlAddCourse, theCourse.getName(), theCourse.getRating(), theCourse.getSlope(), theCourse.getPar(), theCourse.getCity(), theCourse.getState());		
 	}
 

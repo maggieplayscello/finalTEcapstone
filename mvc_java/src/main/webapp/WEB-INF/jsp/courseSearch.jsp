@@ -4,18 +4,21 @@
 
 <title>Course Search</title>
 </head>
+
+<c:url value='/courseSearchResults' var='courseSearchVar' />
 <body>
 
 	<h3>Search for Courses</h3>
-	<form method="GET" id="searchForm">
-		<div class="formInputGroup">
+	
+	<form method="GET" action="${courseSearchVar}">
+		<div class="input">
+
 			<label for="name">Course Name:</label> 
-			<input type="text" name="courseName" id="courseName" />
-		</div>
-		<div class="formInputGroup">
+			<input type="text" name="searchName" id="name" />
+
 			<label for="city">City:</label> 
-			<input type="text" name="city" id="city" />
-		</div>
+			<input type="text" name="searchCity" id="city" />
+
 		
 		<!-- This is copied over just in case we expand outside Michigan
 		<label for="state">State:</label>
@@ -73,29 +76,35 @@
 				<option value="WY">Wyoming</option>
 			</select>
 			 -->
-		</form>
 		<div class= "button">
 			<input type="submit" value="Search" />
 		</div>
+	</div>
+	</form>
+
+	<div class="button">
+		<c:url var="addCourseHref" value="/users/addCourse"/>
+		<a href="${addCourseHref}">+ Add a new Course</a>
+	</div>
 	
 		<table id="courseTable">
 			<tr>
 				<th align="left">Name</th>
+				<th align="left">Location</th>
 				<th align="left">Par</th>
 				<th align="left">Slope</th>
-				<th align="left">Rating</th>
-				<th align="left">Location</th>
+				<th align="left">Rating</th> 
 			</tr>		
 		<c:forEach items="${allCourses}" var="course">
 			<tr>
 				<td><c:out value="${course.name}" /></td>
+				<td><c:out value="${course.city}" /></td>
 				<td><c:out value="${course.par}" /></td>
 				<td><c:out value="${course.slope}" /></td>
 				<td><c:out value="${course.rating}" /></td>
-				<td><c:out value="${course.city}" /></td>
 			<tr>
 		</c:forEach>
 	</table>	
 	
 </body>
-</html>
+<c:import url="/WEB-INF/jsp/footer.jsp" />

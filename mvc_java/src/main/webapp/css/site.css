@@ -79,15 +79,40 @@ homeImg {
 	font-size: 20px;
 }
 
-#searchForm {
+.input {
 	display: flex;
 }
 
-.formInputGroup {
-	padding: 20px;
+.addCourseButton {
+	background-color: #EF8354;
+}
+
+.addCourseButton:hover {
+	background-color: #2D3142;
 }
 
 #courseTable {
 	background-color: #BFC0C0;
+	font-size: 15px;
+	margin: 15px;
+	align: left;
+	border: thin black solid;
 }
+
+table th {
+	border: thin black solid;
+	padding: 2px 10px 2px 10px;
+}
+
+table td {
+	min-width: 125px;
+	padding: 2px 10px 2px 10px;
+	border-bottom: thin black dotted;
+}
+
+table tr:first child {
+	background-color: #c0c0c0;
+}
+
+
 
