@@ -18,7 +18,7 @@
 				},
 				newPassword : {
 					required : true,
-					minlength: 15,
+					minlength: 10,
 					capitals: true,
 				},
 				confirmNewPassword : {
@@ -28,7 +28,7 @@
 			},
 			messages : {			
 				password: {
-					minlength: "Password too short, make it at least 15 characters",
+					minlength: "Password too short, make it at least 10 characters",
 					capitals: "Field must contain a capital letter"
 //					lowercase: "Fields must contain a lower case letter"
 				},
