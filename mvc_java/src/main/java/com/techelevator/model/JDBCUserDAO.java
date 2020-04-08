@@ -49,15 +49,27 @@ public class JDBCUserDAO implements UserDAO {
 			return false;
 		}
 	}
+	
+	
+	
 // UPDATE PASSWORD - ask for user to enter login credentials userName password
 // verify the user, then ask for newPassword, confirm newPassword
 // check that the newPassword meets the criteria, execute the change
 	
 	@Override
 	public void updatePassword(String userName, String password, String newPassword) {
-		boolean isTrue = searchForUsernameAndPassword(userName, password);
-		if((isTrue) == true) {
-		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", newPassword, userName);
+		boolean isTrue = searchForUsernameAndPassword(userName, password); //provides boolean
+		String sqlSearchForUser = "SELECT * "+
+			      "FROM app_user "+
+			      "WHERE UPPER(user_name) = ? ";
+		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase()); // provides user
+		
+		if((isTrue) == true && user.next()) {
+		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", newPassword, userName.toUpperCase());
+		String dbSalt = user.getString("salt");
+		String dbHashedPassword = user.getString("password");
+		String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
+//		return dbHashedPassword.equals(givenPassword);
 		}				
 	}
 

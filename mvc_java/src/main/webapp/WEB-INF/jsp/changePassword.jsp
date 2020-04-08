@@ -29,8 +29,8 @@
 			messages : {			
 				password: {
 					minlength: "Password too short, make it at least 15 characters",
-					capitals: "Field must contain a capital letter",
-					lowercase: "Fields must contain a lower case letter"
+					capitals: "Field must contain a capital letter"
+//					lowercase: "Fields must contain a lower case letter"
 				},
 				confirmPassword : {
 					equalTo : "Passwords do not match"
@@ -41,7 +41,7 @@
 	});
 </script>
 
-<c:url var="formAction" value="/users" />
+<c:url var="formAction" value="/users/${currentUser}/changePassword" />
 <form method="POST" action="${formAction}">
 <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 	<div class="row">
@@ -57,11 +57,11 @@
 			</div>
 			<div class="form-group">
 				<label for="newPassword">New Password: </label>
-				<input type="Password" id="Password" name="Password" placeHolder="New Password" class="form-control" />
+				<input type="password" id="password" name="newPassword" placeHolder="New Password" class="form-control" />
 			</div>
 			<div class="form-group">
 				<label for="confirmNewPassword">Confirm New Password: </label>
-				<input type="Password" id="confirmNewPassword" name="confirmNewPassword" placeHolder="Re-Type New Password" class="form-control" />	
+				<input type="password" id="password" name="confirmNewPassword" placeHolder="Re-Type New Password" class="form-control" />	
 			</div>
 			<button type="submit" class="btn btn-primary">Change Password</button>
 		</div>
