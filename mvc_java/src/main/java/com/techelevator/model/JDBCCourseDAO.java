@@ -37,6 +37,12 @@ public class JDBCCourseDAO implements courseDAO {
 	@Override
 	public List<Course> searchCourses(@RequestParam(required = false) String searchName, @RequestParam(required = false) String searchCity, ModelMap map) {
 		List<Course> courses = new ArrayList<>();
+		if (searchName == "") {
+			searchName = "LKJDLKJDLKJDLKJDF";
+		}
+		if(searchCity == "") {
+			searchCity = "LDKJDLKFJSDF";
+		}
 		String sql = "SELECT * FROM courses WHERE UPPER(name) LIKE ? OR UPPER(city) LIKE ? ORDER BY city";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, "%" + searchName.toUpperCase() + "%", "%" + searchCity.toUpperCase() + "%");
 		while (results.next()) {
