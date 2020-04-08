@@ -44,7 +44,7 @@ public class JDBCCourseDAO implements courseDAO {
 			searchCity = "LDKJDLKFJSDF";
 		}
 		String sql = "SELECT * FROM courses WHERE UPPER(name) LIKE ? OR UPPER(city) LIKE ? ORDER BY city";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, "%" + searchName.toUpperCase() + "%", "%" + searchCity.toUpperCase() + "%");
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, searchName.toUpperCase() + "%", searchCity.toUpperCase() + "%");
 		while (results.next()) {
 			courses.add(mapRowToCourse(results));
 		}
