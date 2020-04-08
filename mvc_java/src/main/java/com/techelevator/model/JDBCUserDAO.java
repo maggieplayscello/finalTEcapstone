@@ -64,7 +64,7 @@ public class JDBCUserDAO implements UserDAO {
 			      "WHERE UPPER(user_name) = ? ";
 		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase()); // provides user
 		
-		if((isTrue) == true && user.next()) {
+		if(isTrue == true && user.next()) {
 		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", newPassword, userName.toUpperCase());
 		String dbSalt = user.getString("salt");
 		String dbHashedPassword = user.getString("password");
