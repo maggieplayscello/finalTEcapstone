@@ -56,6 +56,9 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<c:url var="homePageHref" value="/" />
+				<c:if test = "${not empty currentUser}">
+					<c:url var = 'homePageHref' value = '/users/${currentUser}/'/>
+				</c:if>
 				<li class="nav-item"><a class="nav-link" href="${homePageHref}">Home</a></li>
 
 				<c:if test="${not empty currentUser}">

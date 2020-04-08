@@ -31,6 +31,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(path="/users/{currentUser}/")
+	public String displayHomePageUserLoggedIn() {
+		return "home";
+	}
+	
 	@RequestMapping(path="/dashboard")
 	public String displayDashboard() {
 		return "dashboard";
@@ -72,8 +77,8 @@ public class HomeController {
 		return "redirect:/addCourseConfirmation";
 	}
 	
-	@RequestMapping (path = "/addCourseConfirmation", method = RequestMethod.GET)
-	public String courseConfirmation(){
+	@RequestMapping (path = "/users/{currentUser}/addCourseConfirmation", method = RequestMethod.GET)
+	public String courseConfirmation( @PathVariable("currentUser") String currentUser){
 		return "addCourseConfirmation";
 	}
 	
