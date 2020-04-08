@@ -6,10 +6,40 @@
 
 body {
 	background-color: #F1F7ED;
+	background-image: url(img/grass.jpg);
+}
+
+#wrapper {
+   width: 98%;
+   margin: 0 auto;
+   padding: 10px;
+   background-color: #ffffff;
+}
+
+.textblock {
+	color: #113015;
+	font-size: 20px;
+}
+
+h1 {
+	color: #B2972C;
+	padding: 10px;
+	letter-spacing: 5px;
+}
+
+h2 {
+	font-size: 20px;
+}
+
+h3 {
+	font-size: 25px;
+	color: #B2972C;
+	padding: 10px;
 }
 
 
-/*   Menu Navbar   */
+
+/*   Header   */
 
 .navbar {
 	display: flex;
@@ -53,23 +83,6 @@ button {
 	background-color: #113015;
 }
 
-/*   General Body   */
-
-h1 {
-	color: #B2972C;
-	padding: 10px;
-}
-
-h2 {
-	font-size: 20px;
-}
-
-h3 {
-	font-size: 25px;
-	color: #B2972C;
-	padding: 10px;
-}
-
 /*   Home   */
 
 .homeImg {
@@ -77,15 +90,11 @@ h3 {
 	padding: 15px;
 }
 
-.description {
-	color: #2D3142;
-	font-size: 20px;
-}
 
 /*   Course Search   */
 
 #courseTable {
-	background-color: #BFC0C0;
+	background-color: #F1F7ED;
 	font-size: 15px;
 	margin: 15px;
 	align: left;
@@ -109,3 +118,11 @@ table td {
 	padding: 10px 10px 10px 0px;
 }
 
+
+
+/*   Footer   */
+
+.footer {
+	color: #113015;
+	padding: 20px;	
+}
