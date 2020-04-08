@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>Golf Tracker</h1>
-	<c:url var="imgSrc" value="/img/golf1.png" /> 
+	<c:url var="imgSrc" value="/img/michgolf.jpg" /> 
 	<img src="${imgSrc}" class="homeImg"/><br> <br>
 	<!--  image is from http://www.arcticopen.is/en/pictures/arctic-open-2017 but if we keep this, 
 	i can't find photog credit -mt -->
