@@ -9,9 +9,9 @@
 </head>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
+<h1>These are all functions only available to admins.</h1>
 
 <body>
-These are all functions only available to admins.
 
 <div id="wrapper">
 <div class="row">

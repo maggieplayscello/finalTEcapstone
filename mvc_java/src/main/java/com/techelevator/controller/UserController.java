@@ -80,5 +80,10 @@ public class UserController {
 		return "redirect:/login";
 	}
 	
+	@RequestMapping(path="/users/{currentUser}/myLeagues", method=RequestMethod.GET)
+	public String loadMyLeaguesPage(@PathVariable("currentUser") String currentUser) {
+		return "myLeagues";
+	}
+	
 	
 }

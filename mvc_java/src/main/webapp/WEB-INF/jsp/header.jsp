@@ -68,9 +68,9 @@
 					<c:url var="dashboardHref" value="/users/${currentUser}" />
 					<c:url var="courseSearchHref" value="/users/${currentUser}/courseSearch" />
 					<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
-					<li class="nav-item"><a class="nav-link" href="${myLeaguesHref}">My Leagues</a></li>
 						<c:url var="myLeaguesHref"
 						value="/users/${currentUser}/myLeagues" />
+					<li class="nav-item"><a class="nav-link" href="${myLeaguesHref}">My Leagues</a></li>
 					<!-- Commenting out Messages til we decide if we are going to use them
 					<li class="nav-item"><a class="nav-link" href="${dashboardHref}">Messages</a></li>
 					<c:url var="newMessageHref"
