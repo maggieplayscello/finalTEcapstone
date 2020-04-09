@@ -1,6 +1,6 @@
 		</div>
 		
-		<footer>
+		<footer class="footer">
 			Copyright 2016 Golf App Inc.
 		</footer>
 	</body>

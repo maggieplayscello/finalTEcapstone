@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,13 +31,18 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(path="/users/{currentUser}/")
+	public String displayHomePageUserLoggedIn() {
+		return "home";
+	}
+	
 	@RequestMapping(path="/dashboard")
 	public String displayDashboard() {
 		return "dashboard";
 	}
 	
-	@RequestMapping(path="/courseSearch")
-	public String displayCourse(ModelMap map) {
+	@RequestMapping(path= {"/courseSearch", "/users/{currentUser}/courseSearch"})
+	public String displayCourse(@PathVariable(required = false) String currentUser, ModelMap map) {
 		List<Course> course = courseDao.getAllCourses();
 		map.put("allCourses", course);
 		return "courseSearch";
@@ -50,16 +56,16 @@ public class HomeController {
 		return "courseSearch";
 	}
 		
-	@RequestMapping(path="/addCourse", method = RequestMethod.GET)
-	public String displayAddCourse(ModelMap map) {
+	@RequestMapping(path="/users/{currentUser}/addCourse", method = RequestMethod.GET)
+	public String displayAddCourse(@PathVariable("currentUser") String currentUser, ModelMap map) {
 		if (!map.containsAttribute("course")) {
 			map.put("course", new Course());
 		}
 		return "addCourse";
 	}
 	
-	@RequestMapping (path = "/addCourse", method = RequestMethod.POST)
-	public String submitCourse(@Valid @ModelAttribute Course course, BindingResult result, RedirectAttributes flash) {
+	@RequestMapping (path = "/users/{currentUser}/addCourse", method = RequestMethod.POST)
+	public String submitCourse(@Valid @ModelAttribute Course course, @PathVariable("currentUser") String currentUser, BindingResult result, RedirectAttributes flash) {
 		
 		flash.addFlashAttribute("course", course);
 		
@@ -71,8 +77,8 @@ public class HomeController {
 		return "redirect:/addCourseConfirmation";
 	}
 	
-	@RequestMapping (path = "/addCourseConfirmation", method = RequestMethod.GET)
-	public String courseConfirmation(){
+	@RequestMapping (path = "/users/{currentUser}/addCourseConfirmation", method = RequestMethod.GET)
+	public String courseConfirmation( @PathVariable("currentUser") String currentUser){
 		return "addCourseConfirmation";
 	}
 	

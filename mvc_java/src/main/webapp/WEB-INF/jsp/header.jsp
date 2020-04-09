@@ -43,7 +43,10 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#"> 
 			<c:url var="homePageHref" value="/" />
-			<c:url var="imgSrc" value="/img/logoltblue.png" /> 
+			<c:if test = "${not empty currentUser}">
+					<c:url var = 'homePageHref' value = '/users/${currentUser}/'/>
+			</c:if>
+			<c:url var="imgSrc" value="/img/gtlogogreen.png" /> 
 			<a href="${homePageHref}"><img src="${imgSrc}" class="img-fluid" style="height: 65px;" /></a>
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -56,12 +59,15 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<c:url var="homePageHref" value="/" />
+				<c:if test = "${not empty currentUser}">
+					<c:url var = 'homePageHref' value = '/users/${currentUser}/'/>
+				</c:if>
 				<li class="nav-item"><a class="nav-link" href="${homePageHref}">Home</a></li>
 
 				<c:if test="${not empty currentUser}">
 					<c:url var="dashboardHref" value="/users/${currentUser}" />
+					<c:url var="courseSearchHref" value="/users/${currentUser}/courseSearch" />
 					<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
-						<c:url var="courseSearchHref" value="/courseSearch" />
 					<li class="nav-item"><a class="nav-link" href="${myLeaguesHref}">My Leagues</a></li>
 						<c:url var="myLeaguesHref"
 						value="/users/${currentUser}/myLeagues" />

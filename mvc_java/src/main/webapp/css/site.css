@@ -5,59 +5,26 @@
 }
 
 body {
-	background-color: #E8E8E8;
+	background-color: #F1F7ED;
+	background-image: url(img/grass.jpg);
 }
 
-
-
-
-.navbar {
-	display: flex;
-	width: 100%;
-	padding: 2px;
-	background-color: #4F5D75;
+#wrapper {
+   width: 98%;
+   margin: 0 auto;
+   padding: 10px;
+   background-color: #ffffff;
 }
 
-.nav-item {
-	list-style-type: none;
-	letter-spacing: 2px;
-}
-
-li a {
+.textblock {
+	color: #113015;
 	font-size: 20px;
-	text-decoration: none;
-	display: block;
-	padding: 25px;
-	color: #BFC0C0;
 }
-
-li a:hover {
-	font-weight: boldest;
-	text-decoration: none;
-	background-color: #2D3142;
-	color: #EF8354;
-}
-
-button {
-	background-color: #4F5D75;
-	background: transparent;
-    border: none !important;
-}
-
-.btn {
-	background-color: #EF8354;
-}
-
-.btn:hover {
-	background-color: #2D3142;
-}
-
-
-
 
 h1 {
-	color: #EF8354;
+	color: #B2972C;
 	padding: 10px;
+	letter-spacing: 5px;
 }
 
 h2 {
@@ -66,25 +33,68 @@ h2 {
 
 h3 {
 	font-size: 25px;
-	color: #EF8354;
+	color: #B2972C;
 	padding: 10px;
 }
 
-homeImg {
+
+
+/*   Header   */
+
+.navbar {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding: 2px;
+	background-color: #536B4E;
+}
+
+.nav-item {
+	list-style-type: none;
+	letter-spacing: 2px;
+}
+
+li a {
+	font-size: 18px;
+	text-decoration: none;
+	display: block;
+	padding: 25px;
+	color: #B8C3A3;
+}
+
+li a:hover {
+	font-weight: boldest;
+	text-decoration: none;
+	background-color: #113015;
+	color: #B2972C;
+}
+
+button {
+	background-color: #B8C3A3;
+	background: transparent;
+    border: none !important;
+}
+
+.btn {
+	background-color: #B2972C;
+}
+
+.btn:hover {
+	background-color: #113015;
+}
+
+/*   Home   */
+
+.homeImg {
+	max-width: 100%;
 	padding: 15px;
 }
 
-.description {
-	color: #2D3142;
-	font-size: 20px;
-}
 
-.input {
-	display: flex;
-}
+/*   Course Search   */
 
 #courseTable {
-	background-color: #BFC0C0;
+	background-color: #F1F7ED;
 	font-size: 15px;
 	margin: 15px;
 	align: left;
@@ -92,6 +102,8 @@ homeImg {
 }
 
 table th {
+	background-color: #113015;
+	color: #B8C3A3;
 	border: thin black solid;
 	padding: 2px 10px 2px 10px;
 }
@@ -102,9 +114,15 @@ table td {
 	border-bottom: thin black dotted;
 }
 
-table tr:first child {
-	background-color: #c0c0c0;
+.addCourseButton {
+	padding: 10px 10px 10px 0px;
 }
 
 
 
+/*   Footer   */
+
+.footer {
+	color: #113015;
+	padding: 20px;	
+}

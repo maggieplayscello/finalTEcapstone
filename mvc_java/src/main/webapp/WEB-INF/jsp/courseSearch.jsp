@@ -11,14 +11,14 @@
 	<h3>Search for Courses</h3>
 	
 	<form method="GET" action="${courseSearchVar}">
-		<div class="input">
-
+		<div class="form-group">
 			<label for="name">Course Name:</label> 
-			<input type="text" name="searchName" id="name" />
-
+			<input type="text" name="searchName" placeHolder="Course Name" id="name" />
+		</div>
+		<div class="form-group">
 			<label for="city">City:</label> 
-			<input type="text" name="searchCity" id="city" />
-
+			<input type="text" name="searchCity" placeholder="City" id="city" />
+		</div>
 		
 		<!-- This is copied over just in case we expand outside Michigan
 		<label for="state">State:</label>
@@ -76,16 +76,17 @@
 				<option value="WY">Wyoming</option>
 			</select>
 			 -->
-		<div class= "button">
-			<input type="submit" value="Search" />
-		</div>
-	</div>
+
+		<button type="submit" class="btn btn-primary">Search</button>
+
 	</form>
 
-	<div class="button">
-		<c:url var="addCourseHref" value="/users/addCourse"/>
-		<a href="${addCourseHref}">+ Add a new Course</a>
-	</div>
+	<c:if test = "${role == 'Admin'}">
+		<div class="addCourseButton">
+			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
+			<a href="${addCourseHref}">+ Add a new Course</a>
+		</div>
+	</c:if>
 	
 		<table id="courseTable">
 			<tr>
