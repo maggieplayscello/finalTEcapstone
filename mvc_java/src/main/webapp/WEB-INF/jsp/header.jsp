@@ -66,6 +66,10 @@
 
 				<c:if test="${not empty currentUser}">
 					<c:url var="dashboardHref" value="/users/${currentUser}" />
+
+					<c:url var="dashboardHref" value="/users/${currentUser}/dashboard" />
+					<li class="nav-item"><a class="nav-link" href="${dashboardHref}">Dashboard</a></li>
+					
 					<c:url var="courseSearchHref" value="/users/${currentUser}/courseSearch" />
 					<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
 						<c:url var="myLeaguesHref"
