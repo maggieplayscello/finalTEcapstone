@@ -9,42 +9,42 @@
 <title>Add Course Page</title>
 </head>
 <body>
-
-
-
-
+<div id="wrapper">
 		<c:url var="addCourseUrl" value="/addCourse" />
 		<form:form method="POST" action="${addCourseUrl}" modelAttribute="course">
+	<div class="row">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-4">
 		
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 
-			<div>
-				<label for="name">Name of Golf Course</label> 
-				<form:input path="name"/>
+			<div class="form-group">
+				<label for="name">Name of Golf Course: </label> 
+				<form:input path="name" placeHolder="Name"/>
   			<form:errors path="name" cssClass="error"/>
 			</div>
-			<div>
-				<label for="par">Par</label> 
-				<form:input path="par"/>
+			<div class="form-group">
+				<label for="par">Par: </label> 
+				<form:input path="par" placeHolder="Par"/>
 				<form:errors path="par" cssClass="error"/>
 			</div>
-			<div>
-				<label for="slope">Slope</label> 
-				<form:input path="slope"/>
+			<div class="form-group">
+				<label for="slope">Slope: </label> 
+				<form:input path="slope" placeHolder="Slope"/>
 				<form:errors path="slope" cssClass="error"/>
 			</div>
-			<div>
-				<label for="rating">Rating</label> 
-				<form:input path="rating"/>
+			<div class="form-group">
+				<label for="rating">Rating: </label> 
+				<form:input path="rating" placeHolder="Rating"/>
 				<form:errors path="rating" cssClass="error"/>
 			</div>
-			<div>
-				<label for="city">City</label> 
-				<form:input path="city"/>
+			<div class="form-group">
+				<label for="city">City: </label> 
+				<form:input path="city" placeHolder="City"/>
 				<form:errors path="city" cssClass="error"/>
 			</div>
-			<div>
-				<label for="state">Choose the State the course is in</label> 
+			<div class="form-group">
+				<label for="state">State: </label> 
 				<select name="state" id="state">
 					<option value="  ">  </option>
 					<option value="AL">AL</option>
@@ -100,11 +100,16 @@
 				</select>
 				<form:errors path="state" cssClass="error"/>
 			</div>
-		
-			
-			<div>
-				<input type="submit" value="submit" />
+					
+			<div class="addButton">
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+			</div>
 			</div>
 		</form:form>
+				<div class="col-sm-4"></div>
+	</div>	
 </body>
 </html>
+
+<c:import url="/WEB-INF/jsp/footer.jsp" />

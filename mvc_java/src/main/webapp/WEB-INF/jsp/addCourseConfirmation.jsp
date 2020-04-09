@@ -10,8 +10,10 @@
 <title>Course added Confirmation</title>
 </head>
 <body>
-
+	<div id="wrapper">
 You have successfully added a course!
-
+	</div>
 </body>
 </html>
+
+<c:import url="/WEB-INF/jsp/footer.jsp" />

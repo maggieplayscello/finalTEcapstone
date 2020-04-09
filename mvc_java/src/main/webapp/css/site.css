@@ -16,6 +16,13 @@ body {
    background-color: #ffffff;
 }
 
+.flex {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
 .textblock {
 	color: #113015;
 	font-size: 20px;
@@ -37,7 +44,12 @@ h3 {
 	padding: 10px;
 }
 
+hr {
+	height: 3px;
+    background-color: #113015;
+	border: none;
 
+}
 
 /*   Header   */
 
@@ -114,8 +126,127 @@ table td {
 	border-bottom: thin black dotted;
 }
 
-.addCourseButton {
+.addButton {
 	padding: 10px 10px 10px 0px;
+}
+
+/*   Dashboard    */
+
+#dashboardWrapper {
+	width: 98%;
+	height: 800px;
+	margin: 0 auto;
+	padding: 10px;
+	background-color: #ffffff;
+}
+
+/*   Recent Scores   */
+
+.scoreboard{
+	background-color: #F1F7ED;
+	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
+	padding: 20px 30px 20px 30px;
+	color:#363b41;
+	width: 450px;
+	height: 400px;
+}
+
+
+/*   Calendar    */
+
+.calendar{
+	background-color: #F1F7ED;
+	width: 400px;
+	padding: 10px;
+	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
+	padding: 20px 30px;
+	color:#363b41;
+	display: inline-block;
+}
+
+.calendar_plan{
+	margin:20px 0 40px;
+}
+
+.cl_plan{
+	width:100%;
+	height: 140px;
+	background-image: linear-gradient(-222deg, #113015, #B8C3A3);
+	box-shadow: 0px 0px 52px -18px rgba(0, 0, 0, 0.75);
+	padding: 20px;
+	color: #B8C3A3;
+}
+
+.cl_title{
+  	font-size: 35px;
+}
+.cl_copy{
+	font-size:25px;
+	margin: 20px 0;
+	display: inline-block;
+}
+
+.cl_add{
+	display: inline-block;
+	width: 40px;
+	height:40px;
+	border-radius:50%;
+	background-color: #B2972C;
+	cursor: pointer;
+	margin:0 0 0 65px;
+	color:#c2c2c2;
+	padding: 11px 13px;
+}
+
+.calendar_events{
+	color: #113015;
+}
+
+.ce_title{
+	font-size:14px;
+}
+
+.event_item{
+	margin: 18px 0;
+	padding:5px;
+	background-color: #F3F9F0;
+}
+
+.ei_Dot,.ei_Title{
+  display:inline-block;
+}
+
+.ei_Dot{
+  border-radius:50%;
+  width:10px;
+  height: 10px;
+  background-color: #B2972C;
+  box-shadow: 0px 0px 52px -18px rgba(0, 0, 0, 0.75);
+}
+.dot_active{
+  background-color: #B2972C;
+}
+
+.ei_Title{
+  margin-left:10px;
+  color:#363b41;
+}
+
+.ei_Copy{
+  font-size:12px;
+  margin-left:27px;
+}
+
+/*   League Standing   */
+
+.standings{
+	background-color: #F1F7ED;
+	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
+	padding: 20px 30px 20px 30px;
+	color:#363b41;
+	width: 450px;
+	height: 300px;
+	
 }
 
 
