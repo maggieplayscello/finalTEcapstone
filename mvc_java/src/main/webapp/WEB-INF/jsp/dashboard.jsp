@@ -9,7 +9,9 @@
 
 <body>
 	<div id="wrapper">
-	<h2>Welcome ${currentUser}</h2>
+	<h1>Welcome, ${currentUser}!</h1>
+
+<!-- User Scoreboard -->
 	
 	<div id="userScoreboard">
 		<h3>My Recent Scores</h3>
@@ -34,7 +36,9 @@
       <div class="cl_plan">
         <div class="cl_title">Today is</div>
         <div class="cl_copy">April 18 2020</div>
-
+        <div class="cl_add">
+          <i class="fas fa-plus"></i>
+        </div>
       </div>
     </div>
     <div class="calendar_events">
@@ -46,6 +50,7 @@
         <div class="ei_Copy">League 1 Team 1 Match 1</div>
         <div class="ei_Copy">Alpena Golf Club</div>
       </div>
+	<hr>
       <div class="event_item">
         <div class="ei_Dot"></div>
         <div class="ei_Title">April 19 2020</div>
@@ -53,6 +58,7 @@
         <div class="ei_Copy">League 1 Team 1 Match 2</div>
         <div class="ei_Copy">Alpena Golf Club</div>
       </div>
+	<hr>
       <div class="event_item">
         <div class="ei_Dot"></div>
         <div class="ei_Title">April 23 2020</div>
@@ -60,26 +66,27 @@
         <div class="ei_Copy">League 2 Team 1 Match 1 at Arcadia</div>
         <div class="ei_Copy">Alpena Bluffs Golf Course</div>
       </div>
+	<hr>
       <div class="event_item">
         <div class="ei_Dot"></div>
-        <div class="ei_Title">April 19 2020</div>
+        <div class="ei_Title">April 25 2020</div>
         <div class="ei_Copy">1:07 pm</div>
         <div class="ei_Copy">League 1 Team 1 Match 3</div>
         <div class="ei_Copy">Alpena Golf Club</div>        
       </div>
+	<hr>
       <div class="event_item">
         <div class="ei_Dot"></div>
-        <div class="ei_Title">April 19 2020</div>
+        <div class="ei_Title">April 26 2020</div>
         <div class="ei_Copy">12:55 pm</div>
         <div class="ei_Copy">League 2 Team 1 Match 2</div>
         <div class="ei_Copy">Alpena Bluffs Golf Course</div>
       </div>
-    </div>
-  </div>
+	<hr>
+	</div>
+	</div>
 
-
-</div>
-  
+<!-- User Leaderboard -->
 	
 	<div id="userStandings">
 		<h3>League Standings</h3>
@@ -93,6 +100,7 @@
 		</table>
 	</div>
 	</div>
+	
 </body>
 </html>
 
