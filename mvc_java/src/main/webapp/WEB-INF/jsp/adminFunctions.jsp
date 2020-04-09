@@ -13,6 +13,7 @@
 <body>
 These are all functions only available to admins.
 
+<div id="wrapper">
 <div class="row">
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">
@@ -37,6 +38,7 @@ These are all functions only available to admins.
 		<a href = "${addCourseUrl}">Click here to add a course to our Database</a>
 	</div>
 	<div class="col-sm-4"></div>
+</div>
 </div>
 <c:import url="/WEB-INF/jsp/footer.jsp" />
 </body>

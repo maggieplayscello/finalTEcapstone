@@ -7,7 +7,7 @@
 
 <c:url value='/courseSearchResults' var='courseSearchVar' />
 <body>
-
+	<div id="wrapper">
 	<h3>Search for Courses</h3>
 	
 	<form method="GET" action="${courseSearchVar}">
@@ -106,6 +106,6 @@
 			<tr>
 		</c:forEach>
 	</table>	
-	
+	</div>
 </body>
 <c:import url="/WEB-INF/jsp/footer.jsp" />

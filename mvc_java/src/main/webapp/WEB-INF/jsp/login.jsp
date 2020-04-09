@@ -25,6 +25,7 @@
 	});
 </script>
 
+	<div id="wrapper">
 <div class="row">
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">
@@ -44,5 +45,6 @@
 		</form>
 	</div>
 	<div class="col-sm-4"></div>
+	</div>
 </div>
 <c:import url="/WEB-INF/jsp/footer.jsp" />

@@ -44,6 +44,7 @@
 <c:url var="formAction" value="/users/${currentUser}/changePassword" />
 <form method="POST" action="${formAction}">
 <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+	<div id="wrapper">
 	<div class="row">
 		<div class="col-sm-4"></div>
 		<div class="col-sm-4">
@@ -66,6 +67,7 @@
 			<button type="submit" class="btn btn-primary">Change Password</button>
 		</div>
 		<div class="col-sm-4"></div>
+	</div>
 	</div>
 </form>
 		
