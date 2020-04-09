@@ -28,9 +28,24 @@ public class JDBCUserDAO implements UserDAO {
 		byte[] salt = hashMaster.generateRandomSalt();
 		String hashedPassword = hashMaster.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
-		jdbcTemplate.update("INSERT INTO app_user(user_name, password, role, salt) VALUES (?, ?, ?, ?)",
-				userName, hashedPassword, "Golfer", saltString);
+//		if(verifyUserIsntInDatabase(userName)) {
+			jdbcTemplate.update("INSERT INTO app_user(user_name, password, role, salt) VALUES (?, ?, ?, ?)",
+					userName, hashedPassword, "Golfer", saltString);
+//		}
 	}
+//	
+//	public boolean verifyUserIsntInDatabase(String userName) {
+//		boolean isntInDatabase = true;
+//		String sqlSearchForUsername ="SELECT * "+
+//				"FROM app_user "+
+//				"WHERE user_name = ? ";
+//
+//				SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName);
+//		if (user.next()) {
+//			isntInDatabase = false;
+//		}
+//		return isntInDatabase;
+//	}
 
 	@Override
 	public boolean searchForUsernameAndPassword(String userName, String password) {
