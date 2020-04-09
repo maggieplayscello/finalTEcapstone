@@ -21,27 +21,27 @@
 			<div>
 				<label for="name">Name of Golf Course</label> 
 				<form:input path="name"/>
-<%--  			<form:errors path="name" cssClass="error"/> --%>
+  			<form:errors path="name" cssClass="error"/>
 			</div>
 			<div>
 				<label for="par">Par</label> 
 				<form:input path="par"/>
-<%--				<form:errors path="par" cssClass="error"/> --%>
+				<form:errors path="par" cssClass="error"/>
 			</div>
 			<div>
 				<label for="slope">Slope</label> 
 				<form:input path="slope"/>
-<%--				<form:errors path="slope" cssClass="error"/> --%>
+				<form:errors path="slope" cssClass="error"/>
 			</div>
 			<div>
 				<label for="rating">Rating</label> 
 				<form:input path="rating"/>
-<%--				<form:errors path="rating" cssClass="error"/> --%>
+				<form:errors path="rating" cssClass="error"/>
 			</div>
 			<div>
 				<label for="city">City</label> 
 				<form:input path="city"/>
-<%--				<form:errors path="city" cssClass="error"/> --%>
+				<form:errors path="city" cssClass="error"/>
 			</div>
 			<div>
 				<label for="state">Choose the State the course is in</label> 
@@ -98,7 +98,7 @@
 					<option value="WV">WV</option>
 					<option value="WY">WY</option>
 				</select>
-<%--				<form:errors path="state" cssClass="error"/> --%>
+				<form:errors path="state" cssClass="error"/>
 			</div>
 		
 			

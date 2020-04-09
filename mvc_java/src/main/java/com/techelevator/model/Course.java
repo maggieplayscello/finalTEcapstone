@@ -1,24 +1,30 @@
 package com.techelevator.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Course {
 	private int id;
 
-//	@NotBlank(message = "Must enter a course name")
+	@NotBlank(message = "Must enter a course name")
 	private String name;
-	private int par;
-	private int slope;
-	private double rating;
-//	@NotBlank(message = "Must enter a city")
-	private String city;
-//	@NotBlank(message = "Must select your state")
-	private String state;
-//	@NotBlank(message = "Must enter par for course")
-
-//	@NotBlank(message = "Must enter course rating")
 	
-//	@NotBlank(message = "Must enter slope")
+	@Min (value = 20, message = "Par is too low")
+	@Max (value = 100, message = "Par is too high")
+	private Integer par;
+	
+	private Integer slope;
+	
+	private Double rating;
+	
+	@NotBlank(message = "Must enter a city")
+	private String city;
+	
+	@NotBlank(message = "Must select your state")
+	private String state;
+	
 	
 	public Course() {
 		
@@ -58,22 +64,22 @@ public class Course {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public int getPar() {
+	public Integer getPar() {
 		return par;
 	}
-	public void setPar(int par) {
+	public void setPar(Integer par) {
 		this.par = par;
 	}
-	public double getRating() {
+	public Double getRating() {
 		return rating;
 	}
-	public void setRating(double rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
-	public int getSlope() {
+	public Integer getSlope() {
 		return slope;
 	}
-	public void setSlope(int slope) {
+	public void setSlope(Integer slope) {
 		this.slope = slope;
 	}
 }
