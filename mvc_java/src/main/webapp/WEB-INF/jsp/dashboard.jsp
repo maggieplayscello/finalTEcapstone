@@ -8,7 +8,7 @@
 <!-- This is mostly outline code since the models do not exist yet. Var names will be wrong -->
 
 <body>
-<div id="dashboardWrapper">
+<div id="wrapper">
 	<h1>Welcome, ${currentUser}!</h1>
 
 <!-- User Scoreboard -->
