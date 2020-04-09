@@ -82,7 +82,7 @@
 	</form>
 
 	<c:if test = "${role == 'Admin'}">
-		<div class="addCourseButton">
+		<div class="addButton">
 			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
 			<a href="${addCourseHref}">+ Add a new Course</a>
 		</div>
