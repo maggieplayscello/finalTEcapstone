@@ -19,7 +19,6 @@ public class JDBCUserDAO implements UserDAO {
 
 	@Autowired
 	public JDBCUserDAO(DataSource dataSource, PasswordHasher hashMaster) {
-//	public JDBCUserDAO(DataSource dataSource) {	
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 		this.hashMaster = hashMaster;
 	}
@@ -29,11 +28,8 @@ public class JDBCUserDAO implements UserDAO {
 		byte[] salt = hashMaster.generateRandomSalt();
 		String hashedPassword = hashMaster.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
-		
-//		String saltString = "temp";
 		jdbcTemplate.update("INSERT INTO app_user(user_name, password, role, salt) VALUES (?, ?, ?, ?)",
 				userName, hashedPassword, "Golfer", saltString);
-//				userName, password, "Golfer", saltString);
 	}
 
 	@Override
@@ -44,9 +40,6 @@ public class JDBCUserDAO implements UserDAO {
 		
 		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName);
 		if(user.next()) {
-			
-//			return password.equals(password);
-			
 			String dbSalt = user.getString("salt");
 			String dbHashedPassword = user.getString("password");
 			String givenPassword = hashMaster.computeHash(password, Base64.decode(dbSalt));
@@ -55,9 +48,6 @@ public class JDBCUserDAO implements UserDAO {
 			return false;
 		}
 	}
-	
-	
-	
 // UPDATE PASSWORD - ask for user to enter login credentials userName password
 // verify the user, then ask for newPassword, confirm newPassword
 // check that the newPassword meets the criteria, execute the change
@@ -65,12 +55,12 @@ public class JDBCUserDAO implements UserDAO {
 	@Override
 	public void updatePassword(String userName, String password, String newPassword) {
 		
-		boolean isTrue = searchForUsernameAndPassword(userName, password); //provides boolean
+		boolean isTrue = searchForUsernameAndPassword(userName, password);
 		System.out.println("Old PW = " + password + "  newPassword = " + newPassword);
 		String sqlSearchForUser = "SELECT * "+
 			      "FROM app_user "+
 			      "WHERE user_name = ? ";
-		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName); // provides user
+		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName);
 		
 		byte[] salt = hashMaster.generateRandomSalt();
 		String hashedPassword = hashMaster.computeHash(newPassword, salt);
@@ -82,9 +72,6 @@ public class JDBCUserDAO implements UserDAO {
 			System.out.println("Hashed Password: " + hashedPassword);
 			System.out.println("Salt String: " + saltString);			
 		jdbcTemplate.update("UPDATE app_user SET password = ?, salt = ? WHERE user_name = ?", hashedPassword, saltString, userName);
-		
-		
-//		return dbHashedPassword.equals(givenPassword);
 		}				
 	}
 
@@ -101,7 +88,6 @@ public class JDBCUserDAO implements UserDAO {
 			thisUser.setUserName(user.getString("user_name"));
 			thisUser.setPassword(user.getString("password"));
 		}
-
 		return thisUser;
 	}
 	
@@ -116,16 +102,12 @@ public class JDBCUserDAO implements UserDAO {
 		if(user.next()) {
 			myRole = user.getString("role");
 		}
-
 		return myRole;
 	}
 	
 	@Override
 	public void updateRole(String userName, String role) {
 		String sqlUpdateRole = "UPDATE app_user SET role = ? WHERE user_name = ?";
-		jdbcTemplate.update(sqlUpdateRole, role, userName);
-						
+		jdbcTemplate.update(sqlUpdateRole, role, userName);					
 	}
-	
-
 }
