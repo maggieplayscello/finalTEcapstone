@@ -4,9 +4,6 @@
 
 <title>Dashboard</title>
 </head>
-
-<!-- This is mostly outline code since the models do not exist yet. Var names will be wrong -->
-
 <body>
 <div id="wrapper">
 	<h1>Welcome, ${currentUser}!</h1>
@@ -35,10 +32,8 @@
 			</tr>
 		</table>
       </div>
-
-
     
-    <!-- Calendar -->
+<!-- Calendar -->
 
 	<div class="calendar">
 		<h1 class = "header_title">My Scheduled Tee Times</h1>
@@ -121,11 +116,10 @@
 		</table>
       </div>	
 	
-   
+<!-- Closing tags -->  
    
 </div>   
 </div>	
-
 </body>
 </html>
 
