@@ -78,7 +78,10 @@ public class JDBCUserDAO implements UserDAO {
 		
 		if(isTrue && user.next()) {
 			System.out.println("User Name = " + userName);
-		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", hashedPassword, userName);
+			System.out.println("Salt: " + salt);
+			System.out.println("Hashed Password: " + hashedPassword);
+			System.out.println("Salt String: " + saltString);			
+		jdbcTemplate.update("UPDATE app_user SET password = ?, salt = ? WHERE user_name = ?", hashedPassword, saltString, userName);
 		
 		
 //		return dbHashedPassword.equals(givenPassword);
