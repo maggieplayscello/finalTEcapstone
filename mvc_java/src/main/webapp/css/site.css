@@ -17,8 +17,9 @@ body {
 }
 
 .flex {
-	display: flexbox;
-	flex-direction: column-wrap;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
 	justify-content: space-around;
 }
 
@@ -131,6 +132,14 @@ table td {
 
 /*   Dashboard    */
 
+#dashboardWrapper {
+	width: 98%;
+	height: 800px;
+	margin: 0 auto;
+	padding: 10px;
+	background-color: #ffffff;
+}
+
 /*   Recent Scores   */
 
 .scoreboard{
@@ -138,11 +147,8 @@ table td {
 	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
 	padding: 20px 30px 20px 30px;
 	color:#363b41;
-	width: 40%;
-}
-
-.scoreboard_header{
-	border-bottom: 2px solid black;
+	width: 450px;
+	height: 400px;
 }
 
 
@@ -150,16 +156,12 @@ table td {
 
 .calendar{
 	background-color: #F1F7ED;
-	width: 40%;
+	width: 400px;
 	padding: 10px;
 	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
 	padding: 20px 30px;
 	color:#363b41;
 	display: inline-block;
-}
-
-.calendar_header{
-	border-bottom: 2px solid black;
 }
 
 .calendar_plan{
@@ -237,6 +239,15 @@ table td {
 
 /*   League Standing   */
 
+.standings{
+	background-color: #F1F7ED;
+	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
+	padding: 20px 30px 20px 30px;
+	color:#363b41;
+	width: 450px;
+	height: 300px;
+	
+}
 
 
 
