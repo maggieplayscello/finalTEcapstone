@@ -8,6 +8,7 @@
 <!-- This is mostly outline code since the models do not exist yet. Var names will be wrong -->
 
 <body>
+	<div id="wrapper">
 	<h2>Welcome ${currentUser}</h2>
 	
 	<div id="userScoreboard">
@@ -41,6 +42,8 @@
 					<td>${league.score}</td>	
 		</table>
 	</div>
-
+	</div>
 </body>
 </html>
+
+<c:import url="/WEB-INF/jsp/footer.jsp" />

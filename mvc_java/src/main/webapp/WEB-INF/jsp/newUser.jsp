@@ -39,6 +39,7 @@
 
 <c:url var="formAction" value="/users" />
 <form method="POST" action="${formAction}">
+<div id="wrapper">
 <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 	<div class="row">
 		<div class="col-sm-4"></div>
@@ -59,6 +60,7 @@
 			<button type="submit" class="btn btn-primary">Create User</button>
 		</div>
 		<div class="col-sm-4"></div>
+		</div>
 	</div>
 </form>
 		
