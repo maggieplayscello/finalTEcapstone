@@ -37,34 +37,6 @@
       </div>
 
 
-
-
-
-		
-<!-- User Scoreboard -->
-	
-	<div class="standings">
-		<h1 class = "header_title">My League Standings</h1>
-		<hr>
-		<table class="scores">
-			<tr>
-				<td>League 1</td>	
-				<td>3</td>
-				<td>70</td>
-			</tr>
-			<tr>
-				<td>Bush League</td>	
-				<td>1</td>
-				<td>1,209,234</td>
-			</tr>
-			<tr>
-				<td>League of Our Own</td>	
-				<td>71</td>
-				<td>2.01</td>
-			</tr>
-		</table>
-      </div>
-
     
     <!-- Calendar -->
 
@@ -124,6 +96,31 @@
 			<hr>
 		</div>
 	</div>
+	
+<!-- User Scoreboard -->
+	
+	<div class="standings">
+		<h1 class = "header_title">My League Standings</h1>
+		<hr>
+		<table class="scores">
+			<tr>
+				<td>League 1</td>	
+				<td>3</td>
+				<td>70</td>
+			</tr>
+			<tr>
+				<td>Bush League</td>	
+				<td>1</td>
+				<td>1,209,234</td>
+			</tr>
+			<tr>
+				<td>League of Our Own</td>	
+				<td>71</td>
+				<td>2.01</td>
+			</tr>
+		</table>
+      </div>	
+	
    
    
 </div>   
