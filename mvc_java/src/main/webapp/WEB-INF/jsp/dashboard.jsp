@@ -23,59 +23,56 @@
 				</tr>
 		</table>
 	</div>
-	
-	<div id="userTeeTimes">
-		<h3>My Scheduled Tee Times</h3>
-		<table class="calendar">
-				<tr>
-<!-- 				<td>${tee_times.course}</td>
-					<td>${tee_times.day}</td>
-					<td>${tee_times.time}</td>
-					<td>${tee_times.weather}</td>
- -->
-		</table>
-	</div>
-	<div class="container">
-  <div class="calendar light">
+
+<!-- Calendar -->
+
+  <div class="calendar">
     <div class="calendar_header">
-      <h1 class = "header_title">Welcome Back</h1>
-      <p class="header_copy"> Calendar Plan</p>
+      <h1 class = "header_title">My Scheduled Tee Times</h1>
     </div>
     <div class="calendar_plan">
       <div class="cl_plan">
-        <div class="cl_title">Today</div>
-        <div class="cl_copy">22nd  April  2018</div>
-        <div class="cl_add">
-          <i class="fas fa-plus"></i>
-        </div>
+        <div class="cl_title">Today is</div>
+        <div class="cl_copy">April 18 2020</div>
+
       </div>
     </div>
     <div class="calendar_events">
-      <p class="ce_title">Upcoming Events</p>
+      <p class="ce_title">Upcoming</p>
       <div class="event_item">
         <div class="ei_Dot dot_active"></div>
-        <div class="ei_Title">10:30 am</div>
-        <div class="ei_Copy">Monday briefing with the team</div>
+        <div class="ei_Title">April 18 2020</div>
+        <div class="ei_Copy">10:30 am</div>
+        <div class="ei_Copy">League 1 Team 1 Match 1</div>
+        <div class="ei_Copy">Alpena Golf Club</div>
       </div>
       <div class="event_item">
         <div class="ei_Dot"></div>
-        <div class="ei_Title">12:00 pm</div>
-        <div class="ei_Copy">Lunch for with the besties</div>
+        <div class="ei_Title">April 19 2020</div>
+        <div class="ei_Copy">12:00 pm</div>
+        <div class="ei_Copy">League 1 Team 1 Match 2</div>
+        <div class="ei_Copy">Alpena Golf Club</div>
       </div>
       <div class="event_item">
         <div class="ei_Dot"></div>
-        <div class="ei_Title">13:00 pm</div>
-        <div class="ei_Copy">Meet with the client for final design <br> @foofinder</div>
+        <div class="ei_Title">April 23 2020</div>
+        <div class="ei_Copy">8:10 am</div>
+        <div class="ei_Copy">League 2 Team 1 Match 1 at Arcadia</div>
+        <div class="ei_Copy">Alpena Bluffs Golf Course</div>
       </div>
       <div class="event_item">
         <div class="ei_Dot"></div>
-        <div class="ei_Title">14:30 am</div>
-        <div class="ei_Copy">Plan event night to inspire students</div>
+        <div class="ei_Title">April 19 2020</div>
+        <div class="ei_Copy">1:07 pm</div>
+        <div class="ei_Copy">League 1 Team 1 Match 3</div>
+        <div class="ei_Copy">Alpena Golf Club</div>        
       </div>
       <div class="event_item">
         <div class="ei_Dot"></div>
-        <div class="ei_Title">15:30 am</div>
-        <div class="ei_Copy">Add some more events to the calendar</div>
+        <div class="ei_Title">April 19 2020</div>
+        <div class="ei_Copy">12:55 pm</div>
+        <div class="ei_Copy">League 2 Team 1 Match 2</div>
+        <div class="ei_Copy">Alpena Bluffs Golf Course</div>
       </div>
     </div>
   </div>
