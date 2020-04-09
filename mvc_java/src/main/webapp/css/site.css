@@ -16,6 +16,12 @@ body {
    background-color: #ffffff;
 }
 
+.flex {
+	display: flexbox;
+	flex-direction: column-wrap;
+	justify-content: space-around;
+}
+
 .textblock {
 	color: #113015;
 	font-size: 20px;
@@ -125,14 +131,27 @@ table td {
 
 /*   Dashboard    */
 
+/*   Recent Scores   */
+
+.scoreboard{
+	background-color: #F1F7ED;
+	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
+	padding: 20px 30px 20px 30px;
+	color:#363b41;
+	width: 40%;
+}
+
+.scoreboard_header{
+	border-bottom: 2px solid black;
+}
 
 
 /*   Calendar    */
 
-
 .calendar{
 	background-color: #F1F7ED;
-	width:370px;
+	width: 40%;
+	padding: 10px;
 	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
 	padding: 20px 30px;
 	color:#363b41;
@@ -140,7 +159,7 @@ table td {
 }
 
 .calendar_header{
-	border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+	border-bottom: 2px solid black;
 }
 
 .calendar_plan{
@@ -215,6 +234,8 @@ table td {
   font-size:12px;
   margin-left:27px;
 }
+
+/*   League Standing   */
 
 
 
