@@ -27,9 +27,13 @@
 	
 		
 	<c:if test = "${role == 'Admin'}">
-		<div class="addButton">
+		<br>
+		<div class="btn">
 			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
 			<a href="${addCourseHref}">+ Add a new league</a><br>
+    	</div>
+    	<br><br>
+		<div class="btn">
 			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
 			<a href="${addCourseHref}">+ Create a match</a>
 		</div>
@@ -42,7 +46,7 @@
 	<h1 class = "header_title">League Leaderboard</h1>
 
 	<c:if test = "${role == 'Admin'}">
-		<div class="addButton">
+		<div class="btn">
 			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
 			<a href="${addCourseHref}">+ Add players to league</a>
 		</div>
@@ -112,7 +116,7 @@
 				<td>Player 2</td>
 				<td>72</td>
 			</tr>
-		<tr>
+			<tr>
 				<td>Team 2</td>	
 				<td>3</td>
 				<td>72</td>
@@ -144,7 +148,8 @@
 			</tr>
 		</table>
 	<c:if test = "${role == 'Admin'}">
-		<div class="addButton">
+		<br>
+		<div class="btn">
 			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
 			<a href="${addCourseHref}">+ Log Scores</a>
 		</div>

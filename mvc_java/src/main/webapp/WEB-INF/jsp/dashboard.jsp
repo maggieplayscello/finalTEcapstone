@@ -47,7 +47,8 @@
 				<td>April 9 2020</td>
 			</tr>
 		</table>
-		<div class="addButton">
+		<br>
+		<div class="btn">
 			<c:url var="addScoreHref" value="/users/${currentUser}/dashboard"/>
 			<a href="${addScoreHref}">+ Add a Score</a>
     	</div>
@@ -117,6 +118,11 @@
 		        <div class="ei_Copy">Arcadia Bluffs Golf Course</div>
 			</div>
 			<hr>
+			<br>
+		<div class="btn">
+			<c:url var="addScoreHref" value="/users/${currentUser}/dashboard"/>
+			<a href="${addScoreHref}">+ Schedule a Tee Time</a>
+    	</div>
 		</div>
 	</div>
 	
