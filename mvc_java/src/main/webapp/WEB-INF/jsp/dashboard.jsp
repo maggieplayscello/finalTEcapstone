@@ -44,7 +44,8 @@
 		<div class="addButton">
 			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
 			<a href="${addCourseHref}">+ Add a Score</a>
-      </div>
+    	</div>
+	</div>
 
 <!-- User Scoreboard -->
 	
@@ -115,7 +116,6 @@
 	
 <!-- Closing tags -->  
 
-</div>   
 </div>   
 </div>	
 </body>
