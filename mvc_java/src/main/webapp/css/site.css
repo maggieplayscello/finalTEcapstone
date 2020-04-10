@@ -7,6 +7,7 @@
 body {
 	background-color: #F1F7ED;
 	background-image: url(img/grass.jpg);
+	display: grid;
 }
 
 #wrapper {
@@ -113,31 +114,29 @@ button {
 
 /*   Dashboard: General    */
 
-.dashboardFlex {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	height: 900px;
-	width: 100%;
+.dashboardGrid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
 }
 
 /*   Dashboard: Recent Scores   */
 
 .scoreboard{
+	grid-area: grid-area: 1 / 1 / 3 / 3;
 	background-color: #F1F7ED;
 	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
 	padding: 20px 30px 20px 30px;
 	color:#363b41;
-	width: 450px;
-	height: 400px;
 }
 
 /*   Dashboard: Calendar    */
 
 .calendar{
+	grid-area: 1 / 3 / 5 / 5;
 	background-color: #F1F7ED;
-	width: 400px;
 	padding: 10px;
 	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
 	padding: 20px 30px;
@@ -221,13 +220,47 @@ button {
 /*   Dashboard: League Standing   */
 
 .standings{
+	grid-area: 3 / 1 / 5 / 3;
 	background-color: #F1F7ED;
 	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
 	padding: 20px 30px 20px 30px;
 	color:#363b41;
-	width: 450px;
-	height: 300px;	
 }
+
+/*   My Leagues   */
+
+.myLeaguesGrid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+}
+
+.sidenav { 
+	grid-area: 1 / 1 / 5 / 2;
+	background-color: #F1F7ED;
+	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
+	padding: 20px 30px 20px 30px; 	
+}
+
+
+.recentScores {
+	grid-area: 1 / 2 / 3 / 4;
+	background-color: #F1F7ED;
+	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
+	padding: 20px 30px 20px 30px;
+	color:#363b41;
+}
+
+.matches {
+	grid-area: 3 / 2 / 5 / 4;
+	background-color: #F1F7ED;
+	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
+	padding: 20px 30px 20px 30px;
+	color:#363b41;
+}
+
 
 /*   Course Search   */
 

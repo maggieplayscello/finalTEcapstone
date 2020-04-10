@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.model.User;
 
 import javax.sql.DataSource;
 
@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.model.User;
 import com.techelevator.security.PasswordHasher;
 
 @Component
@@ -119,6 +118,19 @@ public class JDBCUserDAO implements UserDAO {
 			myRole = user.getString("role");
 		}
 		return myRole;
+	}
+	@Override
+	public int getIdByUserName(String userName) {
+		String sqlSearchForUsername ="SELECT id "+
+		"FROM app_user "+
+		"WHERE UPPER(user_name) = ? ";
+
+		SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName.toUpperCase()); 
+		int myId = 0;
+		if(user.next()) {
+			myId = user.getInt("id");
+		}
+		return myId;
 	}
 	
 	@Override

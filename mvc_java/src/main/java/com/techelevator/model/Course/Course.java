@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.model.Course;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

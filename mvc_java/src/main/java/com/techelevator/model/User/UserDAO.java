@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.model.User;
 
 public interface UserDAO {
 
@@ -12,8 +12,10 @@ public interface UserDAO {
 
 	public String getRoleByUserName(String userName);
 
-	void updateRole(String userName, String role);
+	public void updateRole(String userName, String role);
 
-	boolean verifyUserIsntInDatabase(String userName);
+	public boolean verifyUserIsntInDatabase(String userName);
+
+	public int getIdByUserName(String userName);
 
 }

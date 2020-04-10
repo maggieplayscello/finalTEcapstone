@@ -1,10 +1,14 @@
-package com.techelevator.model;
+package com.techelevator.model.League;
 
 public class League {
 	private int leagueId;
 	private int courseId;
 	private String name;
 	private String owner;
+	
+	public League() {
+		
+	}
 	
 	public League(int leagueId, int courseId, String name, String owner) {
 		super();
