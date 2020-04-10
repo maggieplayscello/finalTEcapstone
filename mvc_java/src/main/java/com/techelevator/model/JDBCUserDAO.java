@@ -34,18 +34,19 @@ public class JDBCUserDAO implements UserDAO {
 //		}
 	}
 //	
-//	public boolean verifyUserIsntInDatabase(String userName) {
-//		boolean isntInDatabase = true;
-//		String sqlSearchForUsername ="SELECT * "+
-//				"FROM app_user "+
-//				"WHERE user_name = ? ";
-//
-//				SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName);
-//		if (user.next()) {
-//			isntInDatabase = false;
-//		}
-//		return isntInDatabase;
-//	}
+	@Override
+	public boolean verifyUserIsntInDatabase(String userName) {
+		boolean isntInDatabase = true;
+		String sqlSearchForUsername ="SELECT * "+
+				"FROM app_user "+
+				"WHERE user_name = ? ";
+
+				SqlRowSet user = jdbcTemplate.queryForRowSet(sqlSearchForUsername, userName);
+		if (user.next()) {
+			isntInDatabase = false;
+		}
+		return isntInDatabase;
+	}
 
 	@Override
 	public boolean searchForUsernameAndPassword(String userName, String password) {

@@ -75,9 +75,11 @@ public class UserController {
 			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
 			return "redirect:/users/new";
 		}
-		
-		userDAO.saveUser(user.getUserName(), user.getPassword());
-		return "redirect:/login";
+		if (userDAO.verifyUserIsntInDatabase(user.getUserName())) {
+			userDAO.saveUser(user.getUserName(), user.getPassword());
+			return "redirect:/login";
+		}
+		return "redirect:/users/new";
 	}
 	
 	@RequestMapping(path="/users/{currentUser}/myLeagues", method=RequestMethod.GET)

@@ -14,4 +14,6 @@ public interface UserDAO {
 
 	void updateRole(String userName, String role);
 
+	boolean verifyUserIsntInDatabase(String userName);
+
 }

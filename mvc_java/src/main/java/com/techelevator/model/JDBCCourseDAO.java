@@ -26,7 +26,7 @@ public class JDBCCourseDAO implements courseDAO {
 	public List<Course> getAllCourses() {
 		List <Course> courses = new ArrayList<>();
 		
-		String sqlSelectAllCourses = "SELECT * FROM courses ORDER BY city";
+		String sqlSelectAllCourses = "SELECT * FROM courses ORDER BY name";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllCourses);
 		while (results.next()) {
 			courses.add(mapRowToCourse(results));
@@ -37,13 +37,17 @@ public class JDBCCourseDAO implements courseDAO {
 	@Override
 	public List<Course> searchCourses(@RequestParam(required = false) String searchName, @RequestParam(required = false) String searchCity, ModelMap map) {
 		List<Course> courses = new ArrayList<>();
-		if (searchName == "") {
+		if (searchName == "" && searchCity != "") {
 			searchName = "LKJDLKJDLKJDLKJDF";
 		}
-		if(searchCity == "") {
+		if(searchCity == "" && searchName != "") {
 			searchCity = "LDKJDLKFJSDF";
 		}
-		String sql = "SELECT * FROM courses WHERE UPPER(name) LIKE ? OR UPPER(city) LIKE ? ORDER BY city";
+		
+		String sql = "SELECT * FROM courses WHERE UPPER(name) LIKE ? OR UPPER(city) LIKE ? ORDER BY name";
+		if (searchName != "LKJDLKJDLKJDLKJDF" && searchCity != "LDKJDLKFJSDF") {
+			sql = "SELECT * FROM courses WHERE UPPER(name) LIKE ? AND UPPER(city) LIKE ? ORDER BY name";
+		}
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, searchName.toUpperCase() + "%", searchCity.toUpperCase() + "%");
 		while (results.next()) {
 			courses.add(mapRowToCourse(results));
