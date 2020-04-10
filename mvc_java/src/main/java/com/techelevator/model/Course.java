@@ -19,27 +19,54 @@ public class Course {
 	
 	private Double rating;
 	
+	@NotBlank(message = "Must enter address")
+	private String address;
+	
 	@NotBlank(message = "Must enter a city")
 	private String city;
 	
 	@NotBlank(message = "Must select your state")
 	private String state;
 	
+	@Min (value = 10000, message = "Must enter valid zip")
+	@Max (value = 99999, message = "Must enter valid zip")
+	private Integer zip;
+	
 	
 	public Course() {
 		
 	}
 	
-	public Course(int id, String name, int par, int slope, double rating, String city, String state) {
+	public Course(int id, String name, int par, int slope, double rating, String address, String city, String state, int zip) {
 		this.id = id;
 		this.name = name;
 		this.par = par;
 		this.slope = slope;
 		this.rating = rating;
+		this.address = address;
 		this.city = city;
 		this.state = state;
+		this.zip = zip;
 	}
 	
+	
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Integer getZip() {
+		return zip;
+	}
+
+	public void setZip(Integer zip) {
+		this.zip = zip;
+	}
+
 	public int getId() {
 		return id;
 	}
