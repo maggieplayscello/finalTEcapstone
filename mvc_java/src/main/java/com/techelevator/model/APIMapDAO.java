@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 public class APIMapDAO {
 	
-	public Object getCourseByName(String name);
-
+	public Object getCourseByName(String name) {
+		return null;
+	}
 }
