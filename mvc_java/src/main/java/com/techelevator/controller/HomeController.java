@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.techelevator.model.Course;
-import com.techelevator.model.courseDAO;
+import com.techelevator.model.Course.Course;
+import com.techelevator.model.Course.courseDAO;
+import com.techelevator.model.Score.Score;
+import com.techelevator.model.Score.ScoreDAO;
+import com.techelevator.model.User.UserDAO;
 
 
 
@@ -25,6 +28,12 @@ public class HomeController {
 	
 	@Autowired
 	private courseDAO courseDao;
+	
+	@Autowired
+	private ScoreDAO scoreDao;
+	
+	@Autowired
+	private UserDAO userDao;
 
 	@RequestMapping(path="/")
 	public String displayHomePage() {
@@ -36,9 +45,24 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(path="/dashboard")
-	public String displayDashboard() {
+	@RequestMapping(path="/users/{currentUser}/dashboard")
+	public String displayDashboard(@PathVariable("currentUser") String currentUser, ModelMap map) {
+		List <Score> scores = scoreDao.getAllScoresByUserId(userDao.getIdByUserName(currentUser));
+		map.put("scores", scores);
 		return "dashboard";
+	}
+	
+	@RequestMapping (path = "/users/{currentUser}/dashboard", method = RequestMethod.POST)
+	public String submitScore(@Valid @ModelAttribute Score score, @PathVariable("currentUser") String currentUser, BindingResult result, RedirectAttributes flash) {
+		
+		flash.addFlashAttribute("score", score);
+		
+		if (result.hasErrors()) {
+			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "score", result);
+			return "redirect:/dashboard";
+		}
+		scoreDao.saveScore(score);
+		return "redirect:/dashboard";
 	}
 	
 	@RequestMapping(path= {"/courseSearch", "/users/{currentUser}/courseSearch"})

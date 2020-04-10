@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.model.Course;
 
 import java.util.ArrayList;
 import java.util.List;
