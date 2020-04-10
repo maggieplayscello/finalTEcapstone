@@ -7,85 +7,106 @@ BEGIN;
 -- CREATE statements go here
 DROP TABLE IF EXISTS app_user;
 
-CREATE TABLE app_user (
-  id SERIAL PRIMARY KEY,
-  user_name varchar(32) NOT NULL UNIQUE,
-  password varchar(32) NOT NULL,
-  role varchar(32),
-  salt varchar(255) NOT NULL
-);
-
-
-CREATE TABLE "courses"
+CREATE TABLE app_user
 (
- "course_id" SERIAL NOT NULL PRIMARY KEY,
- "name"      varchar(50) NOT NULL,
- "rating"    float NOT NULL,
- "slope"     int NOT NULL,
- "par"       int NOT NULL,
- "city"      varchar(50) NOT NULL,
- "state"     varchar(2) NOT NULL
+ id       serial NOT NULL,
+ user_name varchar(50) NOT NULL,
+ password varchar(100) NOT NULL,
+ salt     varchar(255) NOT NULL,
+ role     varchar(50) NOT NULL,
+ CONSTRAINT PK_golfer PRIMARY KEY (id)
 );
 
-CREATE TABLE "golfer"
+
+CREATE TABLE courses
 (
- "golfer_id" SERIAL NOT NULL PRIMARY KEY,
- "id"        int NOT NULL,
- "street"    varchar(50) NOT NULL,
- "city"      varchar(50) NOT NULL,
- "state"     varchar(2) NOT NULL,
- "zip"       varchar(10) NOT NULL,
- CONSTRAINT "fk_user" FOREIGN KEY ( "id" ) REFERENCES "app_user" ( "id" )
+ courseId serial NOT NULL,
+ name     varchar(50) NOT NULL,
+ par      integer NOT NULL,
+ slope    integer NOT NULL,
+ rating   float NOT NULL,
+ address  varchar(100) NOT NULL,
+ city     varchar(50) NOT NULL,
+ state    varchar(50) NOT NULL,
+ zip      integer NOT NULL,
+ CONSTRAINT PK_courses PRIMARY KEY (courseId)
 );
 
-CREATE TABLE "golfer_scores"
+
+CREATE TABLE golfer_team
 (
- "score_id"  SERIAL NOT NULL PRIMARY KEY,
- "course_id" int NOT NULL,
- "score"     int NOT NULL,
- "golfer_id" int NOT NULL,
- CONSTRAINT "fk_course_id" FOREIGN KEY ( "course_id" ) REFERENCES "courses" ( "course_id" ),
- CONSTRAINT "fk_golfer_id" FOREIGN KEY ( "golfer_id" ) REFERENCES "golfer" ( "golfer_id" )
+ id     integer NOT NULL,
+ teamId integer NOT NULL
+
 );
 
-CREATE TABLE "leagues"
+
+CREATE TABLE golfer_teeTime
 (
- "league_id"    SERIAL NOT NULL PRIMARY KEY,
- "course_id"    int NOT NULL,
- "league_name"  varchar(32) NOT NULL,
- "league_owner" varchar(32) NOT NULL,
- CONSTRAINT "fk_course_id" FOREIGN KEY ( "course_id" ) REFERENCES "courses" ( "course_id" )
+ teeTimeId integer NOT NULL,
+ id        integer NOT NULL
 );
 
-CREATE TABLE "league_players"
+
+CREATE TABLE league
 (
- "league_player_id" SERIAL NOT NULL PRIMARY KEY,
- "league_id"        int NOT NULL,
- "golfer_id"        int NOT NULL,
- CONSTRAINT "fk_league_id" FOREIGN KEY ( "league_id" ) REFERENCES "leagues" ( "league_id" ),
- CONSTRAINT "fk_golfer_id" FOREIGN KEY ( "golfer_id" ) REFERENCES "golfer" ( "golfer_id" )
+ leagueId    serial NOT NULL,
+ leagueName  varchar(50) NOT NULL,
+ leagueOwner integer NOT NULL,
+ CONSTRAINT PK_league PRIMARY KEY (leagueid)
 );
 
-CREATE TABLE "tee_times"
+
+CREATE TABLE league_golfer
 (
- "tee_time_id"             SERIAL NOT NULL PRIMARY KEY,
- "course_id"               int NOT NULL,
- "day"                     date NOT NULL,
- "time"                    timestamp NOT NULL,
- "isAvalable"              boolean NOT NULL,
- "weather_recommendations" varchar(255) NOT NULL,
- CONSTRAINT "fk_course_id" FOREIGN KEY ( "course_id" ) REFERENCES "courses" ( "course_id" )
+ id       integer NOT NULL,
+ leagueId integer NOT NULL
 );
 
-CREATE TABLE "reservation"
+
+CREATE TABLE scores
 (
- "reservation_id"    SERIAL NOT NULL PRIMARY KEY,
- "id"                int NOT NULL,
- "tee_time_id"       int NOT NULL,
- "create_date"       date NOT NULL,
- "amount_of_golfers" int NOT NULL,
- CONSTRAINT "fk_tee_time_id" FOREIGN KEY ( "tee_time_id" ) REFERENCES "tee_times" ( "tee_time_id" ),
- CONSTRAINT "fk_id" FOREIGN KEY ( "id" ) REFERENCES "app_user" ( "id" )
+ scoreId   serial NOT NULL,
+ score     integer NOT NULL,
+ id        integer NOT NULL,
+ teeTimeId integer NOT NULL,
+ courseId  integer NOT NULL,
+ CONSTRAINT PK_scores PRIMARY KEY (scoreId)
 );
+
+
+CREATE TABLE teams
+(
+ teamId    serial NOT NULL,
+ teamName  varchar(50) NOT NULL,
+ leagueId  integer NOT NULL,
+ CONSTRAINT PK_teams PRIMARY KEY (teamId)
+);
+
+
+CREATE TABLE tee_time
+(
+ teeTimeId  serial NOT NULL,
+ time       date NOT NULL,
+ leagueId   integer NULL,
+ numGolfers integer NOT NULL,
+ courseId   integer NOT NULL,
+ CONSTRAINT PK_tee_time PRIMARY KEY (teeTimeId)
+
+);
+
+ALTER TABLE golfer_team ADD CONSTRAINT fk_id FOREIGN KEY (id) REFERENCES app_user (id);
+ALTER TABLE golfer_team ADD CONSTRAINT fk_teamId FOREIGN KEY (teamId) REFERENCES teams (teamId);
+ALTER TABLE golfer_teeTime ADD CONSTRAINT fk_teeTimeId FOREIGN KEY (teeTimeId) REFERENCES tee_time (teeTimeId);
+ALTER TABLE golfer_teeTime ADD CONSTRAINT fk_id FOREIGN KEY (id) REFERENCES app_user (id);
+ALTER TABLE league ADD CONSTRAINT fk_leagueOwner FOREIGN KEY (leagueOwner) REFERENCES app_user (id);
+ALTER TABLE league_golfer ADD CONSTRAINT fk_id FOREIGN KEY (id) REFERENCES app_user (id);
+ALTER TABLE league_golfer ADD CONSTRAINT fk_leagueId FOREIGN KEY (leagueId) REFERENCES league (leagueId);
+ALTER TABLE scores ADD CONSTRAINT fk_courseId FOREIGN KEY (courseId) REFERENCES courses (courseId);
+ALTER TABLE scores ADD CONSTRAINT fk_id FOREIGN KEY (id) REFERENCES app_user (id);
+ALTER TABLE scores ADD CONSTRAINT fk_teeTimeId FOREIGN KEY (teeTimeId) REFERENCES tee_time (teeTimeId);
+ALTER TABLE teams ADD CONSTRAINT fk_leagueId FOREIGN KEY (leagueId) REFERENCES league (leagueId);
+ALTER TABLE tee_time ADD CONSTRAINT fk_courseId FOREIGN KEY (courseId) REFERENCES courses (courseId);
+ALTER TABLE tee_time ADD CONSTRAINT fk_leagueId FOREIGN KEY (leagueId) REFERENCES league (leagueId);
 
 COMMIT;

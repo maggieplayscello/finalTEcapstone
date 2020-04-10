@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.techelevator.model.User;
-import com.techelevator.model.UserDAO;
+import com.techelevator.model.User.User;
+import com.techelevator.model.User.UserDAO;
 
 @Controller
 public class UserController {
@@ -85,11 +85,6 @@ public class UserController {
 	@RequestMapping(path="/users/{currentUser}/myLeagues", method=RequestMethod.GET)
 	public String loadMyLeaguesPage(@PathVariable("currentUser") String currentUser) {
 		return "myLeagues";
-	}
-	
-	@RequestMapping(path="/users/{currentUser}/dashboard", method=RequestMethod.GET)
-		public String loadMyDashboard(@PathVariable("currentUser") String currentUser) {
-		return "dashboard";
 	}
 	
 	

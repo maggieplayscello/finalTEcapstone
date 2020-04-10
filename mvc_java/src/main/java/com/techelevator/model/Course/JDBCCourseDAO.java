@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.model.Course;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,15 +62,29 @@ public class JDBCCourseDAO implements courseDAO {
 		theCourse.setRating(results.getDouble("rating"));
 		theCourse.setSlope(results.getInt("slope"));
 		theCourse.setPar(results.getInt("par"));
+		theCourse.setAddress(results.getString("address"));
 		theCourse.setCity(results.getString("city"));
 		theCourse.setState(results.getString("state"));
+		theCourse.setZip(results.getInt("zip"));
 		return theCourse;
 	}
 
 	@Override
 	public void addCourseToDatabase(Course theCourse) {
-		String sqlAddCourse = "INSERT INTO courses (name, rating, slope, par, city, state) VALUES (?, ?, ?, ?, ?, ?)";
-		jdbcTemplate.update(sqlAddCourse, theCourse.getName(), theCourse.getRating(), theCourse.getSlope(), theCourse.getPar(), theCourse.getCity(), theCourse.getState());		
+		String sqlAddCourse = "INSERT INTO courses (name, rating, slope, par, address, city, state, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sqlAddCourse, theCourse.getName(), theCourse.getRating(), theCourse.getSlope(), theCourse.getPar(), theCourse.getAddress(), theCourse.getCity(), theCourse.getState(), theCourse.getZip());		
+	}
+	
+	@Override
+	public String getCourseNameByCourseId(int id) {
+		String courseName = null;
+		Course course = new Course();
+		String sqlSelectAllCourses = "SELECT * FROM courses WHERE courseid = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllCourses, id);
+		if (results.next()) {
+			course = mapRowToCourse(results);
+		}
+		return course.getName();	
 	}
 
 }

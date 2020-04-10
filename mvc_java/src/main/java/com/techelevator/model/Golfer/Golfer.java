@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.model.Golfer;
 
 public class Golfer {
 	private int golferId;
@@ -8,6 +8,9 @@ public class Golfer {
 	private String zip;
 	private boolean isInLeague;
 	
+	public Golfer() {
+		
+	}
 	
 	public Golfer(int golferId, String street, String city, String state, String zip) {
 		super();

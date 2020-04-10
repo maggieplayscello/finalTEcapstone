@@ -1,10 +1,8 @@
-package com.techelevator.model;
+package com.techelevator.model.Course;
 
 import java.util.List;
 
 import org.springframework.ui.ModelMap;
-
-import com.techelevator.model.Course;
 
 public interface courseDAO {
 
@@ -13,6 +11,8 @@ public interface courseDAO {
 	List<Course> searchCourses(String searchName, String searchCity, ModelMap map);
 
 	void addCourseToDatabase(Course theCourse);
+
+	String getCourseNameByCourseId(int id);
 
 
 }

@@ -6,15 +6,21 @@
 </head>
 <body>
 <div id="wrapper">
-	<h1>Welcome, ${currentUser}!</h1>
+	<h1 class="userHeader">Welcome, ${currentUser}!</h1>
+	<div class=dashboardGrid>
 
 <!-- User Scoreboard -->
 	
-<div class="dashboardFlex">
 	<div class="scoreboard">
 		<h3>My Recent Scores</h3>
 	    <hr>
 		<table class="scores">
+		<c:forEach items = "${scores}" var = "score">
+			<tr>
+				<td>${score.courseName}</td>
+				<td>${score.score}</td>
+			</tr>
+		</c:forEach>
 			<tr>
 				<td>Alpena Golf Club</td>	
 				<td>70</td>
@@ -41,7 +47,11 @@
 				<td>April 9 2020</td>
 			</tr>
 		</table>
-      </div>
+		<div class="addButton">
+			<c:url var="addScoreHref" value="/users/${currentUser}/dashboard"/>
+			<a href="${addScoreHref}">+ Add a Score</a>
+    	</div>
+	</div>
 
 <!-- User Scoreboard -->
 	
@@ -111,7 +121,7 @@
 	</div>
 	
 <!-- Closing tags -->  
-   
+
 </div>   
 </div>	
 </body>
