@@ -6,11 +6,11 @@
 </head>
 <body>
 <div id="wrapper">
-	<h1>Welcome, ${currentUser}!</h1>
+	<h1 class="userHeader">Welcome, ${currentUser}!</h1>
+	<div class=dashboardGrid>
 
 <!-- User Scoreboard -->
 	
-<div class="dashboardFlex">
 	<div class="scoreboard">
 		<h3>My Recent Scores</h3>
 	    <hr>
@@ -41,6 +41,9 @@
 				<td>April 9 2020</td>
 			</tr>
 		</table>
+		<div class="addButton">
+			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
+			<a href="${addCourseHref}">+ Add a Score</a>
       </div>
 
 <!-- User Scoreboard -->
@@ -111,7 +114,8 @@
 	</div>
 	
 <!-- Closing tags -->  
-   
+
+</div>   
 </div>   
 </div>	
 </body>
