@@ -6,7 +6,7 @@
 
 body {
 	background-color: #F1F7ED;
-	background-image: url(img/grass.jpg);
+	background-image: url("grass.jpg");
 	display: grid;
 }
 
@@ -70,7 +70,6 @@ hr {
 li a {
 	font-size: 15px;
 	text-decoration: none;
-	font-variant: small-caps;
 	display: block;
 	padding: 15px;
 	color: #B8C3A3;
