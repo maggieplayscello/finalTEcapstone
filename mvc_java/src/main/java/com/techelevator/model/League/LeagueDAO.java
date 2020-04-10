@@ -7,4 +7,6 @@ public interface LeagueDAO {
 	
 	public League getLeagueByLeagueId(int leagueId);
 	
+	public void saveLeague(League league);
+	
 }

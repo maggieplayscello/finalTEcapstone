@@ -15,6 +15,12 @@
 		<h3>My Recent Scores</h3>
 	    <hr>
 		<table class="scores">
+		<c:forEach items = "${scores}" var = "score">
+			<tr>
+				<td>${score.courseName}</td>
+				<td>${score.score}</td>
+			</tr>
+		</c:forEach>
 			<tr>
 				<td>Alpena Golf Club</td>	
 				<td>70</td>
@@ -42,8 +48,8 @@
 			</tr>
 		</table>
 		<div class="addButton">
-			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
-			<a href="${addCourseHref}">+ Add a Score</a>
+			<c:url var="addScoreHref" value="/users/${currentUser}/dashboard"/>
+			<a href="${addScoreHref}">+ Add a Score</a>
     	</div>
 	</div>
 

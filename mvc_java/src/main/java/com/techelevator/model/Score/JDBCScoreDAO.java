@@ -27,7 +27,7 @@ private JdbcTemplate jdbcTemplate;
 		List <Score> scores = new ArrayList<>();
 		
 		String sqlSelectAllCourses = "SELECT * FROM scores WHERE id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllCourses);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllCourses, id);
 		while (results.next()) {
 			scores.add(mapRowToScore(results));
 		}

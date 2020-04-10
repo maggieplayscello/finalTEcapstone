@@ -74,5 +74,17 @@ public class JDBCCourseDAO implements courseDAO {
 		String sqlAddCourse = "INSERT INTO courses (name, rating, slope, par, address, city, state, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sqlAddCourse, theCourse.getName(), theCourse.getRating(), theCourse.getSlope(), theCourse.getPar(), theCourse.getAddress(), theCourse.getCity(), theCourse.getState(), theCourse.getZip());		
 	}
+	
+	@Override
+	public String getCourseNameByCourseId(int id) {
+		String courseName = null;
+		Course course = new Course();
+		String sqlSelectAllCourses = "SELECT * FROM courses WHERE courseid = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllCourses, id);
+		if (results.next()) {
+			course = mapRowToCourse(results);
+		}
+		return course.getName();	
+	}
 
 }

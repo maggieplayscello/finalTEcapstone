@@ -6,6 +6,7 @@ public class Score {
 	private int id;
 	private int teeTimeId;
 	private int courseId;
+	private String courseName;
 	
 	public Score() {
 		
@@ -39,5 +40,11 @@ public class Score {
 	}
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
+	}
+	public String getCourseName() {
+		return courseName;
+	}
+	public void setCourseName(String name) {
+		this.courseName = name;
 	}
 }

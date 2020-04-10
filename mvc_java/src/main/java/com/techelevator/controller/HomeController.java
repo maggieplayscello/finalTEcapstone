@@ -52,6 +52,10 @@ public class HomeController {
 		}
 		
 		List <Score> scores = scoreDao.getAllScoresByUserId(userDao.getIdByUserName(currentUser));
+		for(int x = 0; x < scores.size(); x++) {
+			String courseName = courseDao.getCourseNameByCourseId(scores.get(x).getCourseId());
+			scores.get(x).setCourseName(courseName);
+		}
 		map.put("scores", scores);
 		return "dashboard";
 	}

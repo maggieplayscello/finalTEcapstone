@@ -12,5 +12,7 @@ public interface courseDAO {
 
 	void addCourseToDatabase(Course theCourse);
 
+	String getCourseNameByCourseId(int id);
+
 
 }

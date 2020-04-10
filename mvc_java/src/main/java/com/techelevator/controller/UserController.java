@@ -87,10 +87,5 @@ public class UserController {
 		return "myLeagues";
 	}
 	
-	@RequestMapping(path="/users/{currentUser}/dashboard", method=RequestMethod.GET)
-		public String loadMyDashboard(@PathVariable("currentUser") String currentUser) {
-		return "dashboard";
-	}
-	
 	
 }
