@@ -49,6 +49,9 @@
 			<c:url var="imgSrc" value="/img/gtlogogreen.png" /> 
 			<a href="${homePageHref}"><img src="${imgSrc}" class="img-fluid" style="height: 65px;" /></a>
 		</a>
+		
+		<!-- Ghost button below, woOOooOOoooOo -->
+		
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -58,7 +61,7 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<c:url var="homePageHref" value="/" />
+
 				<c:if test = "${not empty currentUser}">
 					<c:url var = 'homePageHref' value = '/users/${currentUser}/'/>
 				</c:if>
@@ -118,10 +121,12 @@
 				</c:choose>
 			</ul>
 		</div>
+		<div class="userInfo">
+			<c:if test="${not empty currentUser}">
+				<p id="currentUser">Current User: ${currentUser} Current Role: ${role}</p>
+			</c:if>
+		</div>
 	</nav>
 
-	<c:if test="${not empty currentUser}">
-		<p id="currentUser">Current User: ${currentUser}</p>
-		<p>Current Role: ${role}</p>
-	</c:if>
+
 	<div class="container">

@@ -15,7 +15,7 @@
 			<p> Welcome to Golf Tracker! This site will help you track your scores over the course of a season. 
 			You can compete with the scores of your friends via private league leaderboards and set up matches with your friends!
 			You can also search for courses based on a location and view the results on a map. </p>
-		</div>
+		</div>	
 	</div>
 </body>
 

@@ -1,18 +1,29 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <c:import url="/WEB-INF/jsp/header.jsp" />
+
+<title>My Leagues</title>
 </head>
 <body>
-<h1>This is the page to display all of the currently logged in users leagues and their league information</h1>
 <div id="wrapper">
-Info
+	<h1>Welcome, ${currentUser}!</h1>
+
+<!-- User Scoreboard -->
+	
+<div class="flex">
+	<div class="scoreboard">
+	
 </div>
-<c:import url="/WEB-INF/jsp/footer.jsp" />
+
+
+
+
+
+
+<!-- Closing Tags -->
+	</div>
+</div>
 </body>
 </html>
+
+<c:import url="/WEB-INF/jsp/footer.jsp" />

@@ -51,6 +51,8 @@ hr {
 
 }
 
+
+
 /*   Header   */
 
 .navbar {
@@ -95,6 +97,11 @@ button {
 	background-color: #113015;
 }
 
+.userInfo {
+	color: #B2972C;	
+}
+
+
 /*   Home   */
 
 .homeImg {
@@ -103,44 +110,19 @@ button {
 }
 
 
-/*   Course Search   */
 
-#courseTable {
-	background-color: #F1F7ED;
-	font-size: 15px;
-	margin: 15px;
-	align: left;
-	border: thin black solid;
+/*   Dashboard: General    */
+
+.dashboardFlex {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	height: 900px;
+	width: 100%;
 }
 
-table th {
-	background-color: #113015;
-	color: #B8C3A3;
-	border: thin black solid;
-	padding: 2px 10px 2px 10px;
-}
-
-table td {
-	min-width: 125px;
-	padding: 2px 10px 2px 10px;
-	border-bottom: thin black dotted;
-}
-
-.addButton {
-	padding: 10px 10px 10px 0px;
-}
-
-/*   Dashboard    */
-
-#dashboardWrapper {
-	width: 98%;
-	height: 800px;
-	margin: 0 auto;
-	padding: 10px;
-	background-color: #ffffff;
-}
-
-/*   Recent Scores   */
+/*   Dashboard: Recent Scores   */
 
 .scoreboard{
 	background-color: #F1F7ED;
@@ -151,8 +133,7 @@ table td {
 	height: 400px;
 }
 
-
-/*   Calendar    */
+/*   Dashboard: Calendar    */
 
 .calendar{
 	background-color: #F1F7ED;
@@ -237,7 +218,7 @@ table td {
   margin-left:27px;
 }
 
-/*   League Standing   */
+/*   Dashboard: League Standing   */
 
 .standings{
 	background-color: #F1F7ED;
@@ -245,10 +226,35 @@ table td {
 	padding: 20px 30px 20px 30px;
 	color:#363b41;
 	width: 450px;
-	height: 300px;
-	
+	height: 300px;	
 }
 
+/*   Course Search   */
+
+#courseTable {
+	background-color: #F1F7ED;
+	font-size: 15px;
+	margin: 15px;
+	align: left;
+	border: thin black solid;
+}
+
+table th {
+	background-color: #113015;
+	color: #B8C3A3;
+	border: thin black solid;
+	padding: 2px 10px 2px 10px;
+}
+
+table td {
+	min-width: 125px;
+	padding: 2px 10px 2px 10px;
+	border-bottom: thin black dotted;
+}
+
+.addButton {
+	padding: 10px 10px 10px 0px;
+}
 
 
 /*   Footer   */
