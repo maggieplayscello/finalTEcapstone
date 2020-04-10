@@ -7,7 +7,7 @@
 <body>
 <div id="wrapper">
 	<h1>Welcome, ${currentUser}!</h1>
-	<div class="userGrid">
+	<div class="myLeaguesGrid">
 	
 <!-- Side Navbar -->
 
@@ -157,7 +157,7 @@
 
 
 <!-- Closing Tags -->
-	</div>
+</div>
 </div>
 </body>
 </html>
