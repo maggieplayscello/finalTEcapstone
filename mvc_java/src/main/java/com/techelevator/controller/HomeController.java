@@ -98,7 +98,7 @@ public class HomeController {
 			return "redirect:/addCourse";
 		}
 		courseDao.addCourseToDatabase(course);
-		return "redirect:/addCourseConfirmation";
+		return "redirect:/users/{currentUser}/addCourseConfirmation";
 	}
 	
 	@RequestMapping (path = "/users/{currentUser}/addCourseConfirmation", method = RequestMethod.GET)
