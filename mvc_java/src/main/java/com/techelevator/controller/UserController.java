@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.techelevator.model.User;
-import com.techelevator.model.UserDAO;
+import com.techelevator.model.User.User;
+import com.techelevator.model.User.UserDAO;
 
 @Controller
 public class UserController {

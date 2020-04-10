@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="wrapper">
-		<c:url var="addCourseUrl" value="/addCourse" />
+		<c:url var="addCourseUrl" value="/users/${currentUser}/addCourse" />
 		<form:form method="POST" action="${addCourseUrl}" modelAttribute="course">
 	<div class="row">
 	<div class="col-sm-4"></div>
@@ -37,6 +37,11 @@
 				<label for="rating">Rating: </label> 
 				<form:input path="rating" placeHolder="Rating"/>
 				<form:errors path="rating" cssClass="error"/>
+			</div>
+			<div class="form-group">
+				<label for="address">Address: </label> 
+				<form:input path="address" placeHolder="Address"/>
+				<form:errors path="address" cssClass="error"/>
 			</div>
 			<div class="form-group">
 				<label for="city">City: </label> 
@@ -99,6 +104,11 @@
 					<option value="WY">WY</option>
 				</select>
 				<form:errors path="state" cssClass="error"/>
+			</div>
+			<div class="form-group">
+				<label for="zip">Zip: </label> 
+				<form:input path="zip" placeHolder="Zip"/>
+				<form:errors path="zip" cssClass="error"/>
 			</div>
 					
 			<div class="addButton">
