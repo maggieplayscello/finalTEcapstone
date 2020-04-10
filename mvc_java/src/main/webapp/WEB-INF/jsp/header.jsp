@@ -65,19 +65,21 @@
 				<c:if test = "${not empty currentUser}">
 					<c:url var = 'homePageHref' value = '/users/${currentUser}/'/>
 				</c:if>
-				<li class="nav-item"><a class="nav-link" href="${homePageHref}">Home</a></li>
+
 
 				<c:if test="${not empty currentUser}">
 					<c:url var="dashboardHref" value="/users/${currentUser}" />
 
 					<c:url var="dashboardHref" value="/users/${currentUser}/dashboard" />
-					<li class="nav-item"><a class="nav-link" href="${dashboardHref}">Dashboard</a></li>
-					
+					<li class="nav-item"><a class="nav-link" href="${dashboardHref}">My Dashboard</a></li>
+
+					<c:url var="myLeaguesHref" value="/users/${currentUser}/myLeagues" />
+					<li class="nav-item"><a class="nav-link" href="${myLeaguesHref}">My Leagues</a></li>
+
 					<c:url var="courseSearchHref" value="/users/${currentUser}/courseSearch" />
 					<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
-						<c:url var="myLeaguesHref"
-						value="/users/${currentUser}/myLeagues" />
-					<li class="nav-item"><a class="nav-link" href="${myLeaguesHref}">My Leagues</a></li>
+					
+
 					<!-- Commenting out Messages til we decide if we are going to use them
 					<li class="nav-item"><a class="nav-link" href="${dashboardHref}">Messages</a></li>
 					<c:url var="newMessageHref"
@@ -88,20 +90,23 @@
 						value="/users/${currentUser}/messages" />
 					<li class="nav-item"><a class="nav-link" href="${sentMessagesHref}">Sent Messages</a></li>
 					 -->
-					<c:url var="changePasswordHref"
-						value="/users/${currentUser}/changePassword" />
+
+					<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
 					<li class="nav-item"><a class="nav-link" href="${changePasswordHref}">Change Password</a></li>
-					<c:if test = "${role == 'Admin'}">
+
+				<c:if test = "${role == 'Admin'}">
 					<c:url var='adminFunctions' value = '/users/${currentUser}/adminFunctions'>
 						<c:param name = 'role' value = '${role}'/>
 					</c:url>
-						<li class = 'nav-item'><a class = 'nav-link' href = "${adminFunctions}">Admin Functions</a>
+					<li class = 'nav-item'><a class = 'nav-link' href = "${adminFunctions}">Admin Functions</a>
 					</c:if>
 				</c:if>
 			</ul>
+
 			<ul class="navbar-nav ml-auto">
 				<c:choose>
 					<c:when test="${empty currentUser}">
+						<li class="nav-item"><a class="nav-link" href="${homePageHref}">Home</a></li>
 						<c:url var="courseSearchHref" value="/courseSearch" />
 						<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
 						
@@ -121,11 +126,17 @@
 				</c:choose>
 			</ul>
 		</div>
+
+<!-- Do we need this to display on every page?
 		<div class="userInfo">
 			<c:if test="${not empty currentUser}">
-				<p id="currentUser">Current User: ${currentUser} Current Role: ${role}</p>
+				<div id="currentUser">
+					Current User: ${currentUser}<br> 
+					Current Role: ${role}</div>
 			</c:if>
 		</div>
+		 -->
+		
 	</nav>
 
 
