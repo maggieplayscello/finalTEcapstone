@@ -47,6 +47,10 @@ public class HomeController {
 	
 	@RequestMapping(path="/users/{currentUser}/dashboard")
 	public String displayDashboard(@PathVariable("currentUser") String currentUser, ModelMap map) {
+		if (!map.containsAttribute("score")) {
+			map.put("score", new Score());
+		}
+		
 		List <Score> scores = scoreDao.getAllScoresByUserId(userDao.getIdByUserName(currentUser));
 		map.put("scores", scores);
 		return "dashboard";
