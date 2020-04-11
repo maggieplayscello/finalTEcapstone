@@ -80,6 +80,7 @@ CREATE TABLE teams
  teamId    serial NOT NULL,
  teamName  varchar(50) NOT NULL,
  leagueId  integer NOT NULL,
+ points integer,
  CONSTRAINT PK_teams PRIMARY KEY (teamId)
 );
 
