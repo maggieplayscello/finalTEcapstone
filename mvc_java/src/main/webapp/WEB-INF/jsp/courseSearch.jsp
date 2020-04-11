@@ -9,7 +9,9 @@
 <body>
 	<div id="wrapper">
 	<h3>Search for Courses</h3>
-	
+	<div class="row">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-4">	
 	<form method="GET" action="${courseSearchVar}">
 		<div class="form-group">
 			<label for="name">Course Name:</label> 
@@ -77,10 +79,12 @@
 			</select>
 			 -->
 
-		<button type="submit" class="btn btn-primary">Search</button>
-
+		<button type="submit" class="btn btn-primary">Search</button>	
 	</form>
-
+	</div>
+	<div class="col-sm-4"></div>
+	</div>
+	
 	<c:if test = "${role == 'Admin'}">
 		<br>
 		<div class="btn">

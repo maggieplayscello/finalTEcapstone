@@ -55,7 +55,7 @@
 			<div class="form-group">
 				<label for="confirmPassword">Confirm Password: </label>
 				<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />
-				<p>Password should be minimum 10 characters, contain at least 1 lowercase and 1 uppercase letter </p>
+				<p>Password should be minimum 10 characters and contain at least 1 lowercase and 1 uppercase letter. </p>
 			</div>
 			<button type="submit" class="btn btn-primary">Create User</button>
 		</div>
