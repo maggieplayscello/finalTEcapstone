@@ -4,6 +4,9 @@
 
 <title>Dashboard</title>
 </head>
+
+<c:url value='/dashboard' var='newScoreSubmitVar' />
+
 <body>
 <div id="wrapper">
 	<h1 class="userHeader">Welcome, ${currentUser}!</h1>
@@ -48,11 +51,102 @@
 			</tr>
 		</table>
 		<br>
+
 		<div class="btn">
 			<c:url var="addScoreHref" value="/users/${currentUser}/dashboard"/>
 			<a href="${addScoreHref}">+ Add a Score</a>
     	</div>
-	</div>
+		<br><br>
+	<form method="POST" action="${newScoreSubmitVar}">
+		<div id="newElementId">Enter score information below:</div>
+			<div class="form-group" id="newElementId">
+				<label for="name">Course: </label> 
+					<!-- Could this be an autopopulated dropdown from courses in the database? -->
+				<input type="text" name="course" placeHolder="Course" id="course" />
+			</div>
+			<div class="form-group" id="newElementId">
+				<label for="name">Score:</label> 
+				<input type="text" name="score" placeHolder="Score" id="score" />
+			</div>
+			<label for="leagueconfirm" id="newElementId"> Was this part of a match:
+				<select name="leagueconfirm">
+					<option>Select...</option>
+					<option value="true">Yes</option>
+					<option value="false">No</option>
+				</select>
+			</label>
+			<c:if test="${leagueconfirm}">
+			<div class="form-group" id="newElementId">
+				<label for="name">League:</label> 
+				<input type="text" name="league" placeHolder="League Name" id="league" />
+			</div>
+			<div class="form-group" id="newElementId">
+				<label for="name">Match:</label> 
+				<input type="text" name="match" placeHolder="Match" id="match" />
+			</div>				
+			</c:if>
+			<br><br>
+			<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
+			</form>
+		</div>
+<script type="text/JavaScript">
+
+document.addEventListener('DOMContentLoaded', () => {
+  
+  const btnToggleForm = document.getElementById('btnToggleForm');
+  btnToggleForm.addEventListener('click', () => {
+    showHideForm();
+  });
+
+  const btnSaveReview = document.getElementById('btnSaveScore');
+  btnSaveReview.addEventListener('click', (event) => {
+    event.preventDefault();
+    saveReview();
+  });
+});
+	
+function showHideForm() {
+	  const form = document.querySelector('form');
+	  const btn = document.getElementById('btnToggleForm');
+
+	  if (form.classList.contains('d-none')) {
+	    form.classList.remove('d-none');
+	    btn.innerText = 'Hide Form';
+	    document.getElementById('name').focus();
+	  } else {
+	    resetFormValues();
+	    form.classList.add('d-none');
+	    btn.innerText = 'Add Score';
+	  }
+	}
+
+	function resetFormValues() {
+	  const form = document.querySelector('form');
+	  const inputs = form.querySelectorAll('input');
+	  inputs.forEach((input) => {
+	    input.value = '';
+	  });
+	}
+
+	function saveScore() {
+	  const course = document.getElementById('course');
+	  const score = document.getElementById('score');
+	  const league = document.getElementById('league');
+	  const match = document.getElementById('match');
+
+	  const newScore = {
+		course: course.value,
+	    score: score.value,
+	    league: league.value,
+	    match: match.value
+	  };
+	  reviews.push(newScore);
+	  displayReview(newScore);
+	  showHideForm();
+	}
+
+</script>
+
 
 <!-- User Scoreboard -->
 	
