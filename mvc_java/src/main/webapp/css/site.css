@@ -291,7 +291,7 @@ button {
 #courseTable {
 	background-color: #F1F7ED;
 	font-size: 15px;
-	margin: 15px;
+	margin: auto;
 	align: left;
 	border: 1px solid rgb(184,195,163);
 }
@@ -307,6 +307,10 @@ table td {
 	min-width: 125px;
 	padding: 2px 10px 2px 10px;
 	border-bottom: 1px solid rgb(83,107,78);
+}
+
+.courseCell {
+	width: 50%;
 }
 
 .addButton {

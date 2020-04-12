@@ -90,6 +90,8 @@
 						value="/users/${currentUser}/messages" />
 					<li class="nav-item"><a class="nav-link" href="${sentMessagesHref}">Sent Messages</a></li>
 					 -->
+					 
+					 
 
 					<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
 					<li class="nav-item"><a class="nav-link" href="${changePasswordHref}">Change Password</a></li>

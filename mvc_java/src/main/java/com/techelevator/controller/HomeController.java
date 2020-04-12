@@ -61,12 +61,13 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path="/users/{currentUser}/addScore", method=RequestMethod.GET)
-	public String displayAddScore(@PathVariable("currentUser") String currentUser){
+	public String displayAddScore(@PathVariable("currentUser") String currentUser, ModelMap map){
+		List<Course> course = courseDao.getAllCourses();
+		map.put("allCourses", course);		
 		return "addScore";
-	}
+	}	
 	
-	
-	@RequestMapping (path = "/users/{currentUser}/dashboard", method = RequestMethod.POST)
+	@RequestMapping (path = "/users/{currentUser}/addScore", method = RequestMethod.POST)
 	public String submitScore(@Valid @ModelAttribute Score score, @PathVariable("currentUser") String currentUser, BindingResult result, RedirectAttributes flash) {
 		
 		flash.addFlashAttribute("score", score);
