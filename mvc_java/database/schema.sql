@@ -88,7 +88,7 @@ CREATE TABLE teams
 CREATE TABLE tee_time
 (
  teeTimeId  serial NOT NULL,
- time       date NOT NULL,
+ time       timestamp NOT NULL,
  leagueId   integer NULL,
  numGolfers integer NOT NULL,
  courseId   integer NOT NULL,
