@@ -60,6 +60,12 @@ public class HomeController {
 		return "dashboard";
 	}
 	
+	@RequestMapping(path="/users/{currentUser}/addScore", method=RequestMethod.GET)
+	public String displayAddScore(@PathVariable("currentUser") String currentUser){
+		return "addScore";
+	}
+	
+	
 	@RequestMapping (path = "/users/{currentUser}/dashboard", method = RequestMethod.POST)
 	public String submitScore(@Valid @ModelAttribute Score score, @PathVariable("currentUser") String currentUser, BindingResult result, RedirectAttributes flash) {
 		
@@ -113,6 +119,7 @@ public class HomeController {
 	public String courseConfirmation( @PathVariable("currentUser") String currentUser){
 		return "addCourseConfirmation";
 	}
+	
 	
 	
 }
