@@ -2,88 +2,8 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<!-- I don't know how to implement this JS correctly so everything below this might be useless -->
-		
-<script type="text/JavaScript">
-
-//I cannot get the JS section to do what I want! Hidden form begins ca line 147
-
-//This one makes the element disappear?
-function isInLeague(val){
-	var element=document.getElementById('leagueYes');
-    if(val==="yes")
-        document.getElementById('leagueBool').style.display='block';
-     else
-        document.getElementById('leagueBool').style.display='none'; 
-	}
-
-//This one appears to do nothing at all but is based on Andy's Mod 4 Event Handling lecture example
-document.addEventListener('DOMContentLoaded', () => {
-
-	  const desc = document.querySelector('.description');
-	  desc.addEventListener('click', (event) => {
-	    toggleDescriptionEdit(event.target);
-	  });
-	
-	
-const btnToggleForm = document.getElementById('btnToggleForm');
-btnToggleForm.addEventListener('click', () => {
-  showHideForm();
-});
-
-const btnSaveReview = document.getElementById('btnSaveScore');
-btnSaveReview.addEventListener('click', (event) => {
-  event.preventDefault();
-  saveReview();
-});
-});
-	
-function showHideForm() {
-	  const form = document.querySelector('form');
-	  const btn = document.getElementById('btnToggleForm');
-
-	  if (form.classList.contains('d-none')) {
-	    form.classList.remove('d-none');
-	    btn.innerText = 'Hide Form';
-	    document.getElementById('name').focus();
-	  } else {
-	    resetFormValues();
-	    form.classList.add('d-none');
-	    btn.innerText = 'Add Score';
-	  }
-	}
-
-	function resetFormValues() {
-	  const form = document.querySelector('form');
-	  const inputs = form.querySelectorAll('input');
-	  inputs.forEach((input) => {
-	    input.value = '';
-	  });
-	}
-
-	function saveScore() {
-	  const course = document.getElementById('course');
-	  const score = document.getElementById('score');
-	  const league = document.getElementById('league');
-	  const match = document.getElementById('match');
-
-	  const newScore = {
-		course: course.value,
-	    score: score.value,
-	    league: league.value,
-	    match: match.value
-	  };
-	  reviews.push(newScore);
-	  displayReview(newScore);
-	  showHideForm();
-	}   
-    
-</script>
-
 <title>Dashboard</title>
 </head>
-
-<c:url value='/dashboard' var='newScoreSubmitVar' />
 
 <body>
 <div id="wrapper">
@@ -138,47 +58,12 @@ function showHideForm() {
 <!-- Add Score button and hidden form -->
 
 		<div class="btn">
-			<c:url var="addScoreHref" value="/users/${currentUser}/dashboard"/>
+			<c:url var="addScoreHref" value="/users/${currentUser}/addScore"/>
 			<a href="${addScoreHref}">+ Add a Score</a>
-    	</div>
-
-		<br><br>
-		
-	<form method="POST" action="${newScoreSubmitVar}">
-		<div id="newElementId">Enter score information below:</div>
-			<div class="form-group" id="newElementId">
-				<label for="name">Course: </label> 
-					<!-- Could this be an autopopulated dropdown from courses in the database? -->
-				<input type="text" name="course" placeHolder="Course" id="course" />
-			</div>
-			<div class="form-group" id="newElementId">
-				<label for="name">Score:</label> 
-				<input type="text" name="score" placeHolder="Score" id="score" />
-			</div>
-			<label for="leagueBool" id="leagueBool"> Was this part of a match:
-				<select name="leagueBool" onchange='isInLeague(this.value)'>
-					<option>Select...</option>
-					<option value="true">Yes</option>
-					<option value="false">No</option>
-				</select>
-			</label>
-			<c:if test="${leagueconfirm}">
-				<div id="leagueYes">
-				<div class="form-group" id="newElementId">
-					<label for="name">League:</label> 
-					<input type="text" name="league" placeHolder="League Name" id="league" style='display:none;'/>
-				</div>
-				<div class="form-group" id="newElementId">
-					<label for="name">Match:</label> 
-					<input type="text" name="match" placeHolder="Match" id="match" style='display:none;'/>
-				</div>	
-				</div>			
-			</c:if>
-			<br><br>
-			<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
-			</form>
 		</div>
-		
+	<br><br>
+</div>
+
 <!-- User Scoreboard -->
 	
 	<div class="standings">
@@ -244,7 +129,7 @@ function showHideForm() {
 				<div class="ei_Dot"></div>
 				<div class="ei_Title">April 23 2020</div>
 		        <div class="ei_Copy">8:10 am</div>
-        		<div class="ei_Copy">League 2 Team 1 Match 1 at Arcadia</div>
+        		<div class="ei_Copy">League 2 Team 1 Match 1</div>
 		        <div class="ei_Copy">Arcadia Bluffs Golf Course</div>
 			</div>
 			<hr>

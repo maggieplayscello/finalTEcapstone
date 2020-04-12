@@ -6,6 +6,14 @@ BEGIN;
 
 -- CREATE statements go here
 DROP TABLE IF EXISTS app_user;
+DROP TABLE IF EXISTS courses;
+DROP TABLE IF EXISTS golfer_team;
+DROP TABLE IF EXISTS golfer_teetime;
+DROP TABLE IF EXISTS league;
+DROP TABLE IF EXISTS league_golfer;
+DROP TABLE IF EXISTS scores;
+DROP TABLE IF EXISTS teams;
+DROP TABLE IF EXISTS tee_time;
 
 CREATE TABLE app_user
 (
