@@ -14,10 +14,10 @@ TO capstone_owner;
 
 CREATE USER capstone_appuser WITH PASSWORD 'capstone_appuser1';
 
-GRANT SELECT, INSERT, UPDATE, DELETE
+GRANT ALL
 ON ALL TABLES IN SCHEMA public
 TO capstone_appuser;
 
-GRANT USAGE, SELECT
+GRANT ALL
 ON ALL SEQUENCES IN SCHEMA public
 TO capstone_appuser; 
