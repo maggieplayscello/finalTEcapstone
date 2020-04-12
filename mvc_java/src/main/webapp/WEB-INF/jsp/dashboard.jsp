@@ -2,107 +2,40 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<title>Dashboard</title>
-</head>
-
-<c:url value='/dashboard' var='newScoreSubmitVar' />
-
-<body>
-<div id="wrapper">
-	<h1 class="userHeader">Welcome, ${currentUser}!</h1>
-	<div class=dashboardGrid>
-
-<!-- User Scoreboard -->
-	
-	<div class="scoreboard">
-		<h3>My Recent Scores</h3>
-	    <hr>
-		<table class="scores">
-		<c:forEach items = "${scores}" var = "score">
-			<tr>
-				<td>${score.courseName}</td>
-				<td>${score.score}</td>
-			</tr>
-		</c:forEach>
-			<tr>
-				<td>Alpena Golf Club</td>	
-				<td>70</td>
-				<td>April 3 2020</td>
-			</tr>
-			<tr>
-				<td>Escanaba Country Club</td>	
-				<td>68</td>
-				<td>April 5 2020</td>
-			</tr>
-			<tr>
-				<td>Arcadia Bluffs Golf Course</td>	
-				<td>71</td>
-				<td>April 6 2020</td>
-			</tr>
-			<tr>
-				<td>Arcadia Bluffs Golf Course</td>	
-				<td>74</td>
-				<td>April 8 2020</td>
-			</tr>
-			<tr>
-				<td>Arcadia Bluffs Golf Course</td>	
-				<td>80</td>
-				<td>April 9 2020</td>
-			</tr>
-		</table>
-		<br>
-
-		<div class="btn">
-			<c:url var="addScoreHref" value="/users/${currentUser}/dashboard"/>
-			<a href="${addScoreHref}">+ Add a Score</a>
-    	</div>
-		<br><br>
-	<form method="POST" action="${newScoreSubmitVar}">
-		<div id="newElementId">Enter score information below:</div>
-			<div class="form-group" id="newElementId">
-				<label for="name">Course: </label> 
-					<!-- Could this be an autopopulated dropdown from courses in the database? -->
-				<input type="text" name="course" placeHolder="Course" id="course" />
-			</div>
-			<div class="form-group" id="newElementId">
-				<label for="name">Score:</label> 
-				<input type="text" name="score" placeHolder="Score" id="score" />
-			</div>
-			<label for="leagueconfirm" id="newElementId"> Was this part of a match:
-				<select name="leagueconfirm">
-					<option>Select...</option>
-					<option value="true">Yes</option>
-					<option value="false">No</option>
-				</select>
-			</label>
-			<c:if test="${leagueconfirm}">
-			<div class="form-group" id="newElementId">
-				<label for="name">League:</label> 
-				<input type="text" name="league" placeHolder="League Name" id="league" />
-			</div>
-			<div class="form-group" id="newElementId">
-				<label for="name">Match:</label> 
-				<input type="text" name="match" placeHolder="Match" id="match" />
-			</div>				
-			</c:if>
-			<br><br>
-			<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
-			</form>
-		</div>
+<!-- I don't know how to implement this JS correctly so everything below this might be useless -->
+		
 <script type="text/JavaScript">
 
-document.addEventListener('DOMContentLoaded', () => {
-  
-  const btnToggleForm = document.getElementById('btnToggleForm');
-  btnToggleForm.addEventListener('click', () => {
-    showHideForm();
-  });
+//I cannot get the JS section to do what I want! Hidden form begins ca line 147
 
-  const btnSaveReview = document.getElementById('btnSaveScore');
-  btnSaveReview.addEventListener('click', (event) => {
-    event.preventDefault();
-    saveReview();
-  });
+//This one makes the element disappear?
+function isInLeague(val){
+	var element=document.getElementById('leagueYes');
+    if(val==="yes")
+        document.getElementById('leagueBool').style.display='block';
+     else
+        document.getElementById('leagueBool').style.display='none'; 
+	}
+
+//This one appears to do nothing at all but is based on Andy's Mod 4 Event Handling lecture example
+document.addEventListener('DOMContentLoaded', () => {
+
+	  const desc = document.querySelector('.description');
+	  desc.addEventListener('click', (event) => {
+	    toggleDescriptionEdit(event.target);
+	  });
+	
+	
+const btnToggleForm = document.getElementById('btnToggleForm');
+btnToggleForm.addEventListener('click', () => {
+  showHideForm();
+});
+
+const btnSaveReview = document.getElementById('btnSaveScore');
+btnSaveReview.addEventListener('click', (event) => {
+  event.preventDefault();
+  saveReview();
+});
 });
 	
 function showHideForm() {
@@ -143,17 +76,120 @@ function showHideForm() {
 	  reviews.push(newScore);
 	  displayReview(newScore);
 	  showHideForm();
-	}
-
+	}   
+    
 </script>
 
+<title>Dashboard</title>
+</head>
 
+<c:url value='/dashboard' var='newScoreSubmitVar' />
+
+<body>
+<div id="wrapper">
+	<h1 class="userHeader">Welcome, ${currentUser}!</h1>
+	<div class=dashboardGrid>
+
+<!-- User Scoreboard -->
+	
+	<div class="scoreboard">
+		<h3>My Recent Scores</h3>
+	    <hr>
+		<table class="scores">
+			<tr>
+				<th>Course</th>
+				<th>Score</th>
+				<th>Date</th>
+			</tr>	
+		<c:forEach items = "${scores}" var = "score">
+			<tr>
+				<td>${score.courseName}</td>
+				<td>${score.score}</td>
+			</tr>
+		</c:forEach>
+			<tr>
+				<td>Alpena Golf Club</td>	
+				<td>70</td>
+				<td>April 3 2020</td>
+			</tr>
+			<tr>
+				<td>Escanaba Country Club</td>	
+				<td>68</td>
+				<td>April 5 2020</td>
+			</tr>
+			<tr>
+				<td>Arcadia Bluffs Golf Course</td>	
+				<td>71</td>
+				<td>April 6 2020</td>
+			</tr>
+			<tr>
+				<td>Arcadia Bluffs Golf Course</td>	
+				<td>74</td>
+				<td>April 8 2020</td>
+			</tr>
+			<tr>
+				<td>Arcadia Bluffs Golf Course</td>	
+				<td>80</td>
+				<td>April 9 2020</td>
+			</tr>
+		</table>
+		<br>
+		
+<!-- Add Score button and hidden form -->
+
+		<div class="btn">
+			<c:url var="addScoreHref" value="/users/${currentUser}/dashboard"/>
+			<a href="${addScoreHref}">+ Add a Score</a>
+    	</div>
+
+		<br><br>
+		
+	<form method="POST" action="${newScoreSubmitVar}">
+		<div id="newElementId">Enter score information below:</div>
+			<div class="form-group" id="newElementId">
+				<label for="name">Course: </label> 
+					<!-- Could this be an autopopulated dropdown from courses in the database? -->
+				<input type="text" name="course" placeHolder="Course" id="course" />
+			</div>
+			<div class="form-group" id="newElementId">
+				<label for="name">Score:</label> 
+				<input type="text" name="score" placeHolder="Score" id="score" />
+			</div>
+			<label for="leagueBool" id="leagueBool"> Was this part of a match:
+				<select name="leagueBool" onchange='isInLeague(this.value)'>
+					<option>Select...</option>
+					<option value="true">Yes</option>
+					<option value="false">No</option>
+				</select>
+			</label>
+			<c:if test="${leagueconfirm}">
+				<div id="leagueYes">
+				<div class="form-group" id="newElementId">
+					<label for="name">League:</label> 
+					<input type="text" name="league" placeHolder="League Name" id="league" style='display:none;'/>
+				</div>
+				<div class="form-group" id="newElementId">
+					<label for="name">Match:</label> 
+					<input type="text" name="match" placeHolder="Match" id="match" style='display:none;'/>
+				</div>	
+				</div>			
+			</c:if>
+			<br><br>
+			<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
+			</form>
+		</div>
+		
 <!-- User Scoreboard -->
 	
 	<div class="standings">
 		<h1 class = "header_title">My League Standings</h1>
 		<hr>
 		<table class="scores">
+			<tr>
+				<th>League</th>
+				<th>Ranking</th>
+				<th>Score</th>
+			</tr>			
 			<tr>
 				<td>League 1</td>	
 				<td>3</td>
@@ -167,7 +203,7 @@ function showHideForm() {
 			<tr>
 				<td>League of Our Own</td>	
 				<td>71</td>
-				<td>2.01</td>
+				<td>-2</td>
 			</tr>
 		</table>
       </div>	
