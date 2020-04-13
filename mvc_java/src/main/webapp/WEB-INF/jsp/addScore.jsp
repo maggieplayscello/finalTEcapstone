@@ -50,7 +50,7 @@ function isInLeague(val){
 			</div>
 			<hr>
 			<br>
-			<label for="leagueBool" id="leagueBool" onclick="isInLeague()"> Was this part of a match:</label>
+			<label for="leagueBool" id="leagueBool" > Was this part of a match:</label>
 				<select>
 					<option>Select...</option>
 					<option value="true">Yes</option>
@@ -59,8 +59,8 @@ function isInLeague(val){
 				
 			<!-- Fields below should only appear if user selects "Yes" -->	
 				
-			<c:if test="{leagueBool == true}">
-				<div id="leagueTrue">
+
+				<div id="leagueTrue" onclick="isInLeague()">
 				<br>
 					<div class="form-group">
 						<label for="league">League:</label> 
@@ -71,7 +71,7 @@ function isInLeague(val){
 						<input name="match" placeHolder="Match"/>
 					</div>	
 				</div>			
-				</c:if>
+
 				
 				
 				
