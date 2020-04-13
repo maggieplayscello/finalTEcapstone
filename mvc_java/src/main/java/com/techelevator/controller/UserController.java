@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.model.Course.Course;
+import com.techelevator.model.Course.courseDAO;
 import com.techelevator.model.User.User;
 import com.techelevator.model.User.UserDAO;
 
@@ -20,6 +24,9 @@ import com.techelevator.model.User.UserDAO;
 public class UserController {
 
 	private UserDAO userDAO;
+	
+	@Autowired
+	private courseDAO courseDao;
 
 	@Autowired
 	public UserController(UserDAO userDAO) {
@@ -83,7 +90,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users/{currentUser}/myLeagues", method=RequestMethod.GET)
-	public String loadMyLeaguesPage(@PathVariable("currentUser") String currentUser) {
+	public String loadMyLeaguesPage(@PathVariable("currentUser") String currentUser, ModelMap map){
+		List<Course> course = courseDao.getAllCourses();
+		map.put("allCourses", course);		
 		return "myLeagues";
 	}
 	
