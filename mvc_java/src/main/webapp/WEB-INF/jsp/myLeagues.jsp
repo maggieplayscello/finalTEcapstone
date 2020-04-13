@@ -86,10 +86,14 @@
 						<label for="leagueName">League Name:</label> 
 						<input name="leagueName" placeHolder="League Name"/>
 					</div>
-					<div class="form-group">
-						<label for="leagueName">Add Members:</label> 
-						<input name="leagueName" placeHolder="League Name"/>
-					</div>
+				<div class="form-group">
+					<label for="course">Add Members: </label> 
+					<select name="course">
+						<c:forEach items="${allCourses}" var="course">
+							<option value="${course.name}">${course.name}</option>			
+						</c:forEach>
+					</select>
+				</div>
 				<button type="submit" class="btn btn-primary" id="btnSaveLeague">Submit</button>
 			</div>
 		<br><br>
@@ -97,13 +101,17 @@
 		<button type="button" class="btn btn-primary" id="addMatchBtn" onclick="addMatch()">+ Add a Match</button>
 			<div id="addMatchForm" >
 				<br>
-					<div class="form-group">
-						<label for="leagueName">League Name:</label> 
-						<input name="leagueName" placeHolder="League Name"/>
-					</div>
 				<div class="form-group">
-					<label for="name">Course: </label> 
-					<select name="name">
+					<label for="course">League: </label> 
+					<select name="course">
+						<c:forEach items="${allCourses}" var="course">
+							<option value="${course.name}">${course.name}</option>			
+						</c:forEach>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="course">Course: </label> 
+					<select name="course">
 						<c:forEach items="${allCourses}" var="course">
 							<option value="${course.name}">${course.name}</option>			
 						</c:forEach>
