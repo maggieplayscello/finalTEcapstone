@@ -75,7 +75,7 @@
 		<div class="calendar_plan">
 			<div class="cl_plan">
 				<div class="cl_title">Today is</div>
-				<div class="cl_copy">April 18 2020</div>
+				<div class="cl_copy">${date}</div>
 				<div class="cl_add">
 					<i class="fas fa-plus"></i>
 				</div>
