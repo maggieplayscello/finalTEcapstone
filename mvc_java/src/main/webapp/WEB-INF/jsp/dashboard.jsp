@@ -25,7 +25,7 @@
 			<tr>
 				<td class="courseCell">${score.courseName}</td>
 				<td>${score.score}</td>
-				<td>Date?</td>
+				<td>${score.date}</td>
 			</tr>
 		</c:forEach>
 		</table>
