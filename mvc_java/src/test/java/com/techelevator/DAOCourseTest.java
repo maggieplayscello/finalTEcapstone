@@ -29,6 +29,7 @@ public class DAOCourseTest {
 	private JDBCCourseDAO coursedao;
 	int courseSizeBefore = 0;
 	
+	final int COURSE_ID = 10000;
 	final String COURSE_NAME = "Test Course";
 	final int COURSE_PAR = 71;
 	final int COURSE_SLOPE = 145;
@@ -74,20 +75,15 @@ public class DAOCourseTest {
 	
 	@Before
 	public void setup() {
-		ModelMap map = null;
 		
 		coursedao = new JDBCCourseDAO(dataSource);
 		
 		List <Course> allCourses = coursedao.getAllCourses();
 		courseSizeBefore = allCourses.size();
 		
-		String sqlInsertCourse = "INSERT INTO courses (name, par, slope, rating, address, city, state, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sqlInsertCourse = "INSERT INTO courses (courseid, name, par, slope, rating, address, city, state, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcTemplate.update(sqlInsertCourse, COURSE_NAME, COURSE_PAR, COURSE_SLOPE, COURSE_RATING, COURSE_ADDRESS, COURSE_CITY, COURSE_STATE, COURSE_ZIP);
-		
-		Course testCourse = coursedao.searchCourses(COURSE_NAME, COURSE_CITY, map).get(0);
-		expectedId = testCourse.getId();
-//		System.out.println(expectedId);
+		jdbcTemplate.update(sqlInsertCourse, COURSE_ID, COURSE_NAME, COURSE_PAR, COURSE_SLOPE, COURSE_RATING, COURSE_ADDRESS, COURSE_CITY, COURSE_STATE, COURSE_ZIP);
 		
 	}
 	
@@ -114,9 +110,14 @@ public class DAOCourseTest {
 	
 	@Test
 	public void testFindCourseById() {
-		String actualName = coursedao.getCourseNameByCourseId(expectedId);
+		String actualName = coursedao.getCourseNameByCourseId(COURSE_ID);
 		assertEquals(COURSE_NAME, actualName);
-		
+	}
+	
+	@Test
+	public void testFindCourseByName() {
+		int actualId = coursedao.getCourseIdByCourseName(COURSE_NAME);
+		assertEquals(COURSE_ID, actualId);
 	}
 
 	private void assertCoursesEqual(Course expected, Course actual) {
