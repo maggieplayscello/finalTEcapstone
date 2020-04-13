@@ -2,19 +2,29 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
+<style>
+
+#leagueTrue {
+	display: none;
+
+}
+</style>
 
 
 <script type="text/JavaScript">
+	function isInLeague() {
+		var leagueBool = document.getElementById('leagueBool');
+		var selectedValue = leagueBool.options[leagueBool.selectedIndex].value;
+		if (selectedValue === 'true') {
+			document.getElementById('leagueTrue').style.display = 'block';
+		} else {
+			document.getElementById('leagueTrue').style.display = 'none';
+		}
 
-function isInLeague(val){
-	var element=document.getElementById('leagueBool');
-    if(val==='yes')
-        document.getElementById('leagueTrue').style.display='block';
-     else
-        document.getElementById('leagueTrue').style.display='none'; 
 	}
-
 </script>
+
+
 
 <html>
 <title>Add Score</title>
@@ -50,17 +60,17 @@ function isInLeague(val){
 			</div>
 			<hr>
 			<br>
-			<label for="leagueBool" id="leagueBool" > Was this part of a match:</label>
-				<select>
+			<label for="leagueBool"> Was this part of a match:</label>
+				<select id="leagueBool" onclick="isInLeague()">
 					<option>Select...</option>
-					<option value="true">Yes</option>
+					<option value="true" >Yes</option>
 					<option value="false">No</option>
 				</select>
 				
 			<!-- Fields below should only appear if user selects "Yes" -->	
 				
 
-				<div id="leagueTrue" onclick="isInLeague()">
+				<div id="leagueTrue" >
 				<br>
 					<div class="form-group">
 						<label for="league">League:</label> 
@@ -71,11 +81,6 @@ function isInLeague(val){
 						<input name="match" placeHolder="Match"/>
 					</div>	
 				</div>			
-
-				
-				
-				
-				
 				
 			<br><br>
 			<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
