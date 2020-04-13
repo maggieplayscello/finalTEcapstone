@@ -6,13 +6,15 @@ import org.springframework.ui.ModelMap;
 
 public interface courseDAO {
 
-	List<Course> getAllCourses();
+	public List<Course> getAllCourses();
 	
-	List<Course> searchCourses(String searchName, String searchCity, ModelMap map);
+	public List<Course> searchCourses(String searchName, String searchCity, ModelMap map);
 
-	void addCourseToDatabase(Course theCourse);
+	public void addCourseToDatabase(Course theCourse);
 
-	String getCourseNameByCourseId(int id);
+	public String getCourseNameByCourseId(int id);
+
+	public int getCourseIdByCourseName(String name);
 
 
 }

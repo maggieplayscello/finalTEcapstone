@@ -23,6 +23,7 @@ function isInLeague(val){
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">	
 	<h3>Add a Score</h3>
+	<c:url var = "newScoreSubmitVar" value = "/users/${currentUser}/addScore"/>
 
 	<form method="POST" action="${newScoreSubmitVar}">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
@@ -31,7 +32,7 @@ function isInLeague(val){
 				<label for="name">Course: </label> 
 				<select name="name">
 					<c:forEach items="${allCourses}" var="course">
-						<option value="name">${course.name}</option>			
+						<option value="${course.name}">${course.name}</option>			
 					</c:forEach>
 				</select>
 			</div>
@@ -39,6 +40,11 @@ function isInLeague(val){
 			<div class="form-group">
 				<label for="score">Score:</label> 
 				<input name="score" placeHolder="Score"/>
+			</div>
+			
+			<div class = "form-group">
+				<label for = "date">Date: </label>
+				<input name = "date" placeHolder = "Date (mm/dd/yyyy)"/>
 			</div>
 			<hr>
 			<br>

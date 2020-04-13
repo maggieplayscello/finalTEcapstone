@@ -1,5 +1,7 @@
 package com.techelevator.model.Score;
 
+import java.time.LocalDate;
+
 public class Score {
 	private int scoreId;
 	private int score;
@@ -7,6 +9,7 @@ public class Score {
 	private int teeTimeId;
 	private int courseId;
 	private String courseName;
+	private LocalDate date;
 	
 	public Score() {
 		
@@ -46,5 +49,11 @@ public class Score {
 	}
 	public void setCourseName(String name) {
 		this.courseName = name;
+	}
+	public LocalDate getDate() {
+		return date;
+	}
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 }

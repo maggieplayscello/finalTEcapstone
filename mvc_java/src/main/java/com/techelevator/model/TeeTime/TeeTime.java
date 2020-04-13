@@ -10,7 +10,7 @@ public class TeeTime {
 	private int courseId;
 	
 	public TeeTime () {
-		
+		this.leagueId = 0;
 	}
 	
 	public int getTeeTimeId() {
