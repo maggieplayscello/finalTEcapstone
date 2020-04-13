@@ -16,15 +16,24 @@
 
 <script type="text/JavaScript">
 	function addLeague() {
-		var leagueBool = document.getElementById('leagueBool');
-		var selectedValue = leagueBool.options[leagueBool.selectedIndex].value;
-		if (selectedValue === 'true') {
-			document.getElementById('leagueTrue').style.display = 'block';
+		var addLeagueForm = document.getElementById('addLeagueForm');
+		var displaySetting = addLeagueForm.style.display;
+		if (displaySetting == 'none') {
+			document.getElementById('addLeagueForm').style.display = 'block';
 		} else {
-			document.getElementById('leagueTrue').style.display = 'none';
+			document.getElementById('addLeagueForm').style.display = 'none';
 		}
 	}
 	
+	function addMatch() {
+		var addMatcheForm = document.getElementById('addMatchForm');
+		var displaySetting = addMatchForm.style.display;
+		if (displaySetting == 'none') {
+			document.getElementById('addMatchForm').style.display = 'block';
+		} else {
+			document.getElementById('addMatchForm').style.display = 'none';
+		}
+	}
 	
 </script>
 
@@ -51,19 +60,49 @@
 		<label for="league">League 4</label><br>
 	<input type="radio" id="league" name="league" value="league">
 		<label for="league">League 5</label><br>
-	
+	<br>
 		
 	<c:if test = "${role == 'Admin'}">
-		<br>
-		<div class="btn">
-			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
-			<a href="${addCourseHref}">+ Add a new league</a><br>
-    	</div>
-    	<br><br>
-		<div class="btn">
-			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
-			<a href="${addCourseHref}">+ Create a match</a>
-		</div>
+		
+		<button type="button" class="btn btn-primary" id="addLeagueBtn" onclick="addLeague()">+ Create a League</button>
+			<div id="addLeagueForm" >
+				<br>
+					<div class="form-group">
+						<label for="leagueName">League Name:</label> 
+						<input name="leagueName" placeHolder="League Name"/>
+					</div>
+					<div class="form-group">
+						<label for="leagueName">Add Members:</label> 
+						<input name="leagueName" placeHolder="League Name"/>
+					</div>
+				<button type="submit" class="btn btn-primary" id="btnSaveLeague">Submit</button>
+			</div>
+		<br><br>
+		
+		<button type="button" class="btn btn-primary" id="addMatchBtn" onclick="addMatch()">+ Add a Match</button>
+			<div id="addMatchForm" >
+				<br>
+					<div class="form-group">
+						<label for="leagueName">League Name:</label> 
+						<input name="leagueName" placeHolder="League Name"/>
+					</div>
+				<div class="form-group">
+					<label for="name">Course: </label> 
+					<select name="name">
+						<c:forEach items="${allCourses}" var="course">
+							<option value="${course.name}">${course.name}</option>			
+						</c:forEach>
+					</select>
+				</div>
+					<div class="form-group">
+						<label for="match">Date:</label> 
+						<input name="match" placeHolder="Date"/>
+					</div>	
+				<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
+			</div>
+				
+		
+		
 	</c:if>
 </div>
 
@@ -75,7 +114,7 @@
 	<c:if test = "${role == 'Admin'}">
 		<button id="">+ Add players to league</button>
 	</c:if>
-		</div>
+		
 
 		<hr>
 		<table class="scores">
