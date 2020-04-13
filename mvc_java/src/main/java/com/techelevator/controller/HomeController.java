@@ -84,24 +84,25 @@ public class HomeController {
 		int courseId = courseDao.getCourseIdByCourseName(name);
 		int playerId = userDao.getIdByUserName(currentUser);
 		
-		if(date != null) {
+		if(date != "") {
 			int month = Integer.parseInt(date.substring(0, 2));
 			int day = Integer.parseInt(date.substring(3, 5));
 			int year = Integer.parseInt(date.substring(6, 10));
 			LocalDate myDate = LocalDate.of(year, month, day);
 			myTeeTime.setTime(myDate);
+			myTeeTime.setNumGolfers(1);
+			myTeeTime.setCourseId(courseId);
+			teeTimeDao.saveTeeTime(myTeeTime);
+			int teeTimeId = teeTimeDao.getLastTeeTimeId();
+			myScore.setTeeTimeId(teeTimeId);
+		}else {
+			//this is where we will pull data from tee times table
+			myScore.setTeeTimeId(1);
 		}
 		
 		
-		myTeeTime.setNumGolfers(1);
-		myTeeTime.setCourseId(courseId);
-		teeTimeDao.saveTeeTime(myTeeTime);
-		
-		int teeTimeId = teeTimeDao.getLastTeeTimeId();
-		
 		myScore.setCourseId(courseId);
 		myScore.setId(playerId);
-		myScore.setTeeTimeId(teeTimeId);
 		myScore.setScore(score);
 		scoreDao.saveScore(myScore);
 		
