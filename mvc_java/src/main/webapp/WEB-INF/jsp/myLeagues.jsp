@@ -7,7 +7,11 @@
 	display: none;
 }
 
-#addMatchForm{
+#addMatchForm {
+	display: none;
+}
+
+#addPlayersForm{
 	display: none;
 }
 
@@ -26,7 +30,7 @@
 	}
 	
 	function addMatch() {
-		var addMatcheForm = document.getElementById('addMatchForm');
+		var addMatchForm = document.getElementById('addMatchForm');
 		var displaySetting = addMatchForm.style.display;
 		if (displaySetting == 'none') {
 			document.getElementById('addMatchForm').style.display = 'block';
@@ -34,6 +38,17 @@
 			document.getElementById('addMatchForm').style.display = 'none';
 		}
 	}
+	
+	function addPlayers() {
+		var addPlayersForm = document.getElementById('addPlayersForm');
+		var displaySetting = addPlayersForm.style.display;
+		if (displaySetting == 'none') {
+			document.getElementById('addPlayersForm').style.display = 'block';
+		} else {
+			document.getElementById('addPlayersForm').style.display = 'none';
+		}
+	}
+	
 	
 </script>
 
@@ -112,7 +127,21 @@
 	<h1 class = "header_title">League Leaderboard</h1>
 
 	<c:if test = "${role == 'Admin'}">
-		<button id="">+ Add players to league</button>
+		<button type="button" class="btn btn-primary" id="addPlayersBtn" onclick="addPlayers()">+ Add Players to this League</button>
+			<div id="addPlayersForm" >
+				<br>
+					<div class="form-group">
+						<label for="leagueName">League Name:</label> 
+						<input name="leagueName" placeHolder="League Name"/>
+					</div>
+					<div class="form-group">
+						<label for="leagueName">Add Members:</label> 
+						<input name="leagueName" placeHolder="League Name"/>
+					</div>
+				<button type="submit" class="btn btn-primary" id="btnSaveLeague">Submit</button>
+			</div>
+		<br><br>
+		
 	</c:if>
 		
 
@@ -120,31 +149,31 @@
 		<table class="scores">
 			<tr>
 				<td>1</td>
-				<td>League 1</td>	
+				<td>Team 1</td>	
 				<td>18</td>
 				<td>70</td>
 			</tr>
 			<tr>
 				<td>2</td>
-				<td>League 2</td>	
+				<td>Team 2</td>	
 				<td>16</td>
 				<td>71</td>
 			</tr>
 			<tr>
 				<td>3</td>			
-				<td>League 3</td>	
+				<td>Team 3</td>	
 				<td>13</td>
 				<td>73</td>
 			</tr>
 			<tr>
 				<td>4</td>			
-				<td>League 4</td>	
+				<td>Team 4</td>	
 				<td>11</td>
 				<td>75</td>
 			</tr>
 			<tr>
 				<td>5</td>			
-				<td>League 5</td>	
+				<td>Team 5</td>	
 				<td>4</td>
 				<td>112</td>
 			</tr>
@@ -214,8 +243,8 @@
 	<c:if test = "${role == 'Admin'}">
 		<br>
 		<div class="btn">
-			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
-			<a href="${addCourseHref}">+ Log Scores</a>
+			<c:url var="addScoreHref" value="/users/${currentUser}/addScore"/>
+			<a href="${addScoreHref}">+ Add a Score</a>
 		</div>
 	</c:if>
       </div>	
