@@ -154,6 +154,9 @@ button {
 	width: 100% !important;
 }
 
+#leagueTrue {
+	display: none;
+
 /*   Dashboard: League Standing   */
 
 .standings{
