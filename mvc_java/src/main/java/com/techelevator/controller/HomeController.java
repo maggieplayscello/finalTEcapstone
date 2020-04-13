@@ -65,6 +65,38 @@ public class HomeController {
 			LocalDate myDate = LocalDate.of(year, month, day);
 			scores.get(x).setDate(myDate);
 		}
+		LocalDate today = LocalDate.now();
+		String todayString = today.toString();
+		String buildString = "";
+	
+		if (todayString.substring(5, 7).contentEquals("01")) {
+			buildString = buildString + "January";
+		}else if (todayString.substring(5, 7).contentEquals("02")) {
+			buildString = buildString + "February";
+		}else if (todayString.substring(5, 7).contentEquals("03")) {
+			buildString = buildString + "March";
+		}else if (todayString.substring(5, 7).contentEquals("04")) {
+			buildString = buildString + "April";
+		}else if (todayString.substring(5, 7).contentEquals("05")) {
+			buildString = buildString + "May";
+		}else if (todayString.substring(5, 7).contentEquals("06")) {
+			buildString = buildString + "June";
+		}else if (todayString.substring(5, 7).contentEquals("07")) {
+			buildString = buildString + "July";
+		}else if (todayString.substring(5, 7).contentEquals("08")) {
+			buildString = buildString + "August";
+		}else if (todayString.substring(5, 7).contentEquals("09")) {
+			buildString = buildString + "September";
+		}else if (todayString.substring(5, 7).contentEquals("10")) {
+			buildString = buildString + "October";
+		}else if (todayString.substring(5, 7).contentEquals("11")) {
+			buildString = buildString + "November";
+		}else if (todayString.substring(5, 7).contentEquals("12")) {
+			buildString = buildString + "December";
+		}
+		
+		buildString = buildString + " " + todayString.substring(8, 10) + ", " + todayString.substring(0, 4);
+		map.put("date", buildString);
 		map.put("scores", scores);
 		return "dashboard";
 	}
@@ -99,7 +131,6 @@ public class HomeController {
 			//this is where we will pull data from tee times table
 			myScore.setTeeTimeId(1);
 		}
-		
 		
 		myScore.setCourseId(courseId);
 		myScore.setId(playerId);

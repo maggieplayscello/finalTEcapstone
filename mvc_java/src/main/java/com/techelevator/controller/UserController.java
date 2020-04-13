@@ -17,6 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.Course.Course;
 import com.techelevator.model.Course.courseDAO;
+import com.techelevator.model.League.League;
+import com.techelevator.model.League.LeagueDAO;
+import com.techelevator.model.Score.ScoreDAO;
+import com.techelevator.model.TeeTime.TeeTimeDAO;
 import com.techelevator.model.User.User;
 import com.techelevator.model.User.UserDAO;
 
@@ -27,6 +31,16 @@ public class UserController {
 	
 	@Autowired
 	private courseDAO courseDao;
+	
+	@Autowired
+	private ScoreDAO scoreDao;
+
+	
+	@Autowired
+	private TeeTimeDAO teeTimeDao;
+	
+	@Autowired
+	private LeagueDAO leagueDAO;
 
 	@Autowired
 	public UserController(UserDAO userDAO) {
@@ -92,7 +106,11 @@ public class UserController {
 	@RequestMapping(path="/users/{currentUser}/myLeagues", method=RequestMethod.GET)
 	public String loadMyLeaguesPage(@PathVariable("currentUser") String currentUser, ModelMap map){
 		List<Course> course = courseDao.getAllCourses();
-		map.put("allCourses", course);		
+		map.put("allCourses", course);
+		List<League> league = leagueDAO.getAllLeagues();
+		map.put("allLeagues", league);
+		List<User> user = userDAO.getAllUsers();
+		map.put("allUsers", user);
 		return "myLeagues";
 	}
 	
