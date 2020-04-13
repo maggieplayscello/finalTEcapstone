@@ -2,15 +2,6 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<style>
-
-#leagueTrue {
-	display: none;
-
-}
-</style>
-
-
 <script type="text/JavaScript">
 	function isInLeague() {
 		var leagueBool = document.getElementById('leagueBool');
@@ -20,10 +11,8 @@
 		} else {
 			document.getElementById('leagueTrue').style.display = 'none';
 		}
-
 	}
 </script>
-
 
 
 <html>
@@ -67,9 +56,8 @@
 					<option value="false">No</option>
 				</select>
 				
-			<!-- Fields below should only appear if user selects "Yes" -->	
+			<!-- Fields below will only appear if user selects "Yes" -->	
 				
-
 				<div id="leagueTrue" >
 				<br>
 					<div class="form-group">

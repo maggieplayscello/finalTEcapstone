@@ -1,7 +1,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
+<style>
 
+#addLeagueForm {
+	display: none;
+}
+
+#addMatchForm{
+	display: none;
+}
+
+</style>
+
+
+<script type="text/JavaScript">
+	function addLeague() {
+		var leagueBool = document.getElementById('leagueBool');
+		var selectedValue = leagueBool.options[leagueBool.selectedIndex].value;
+		if (selectedValue === 'true') {
+			document.getElementById('leagueTrue').style.display = 'block';
+		} else {
+			document.getElementById('leagueTrue').style.display = 'none';
+		}
+	}
+	
+	
+</script>
+
+<html>
 <title>My Leagues</title>
 </head>
 <body>
@@ -46,11 +73,9 @@
 	<h1 class = "header_title">League Leaderboard</h1>
 
 	<c:if test = "${role == 'Admin'}">
-		<div class="btn">
-			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
-			<a href="${addCourseHref}">+ Add players to league</a>
-		</div>
+		<button id="">+ Add players to league</button>
 	</c:if>
+		</div>
 
 		<hr>
 		<table class="scores">
