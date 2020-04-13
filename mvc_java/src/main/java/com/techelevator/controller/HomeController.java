@@ -78,17 +78,21 @@ public class HomeController {
 	
 	@RequestMapping (path = "/users/{currentUser}/addScore", method = RequestMethod.POST)
 	public String submitScore(@PathVariable("currentUser") String currentUser, 
-			@RequestParam String name, @RequestParam int score, @RequestParam String date) {
+			@RequestParam String name, @RequestParam int score, @RequestParam(required = false) String date) {
 		Score myScore = new Score();
+		TeeTime myTeeTime = new TeeTime();
 		int courseId = courseDao.getCourseIdByCourseName(name);
 		int playerId = userDao.getIdByUserName(currentUser);
-		int day = Integer.parseInt(date.substring(0, 2));
-		int month = Integer.parseInt(date.substring(3, 5));
-		int year = Integer.parseInt(date.substring(6, 10));
-		LocalDate myDate = LocalDate.of(year, month, day);
 		
-		TeeTime myTeeTime = new TeeTime();
-		myTeeTime.setTime(myDate);
+		if(date != null) {
+			int month = Integer.parseInt(date.substring(0, 2));
+			int day = Integer.parseInt(date.substring(3, 5));
+			int year = Integer.parseInt(date.substring(6, 10));
+			LocalDate myDate = LocalDate.of(year, month, day);
+			myTeeTime.setTime(myDate);
+		}
+		
+		
 		myTeeTime.setNumGolfers(1);
 		myTeeTime.setCourseId(courseId);
 		teeTimeDao.saveTeeTime(myTeeTime);
