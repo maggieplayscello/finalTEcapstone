@@ -58,6 +58,12 @@ public class HomeController {
 		for(int x = 0; x < scores.size(); x++) {
 			String courseName = courseDao.getCourseNameByCourseId(scores.get(x).getCourseId());
 			scores.get(x).setCourseName(courseName);
+			String dateString = scoreDao.getDateFromScoreId(scores.get(x).getScoreId());
+			int year = Integer.parseInt(dateString.substring(0, 4));
+			int month = Integer.parseInt(dateString.substring(5, 7));
+			int day = Integer.parseInt(dateString.substring(8, 10));
+			LocalDate myDate = LocalDate.of(year, month, day);
+			scores.get(x).setDate(myDate);
 		}
 		map.put("scores", scores);
 		return "dashboard";

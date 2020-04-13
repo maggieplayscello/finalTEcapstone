@@ -52,6 +52,15 @@ private JdbcTemplate jdbcTemplate;
 		
 	}
 	
-
+	@Override
+	public String getDateFromScoreId(int id) {
+		String time = null;
+		String sqlMySql = "SELECT t.time FROM scores s JOIN tee_time t ON t.teetimeid = s.teetimeid WHERE s.scoreid = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlMySql, id);
+		if (results.next()) {
+			time = results.getString("time");
+		}
+		return time;
+	}
 
 }
