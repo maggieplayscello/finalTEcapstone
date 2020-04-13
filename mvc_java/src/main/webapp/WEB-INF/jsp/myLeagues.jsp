@@ -49,7 +49,6 @@
 		}
 	}
 	
-	
 </script>
 
 <html>
@@ -81,16 +80,17 @@
 		
 		<button type="button" class="btn btn-primary" id="addLeagueBtn" onclick="addLeague()">+ Create a League</button>
 			<div id="addLeagueForm" >
-				<br>
-					<div class="form-group">
-						<label for="leagueName">League Name:</label> 
-						<input name="leagueName" placeHolder="League Name"/>
-					</div>
+			<br>
 				<div class="form-group">
-					<label for="course">Add Members: </label> 
-					<select name="course">
-						<c:forEach items="${allCourses}" var="course">
-							<option value="${course.name}">${course.name}</option>			
+					<label for="leagueName">League Name:</label> 
+					<input name="leagueName" placeHolder="League Name"/>
+				</div>
+				<div class="form-group">
+					<label for="users">Add Members: </label> 
+					<p>Press control or command to select multiple users.</p>
+					<select name="users" multiple>
+						<c:forEach items="${allUsers}" var="user">
+							<option value="${user.userName}">${user.userName}</option>			
 						</c:forEach>
 					</select>
 				</div>
@@ -102,10 +102,10 @@
 			<div id="addMatchForm" >
 				<br>
 				<div class="form-group">
-					<label for="course">League: </label> 
-					<select name="course">
-						<c:forEach items="${allCourses}" var="course">
-							<option value="${course.name}">${course.name}</option>			
+					<label for="league">League: </label> 
+					<select name="league">
+						<c:forEach items="${allLeagues}" var="league">
+							<option value="${league.name}">${league.name}</option>			
 						</c:forEach>
 					</select>
 				</div>
@@ -118,16 +118,13 @@
 					</select>
 				</div>
 					<div class="form-group">
-						<label for="match">Date:</label> 
-						<input name="match" placeHolder="Date"/>
+						<label for="date">Date:</label> 
+						<input name="date" placeHolder="Date"/>
 					</div>	
 				<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
-			</div>
-				
-		
-		
-	</c:if>
-</div>
+			</div>				
+		</c:if>
+	</div>
 
 <!-- League Leaderboard -->
 	
@@ -142,10 +139,15 @@
 						<label for="leagueName">League Name:</label> 
 						<input name="leagueName" placeHolder="League Name"/>
 					</div>
-					<div class="form-group">
-						<label for="leagueName">Add Members:</label> 
-						<input name="leagueName" placeHolder="League Name"/>
-					</div>
+				<div class="form-group">
+					<label for="users">Add Members: </label> 
+					<p>Press control or command to select multiple users.</p>
+					<select name="users">
+						<c:forEach items="${allUsers}" var="user">
+							<option value="${user.userName}">${user.userName}</option>			
+						</c:forEach>
+					</select>
+				</div>
 				<button type="submit" class="btn btn-primary" id="btnSaveLeague">Submit</button>
 			</div>
 		<br><br>
