@@ -51,5 +51,7 @@ private JdbcTemplate jdbcTemplate;
 		jdbcTemplate.update(sqlAddScore, theScore.getScore(), theScore.getId(), theScore.getCourseId(), theScore.getTeeTimeId());	
 		
 	}
+	
+
 
 }

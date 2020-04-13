@@ -4,4 +4,6 @@ public interface TeeTimeDAO {
 
 	void saveTeeTime(TeeTime teeTime);
 
+	int getLastTeeTimeId();
+
 }

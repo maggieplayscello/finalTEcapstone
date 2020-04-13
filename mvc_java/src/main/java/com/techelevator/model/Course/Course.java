@@ -38,8 +38,7 @@ public class Course {
 		
 	}
 	
-	public Course(int id, String name, int par, int slope, double rating, String address, String city, String state, int zip) {
-		this.id = id;
+	public Course(String name, int par, int slope, double rating, String address, String city, String state, int zip) {
 		this.name = name;
 		this.par = par;
 		this.slope = slope;

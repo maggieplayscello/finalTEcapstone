@@ -20,6 +20,8 @@ import com.techelevator.model.Course.Course;
 import com.techelevator.model.Course.courseDAO;
 import com.techelevator.model.Score.Score;
 import com.techelevator.model.Score.ScoreDAO;
+import com.techelevator.model.TeeTime.TeeTime;
+import com.techelevator.model.TeeTime.TeeTimeDAO;
 import com.techelevator.model.User.UserDAO;
 
 
@@ -35,6 +37,9 @@ public class HomeController {
 	
 	@Autowired
 	private UserDAO userDao;
+	
+	@Autowired
+	private TeeTimeDAO teeTimeDao;
 
 	@RequestMapping(path="/")
 	public String displayHomePage() {
@@ -67,16 +72,29 @@ public class HomeController {
 	
 	@RequestMapping (path = "/users/{currentUser}/addScore", method = RequestMethod.POST)
 	public String submitScore(@PathVariable("currentUser") String currentUser, 
-			@RequestParam String name, @RequestParam int score, @RequestParam LocalDate date) {
+			@RequestParam String name, @RequestParam int score, @RequestParam String date) {
 		Score myScore = new Score();
 		int courseId = courseDao.getCourseIdByCourseName(name);
 		int playerId = userDao.getIdByUserName(currentUser);
-		int teeTimeId = 1;
+		int day = Integer.parseInt(date.substring(0, 2));
+		int month = Integer.parseInt(date.substring(3, 5));
+		int year = Integer.parseInt(date.substring(6, 10));
+		LocalDate myDate = LocalDate.of(year, month, day);
+		
+		TeeTime myTeeTime = new TeeTime();
+		myTeeTime.setTime(myDate);
+		myTeeTime.setNumGolfers(1);
+		myTeeTime.setCourseId(courseId);
+		teeTimeDao.saveTeeTime(myTeeTime);
+		
+		int teeTimeId = teeTimeDao.getLastTeeTimeId();
+		
 		myScore.setCourseId(courseId);
 		myScore.setId(playerId);
 		myScore.setTeeTimeId(teeTimeId);
 		myScore.setScore(score);
 		scoreDao.saveScore(myScore);
+		
 		return "redirect:/users/{currentUser}/dashboard";
 	}
 	
