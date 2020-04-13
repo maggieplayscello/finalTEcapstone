@@ -41,6 +41,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
 		<a class="navbar-brand" href="#"> 
 			<c:url var="homePageHref" value="/" />
 			<c:if test = "${not empty currentUser}">
@@ -90,6 +91,8 @@
 						value="/users/${currentUser}/messages" />
 					<li class="nav-item"><a class="nav-link" href="${sentMessagesHref}">Sent Messages</a></li>
 					 -->
+					 
+					 
 
 					<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
 					<li class="nav-item"><a class="nav-link" href="${changePasswordHref}">Change Password</a></li>
@@ -127,17 +130,9 @@
 			</ul>
 		</div>
 
-<!-- Do we need this to display on every page?
-		<div class="userInfo">
-			<c:if test="${not empty currentUser}">
-				<div id="currentUser">
-					Current User: ${currentUser}<br> 
-					Current Role: ${role}</div>
-			</c:if>
-		</div>
-		 -->
+
+
+
 		
-	</nav>
-
-
-	<div class="container">
+</nav>
+<div class="container">

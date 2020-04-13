@@ -23,39 +23,13 @@
 			</tr>	
 		<c:forEach items = "${scores}" var = "score">
 			<tr>
-				<td>${score.courseName}</td>
+				<td class="courseCell">${score.courseName}</td>
 				<td>${score.score}</td>
+				<td>${score.date}</td>
 			</tr>
 		</c:forEach>
-			<tr>
-				<td>Alpena Golf Club</td>	
-				<td>70</td>
-				<td>April 3 2020</td>
-			</tr>
-			<tr>
-				<td>Escanaba Country Club</td>	
-				<td>68</td>
-				<td>April 5 2020</td>
-			</tr>
-			<tr>
-				<td>Arcadia Bluffs Golf Course</td>	
-				<td>71</td>
-				<td>April 6 2020</td>
-			</tr>
-			<tr>
-				<td>Arcadia Bluffs Golf Course</td>	
-				<td>74</td>
-				<td>April 8 2020</td>
-			</tr>
-			<tr>
-				<td>Arcadia Bluffs Golf Course</td>	
-				<td>80</td>
-				<td>April 9 2020</td>
-			</tr>
 		</table>
 		<br>
-		
-<!-- Add Score button and hidden form -->
 
 		<div class="btn">
 			<c:url var="addScoreHref" value="/users/${currentUser}/addScore"/>

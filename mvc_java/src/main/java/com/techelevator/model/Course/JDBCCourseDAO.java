@@ -58,6 +58,7 @@ public class JDBCCourseDAO implements courseDAO {
 	private Course mapRowToCourse(SqlRowSet results) {
 		Course theCourse = new Course();
 		
+		theCourse.setCourseId(results.getInt("courseid"));
 		theCourse.setName(results.getString("name"));
 		theCourse.setRating(results.getDouble("rating"));
 		theCourse.setSlope(results.getInt("slope"));
@@ -85,6 +86,19 @@ public class JDBCCourseDAO implements courseDAO {
 			course = mapRowToCourse(results);
 		}
 		return course.getName();	
+	}
+	
+	@Override
+	public int getCourseIdByCourseName(String name) {
+		int courseId = 0;
+		Course course = new Course();
+		String sqlSelectAllCourses = "SELECT * FROM courses WHERE name = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllCourses, name);
+		if (results.next()) {
+			course = mapRowToCourse(results);
+		}
+		courseId = course.getCourseId();
+		return courseId;
 	}
 
 }

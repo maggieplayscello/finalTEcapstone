@@ -84,7 +84,7 @@
 	</div>
 	<div class="col-sm-4"></div>
 	</div>
-	
+	<br>
 	<c:if test = "${role == 'Admin'}">
 		<br>
 		<div class="btn">
@@ -92,7 +92,7 @@
 			<a href="${addCourseHref}">+ Add a new Course</a>
 		</div>
 	</c:if>
-	
+	<br><br>
 		<table id="courseTable">
 			<tr>
 				<th align="left">Name</th>
