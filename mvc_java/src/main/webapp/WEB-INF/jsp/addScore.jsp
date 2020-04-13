@@ -2,8 +2,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<title>Add Score</title>
-</head>
+
 
 <script type="text/JavaScript">
 
@@ -17,6 +16,9 @@ function isInLeague(val){
 
 </script>
 
+<html>
+<title>Add Score</title>
+</head>
 <body>
 <div id="wrapper">
 	<div class="row">
@@ -54,6 +56,9 @@ function isInLeague(val){
 					<option value="true">Yes</option>
 					<option value="false">No</option>
 				</select>
+				
+			<!-- Fields below should only appear if user selects "Yes" -->	
+				
 			<c:if test="{leagueBool == true}">
 				<div id="leagueTrue">
 				<br>
@@ -67,6 +72,11 @@ function isInLeague(val){
 					</div>	
 				</div>			
 				</c:if>
+				
+				
+				
+				
+				
 			<br><br>
 			<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
 			</form>
