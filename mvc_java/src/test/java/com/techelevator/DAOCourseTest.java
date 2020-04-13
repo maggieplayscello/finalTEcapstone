@@ -27,18 +27,17 @@ public class DAOCourseTest {
 	 * session and hence the same database transaction */
 	private static SingleConnectionDataSource dataSource;
 	private JDBCCourseDAO coursedao;
-	int courseSizeBefore = 0;
+	private int courseSizeBefore = 0;
 	
-	final int COURSE_ID = 10000;
-	final String COURSE_NAME = "Test Course";
-	final int COURSE_PAR = 71;
-	final int COURSE_SLOPE = 145;
-	final double COURSE_RATING = 75.2;
-	final String COURSE_ADDRESS = "440 Burroughs St";
-	final String COURSE_CITY = "Detroit";
-	final String COURSE_STATE = "MI";
-	final int COURSE_ZIP = 48202;
-	int expectedId = 0;
+	private final int COURSE_ID = 10000;
+	private final String COURSE_NAME = "Test Course";
+	private final int COURSE_PAR = 71;
+	private final int COURSE_SLOPE = 145;
+	private final double COURSE_RATING = 75.2;
+	private final String COURSE_ADDRESS = "440 Burroughs St";
+	private final String COURSE_CITY = "Detroit";
+	private final String COURSE_STATE = "MI";
+	private final int COURSE_ZIP = 48202;
 	
 	/* Before any tests are run, this method initializes the datasource for testing. */
 	
@@ -104,7 +103,6 @@ public class DAOCourseTest {
 		expected.add(expectedCourse);
 		ModelMap map = null;
 		List <Course> actual = coursedao.searchCourses(COURSE_NAME, COURSE_CITY, map);
-		System.out.println(actual.get(0).getId());
 		assertCoursesEqual(expected.get(0), actual.get(0)); //method that takes value of both courses and asserts they are all equal
 	}
 	
@@ -121,6 +119,7 @@ public class DAOCourseTest {
 	}
 
 	private void assertCoursesEqual(Course expected, Course actual) {
+		assertEquals(expected.getId(), actual.getId());
 		assertEquals(expected.getName(), actual.getName());
 		assertEquals(expected.getPar(), actual.getPar());
 		assertEquals(expected.getSlope(), actual.getSlope());

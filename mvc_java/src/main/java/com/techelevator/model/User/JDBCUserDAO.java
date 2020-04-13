@@ -1,5 +1,8 @@
 package com.techelevator.model.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.bouncycastle.util.encoders.Base64;
@@ -8,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import com.techelevator.model.Course.Course;
 import com.techelevator.security.PasswordHasher;
 
 @Component
@@ -137,5 +141,27 @@ public class JDBCUserDAO implements UserDAO {
 	public void updateRole(String userName, String role) {
 		String sqlUpdateRole = "UPDATE app_user SET role = ? WHERE user_name = ?";
 		jdbcTemplate.update(sqlUpdateRole, role, userName);					
+	}
+	
+	@Override
+	public List<User> getAllUsers() {
+		List <User> users = new ArrayList<>();
+		
+		String sqlSelectAllUsers = "SELECT * FROM app_user";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllUsers);
+		while (results.next()) {
+			users.add(mapRowToUser(results));
+		}
+		return users;
+	}
+
+	private User mapRowToUser(SqlRowSet results) {
+		User theUser = new User();
+		
+		theUser.setUserName(results.getString("user_name"));
+		theUser.setPassword(results.getString("password"));
+		theUser.setRole(results.getString("role"));
+		
+		return theUser;
 	}
 }
