@@ -63,7 +63,7 @@
 
 <div class="sidenav">
 	<h1 class = "header_title">View My Leagues</h1>
-		
+
 	<input type="radio" id="league" name="league" value="league">
 		<label for="league">League 1</label><br>
 	<input type="radio" id="league" name="league" value="league">
@@ -142,7 +142,7 @@
 				<div class="form-group">
 					<label for="users">Add Members: </label> 
 					<p>Press control or command to select multiple users.</p>
-					<select name="users">
+					<select name="users" multiple>
 						<c:forEach items="${allUsers}" var="user">
 							<option value="${user.userName}">${user.userName}</option>			
 						</c:forEach>
