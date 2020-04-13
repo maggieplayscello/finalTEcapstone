@@ -6,6 +6,7 @@ import javax.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Course {
+	private int courseId;
 	private int id;
 
 	@NotBlank(message = "Must enter a course name")
@@ -108,5 +109,13 @@ public class Course {
 	}
 	public void setSlope(Integer slope) {
 		this.slope = slope;
+	}
+
+	public int getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
 	}
 }

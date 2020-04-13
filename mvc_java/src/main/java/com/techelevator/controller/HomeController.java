@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -47,9 +48,6 @@ public class HomeController {
 	
 	@RequestMapping(path="/users/{currentUser}/dashboard")
 	public String displayDashboard(@PathVariable("currentUser") String currentUser, ModelMap map) {
-		if (!map.containsAttribute("score")) {
-			map.put("score", new Score());
-		}
 		
 		List <Score> scores = scoreDao.getAllScoresByUserId(userDao.getIdByUserName(currentUser));
 		for(int x = 0; x < scores.size(); x++) {
@@ -68,16 +66,18 @@ public class HomeController {
 	}	
 	
 	@RequestMapping (path = "/users/{currentUser}/addScore", method = RequestMethod.POST)
-	public String submitScore(@Valid @ModelAttribute Score score, @PathVariable("currentUser") String currentUser, BindingResult result, RedirectAttributes flash) {
-		
-		flash.addFlashAttribute("score", score);
-		
-		if (result.hasErrors()) {
-			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "score", result);
-			return "redirect:/dashboard";
-		}
-		scoreDao.saveScore(score);
-		return "redirect:/dashboard";
+	public String submitScore(@PathVariable("currentUser") String currentUser, 
+			@RequestParam String name, @RequestParam int score, @RequestParam LocalDate date) {
+		Score myScore = new Score();
+		int courseId = courseDao.getCourseIdByCourseName(name);
+		int playerId = userDao.getIdByUserName(currentUser);
+		int teeTimeId = 1;
+		myScore.setCourseId(courseId);
+		myScore.setId(playerId);
+		myScore.setTeeTimeId(teeTimeId);
+		myScore.setScore(score);
+		scoreDao.saveScore(myScore);
+		return "redirect:/users/{currentUser}/dashboard";
 	}
 	
 	@RequestMapping(path= {"/courseSearch", "/users/{currentUser}/courseSearch"})
