@@ -50,7 +50,7 @@ function isInLeague(val){
 			</div>
 			<hr>
 			<br>
-			<label for="leagueBool" id="leagueBool"> Was this part of a match:</label>
+			<label for="leagueBool" id="leagueBool" onclick="isInLeague()"> Was this part of a match:</label>
 				<select>
 					<option>Select...</option>
 					<option value="true">Yes</option>
