@@ -1,7 +1,5 @@
 package com.techelevator.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.techelevator.model.Course.Course;
-import com.techelevator.model.Course.courseDAO;
-import com.techelevator.model.League.League;
-import com.techelevator.model.League.LeagueDAO;
-import com.techelevator.model.Score.ScoreDAO;
-import com.techelevator.model.TeeTime.TeeTimeDAO;
 import com.techelevator.model.User.User;
 import com.techelevator.model.User.UserDAO;
 
@@ -30,60 +22,17 @@ public class UserController {
 	private UserDAO userDAO;
 	
 	@Autowired
-	private courseDAO courseDao;
-	
-	@Autowired
-	private ScoreDAO scoreDao;
-
-	
-	@Autowired
-	private TeeTimeDAO teeTimeDao;
-	
-	@Autowired
-	private LeagueDAO leagueDAO;
-
-	@Autowired
 	public UserController(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
 
+	
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
 	public String displayNewUserForm(ModelMap modelHolder) {
 		if( ! modelHolder.containsAttribute("user")) {
 			modelHolder.addAttribute("user", new User());
 		}
 		return "newUser";
-	}
-	
-	
-	@RequestMapping(path="/users/{currentUser}", method=RequestMethod.GET)
-	public String logCurrentUserIn(@PathVariable("currentUser") String currentUser) {
-		return "home";
-	}
-	
-	@RequestMapping(path="/users/{currentUser}/changePassword", method=RequestMethod.GET)
-	public String loadChangePasswordPage(@PathVariable("currentUser") String currentUser) {
-		return "changePassword";
-	}
-	
-	@RequestMapping(path="/users/{currentUser}/changePassword", method=RequestMethod.POST)
-	public String submitChangePassword(@PathVariable("currentUser") String currentUser, 
-			@RequestParam String userName, @RequestParam String password, 
-			@RequestParam String newPassword) {
-	userDAO.updatePassword(userName, password, newPassword);	
-		return "redirect:/";
-	}
-	
-	@RequestMapping(path="/users/{currentUser}/adminFunctions", method=RequestMethod.GET)
-	public String loadAdminFunctionsPage(@PathVariable("currentUser") String currentUser) {
-		return "adminFunctions";
-	}
-	
-	@RequestMapping(path="/users/{currentUser}/adminFunctions/{role}", method=RequestMethod.POST)
-	public String changeGolferRole(@PathVariable("currentUser") String currentUser, @PathVariable("role") String role,
-			@RequestParam String userName, @RequestParam String myRole) {
-		userDAO.updateRole(userName, myRole);
-		return "redirect:/users/" + currentUser + "/adminFunctions";
 	}
 	
 	@RequestMapping(path="/users", method=RequestMethod.POST)
@@ -100,4 +49,37 @@ public class UserController {
 		return "redirect:/users/new";
 	}
 	
+		
+	@RequestMapping(path="/users/{currentUser}", method=RequestMethod.GET)
+	public String logCurrentUserIn(@PathVariable("currentUser") String currentUser) {
+		return "home";
+	}
+
+	
+	@RequestMapping(path="/users/{currentUser}/changePassword", method=RequestMethod.GET)
+	public String loadChangePasswordPage(@PathVariable("currentUser") String currentUser) {
+		return "changePassword";
+	}
+	
+	@RequestMapping(path="/users/{currentUser}/changePassword", method=RequestMethod.POST)
+	public String submitChangePassword(@PathVariable("currentUser") String currentUser, 
+			@RequestParam String userName, @RequestParam String password, 
+			@RequestParam String newPassword) {
+	userDAO.updatePassword(userName, password, newPassword);	
+		return "redirect:/";
+	}
+
+	
+	@RequestMapping(path="/users/{currentUser}/adminFunctions", method=RequestMethod.GET)
+	public String loadAdminFunctionsPage(@PathVariable("currentUser") String currentUser) {
+		return "adminFunctions";
+	}
+	
+	@RequestMapping(path="/users/{currentUser}/adminFunctions/{role}", method=RequestMethod.POST)
+	public String changeGolferRole(@PathVariable("currentUser") String currentUser, @PathVariable("role") String role,
+			@RequestParam String userName, @RequestParam String myRole) {
+		userDAO.updateRole(userName, myRole);
+		return "redirect:/users/" + currentUser + "/adminFunctions";
+	}
+		
 }
