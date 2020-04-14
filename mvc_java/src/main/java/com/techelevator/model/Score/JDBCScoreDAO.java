@@ -1,5 +1,6 @@
 package com.techelevator.model.Score;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,8 @@ private JdbcTemplate jdbcTemplate;
 	public List<Score> getAllScoresByUserId(Integer id) {
 		List <Score> scores = new ArrayList<>();
 		
-		String sqlSelectAllCourses = "SELECT * FROM scores WHERE id = ?";
+		String sqlSelectAllCourses = "SELECT s.*, t.time FROM scores s "
+				+ "JOIN tee_time t ON t.teetimeid = s.teetimeid WHERE id = ? ORDER BY time DESC LIMIT 20;";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllCourses, id);
 		while (results.next()) {
 			scores.add(mapRowToScore(results));

@@ -25,7 +25,7 @@
 			<tr>
 				<td class="courseCell">${score.courseName}</td>
 				<td>${score.score}</td>
-				<td>${score.date}</td>
+				<td>${score.dateString}</td>
 			</tr>
 		</c:forEach>
 		</table>
@@ -83,34 +83,20 @@
 		</div>
 		<div class="calendar_events">
 			<p class="ce_title">Upcoming</p>
+			<c:forEach items = "${teeTimes}" var = "teeTime">
+			
 			<div class="event_item">
 				<div class="ei_Dot dot_active"></div>
-				<div class="ei_Title">April 18 2020</div>
-				<div class="ei_Copy">10:30 am</div>
-				<div class="ei_Copy">League 1 Team 1 Match 1</div>
-				<div class="ei_Copy">Alpena Golf Club</div>
+				<div class="ei_Title">${teeTime.dateString}</div>
+				<div class="ei_Copy">${teeTime.timeString}</div>
+				<div class="ei_Copy">${teeTime.courseName}</div>
 			</div>
 			<hr>
-			<div class="event_item">
-				<div class="ei_Dot"></div>
-				<div class="ei_Title">April 19 2020</div>
-				<div class="ei_Copy">12:00 pm</div>
-				<div class="ei_Copy">League 1 Team 1 Match 2</div>
-				<div class="ei_Copy">Alpena Golf Club</div>
-			</div>
-			<hr>
-			<div class="event_item">
-				<div class="ei_Dot"></div>
-				<div class="ei_Title">April 23 2020</div>
-		        <div class="ei_Copy">8:10 am</div>
-        		<div class="ei_Copy">League 2 Team 1 Match 1</div>
-		        <div class="ei_Copy">Arcadia Bluffs Golf Course</div>
-			</div>
-			<hr>
+			</c:forEach>
 			<br>
 		<div class="btn">
-			<c:url var="addScoreHref" value="/users/${currentUser}/dashboard"/>
-			<a href="${addScoreHref}">+ Schedule a Tee Time</a>
+			<c:url var="scheduleTeeTimeHref" value="/users/${currentUser}/scheduleTeeTime"/>
+			<a href="${scheduleTeeTimeHref}">+ Schedule a Tee Time</a>
     	</div>
 		</div>
 	</div>
