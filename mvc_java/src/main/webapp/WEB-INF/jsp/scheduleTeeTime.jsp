@@ -16,40 +16,22 @@
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 
 			<div class="form-group">
-				<label for="name">Course: </label> 
+				<label for="course">Course: </label> 
 				<select name="name">
 					<c:forEach items="${allCourses}" var="course">
-						<option value="name">${course.name}</option>			
+						<option value="${course.name}">${course.name}</option>			
 					</c:forEach>
 				</select>
 			</div>
 
 			<div class="form-group">
-				<label for="score">Score:</label> 
-				<input name="score" placeHolder="Score"/>
-			</div>
-			<hr>
-			<br>
-			<label for="leagueBool" id="leagueBool"> Was this part of a match:</label>
-				<select>
-					<option>Select...</option>
-					<option value="true">Yes</option>
-					<option value="false">No</option>
+				<label for="date">Date: </label> 
+				<select name="name">
+					<c:forEach items="${dates}" var="date">
+						<option value="date">${date}</option>			
+					</c:forEach>
 				</select>
-			<c:if test="{leagueBool == true}">
-				<div id="leagueTrue">
-				<br>
-					<div class="form-group">
-						<label for="league">League:</label> 
-						<input name="league" placeHolder="Score"/>
-					</div>
-					<div class="form-group">
-						<label for="match">Match:</label> 
-						<input name="match" placeHolder="Match"/>
-					</div>	
-				</div>			
-				</c:if>
-			<br><br>
+			</div>
 			<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
 			</form>
 		</div>
