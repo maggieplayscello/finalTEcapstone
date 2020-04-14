@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -34,6 +35,8 @@ public class DAOUserTest {
 	private final String USER_PASSWORD = "KQfZkVIlXcGOeKzFnmmLTw==";
 	private final String USER_SALT = "5SfhtBdlFRkFTtUMXnPMHL1eRt0qBATjWi9bvMRxPlhs1Qs0R+taaQvdiSq24QWmJUOYwx+QVPH7DfXcsVnoBYyRZM+W6FrQIEsMyh19EKh3z1nUEvHUjRoGGaQP9cnInpf/t+xtBfpg1pwkHk0VVrwNDWcafxjt98DoT0WwFAo=";
 	private final String USER_ROLE = "Golfer";
+	
+	private int beforeUsers = 0;
 	
 	/* Before any tests are run, this method initializes the datasource for testing. */
 	@BeforeClass
@@ -72,6 +75,9 @@ public class DAOUserTest {
 		
 		userdao = new JDBCUserDAO(dataSource, hash);
 		
+		List <User> allUsers = userdao.getAllUsers();
+		beforeUsers = allUsers.size();
+		
 		String sqlInsertUser = "INSERT INTO app_user (id, user_name, password, salt, role) VALUES (?, ?, ?, ?, ?)";
 		JdbcTemplate jdbctemplate = new JdbcTemplate (dataSource);
 		jdbctemplate.update(sqlInsertUser, USER_ID, USER_NAME, USER_PASSWORD, USER_SALT, USER_ROLE);
@@ -105,5 +111,18 @@ public class DAOUserTest {
 		
 		String actual = userdao.getRoleByUserName(USER_NAME);
 		assertEquals (USER_ROLE, actual);
+	}
+	
+	@Test
+	public void testGetIdByUsername() {
+		int actual = userdao.getIdByUserName(USER_NAME);
+		assertEquals(USER_ID, actual);
+	}
+	
+	@Test //get number of users before test inserted in setup and compare that the number is one more after setup.
+	public void testGetAllUsers() {
+		List <User> allUsers = userdao.getAllUsers();
+		int afterUsers = allUsers.size();
+		assertEquals (beforeUsers + 1, afterUsers);
 	}
 }

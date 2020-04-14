@@ -37,6 +37,8 @@ CREATE TABLE courses
  city     varchar(50) NOT NULL,
  state    varchar(50) NOT NULL,
  zip      integer NOT NULL,
+ latitude float NULL,
+ longitude float NULL,
  CONSTRAINT PK_courses PRIMARY KEY (courseId)
 );
 
