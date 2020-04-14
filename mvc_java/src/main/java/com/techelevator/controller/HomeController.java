@@ -192,7 +192,7 @@ public class HomeController {
 		return "addCourseConfirmation";
 	}
 	
-	@RequestMapping(path = "/users/{currentUser}/scheduleTeeTime")
+	@RequestMapping(path = "/users/{currentUser}/scheduleTeeTime", method = RequestMethod.GET)
 	public String scheduleTeetime(@PathVariable("currentUser") String currentUser, ModelMap map) {
 		LocalDate today = LocalDate.now();
 		List<LocalDate> threeWeeks = new ArrayList <> ();
@@ -205,6 +205,18 @@ public class HomeController {
 		map.put("allCourses", course);
 		return "scheduleTeeTime";
 		
+	}
+
+	@RequestMapping (path = "/users/{currentUser}/scheduleTeeTime", method = RequestMethod.POST)
+	public String submitTeeTimeDateAndCourse(@PathVariable("currentUser") String currentUser, 
+			@RequestParam String course, @RequestParam String date) {
+		System.out.println(course + " " + date);
+		return "redirect:/users/{currentUser}/teeTimeSheet";
+	}
+	@RequestMapping (path = "/users/{currentUser}/teeTimeSheet", method = RequestMethod.GET)
+	public String displayTeeTimeSheet(@PathVariable("currentUser") String currentUser){
+
+		return "teeTimeSheet";
 	}
 	
 }

@@ -12,12 +12,13 @@
 	<div class="col-sm-4">	
 	<h3>Schedule a Tee Time</h3>
 
-	<form method="POST" action="${newScoreSubmitVar}">
+	<c:url var = "submitTeeTimeForm" value = "/users/${currentUser}/scheduleTeeTime"/>
+	<form method="POST" action="${submitTeeTimeForm}">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 
 			<div class="form-group">
 				<label for="course">Course: </label> 
-				<select name="name">
+				<select name="course">
 					<c:forEach items="${allCourses}" var="course">
 						<option value="${course.name}">${course.name}</option>			
 					</c:forEach>
@@ -26,9 +27,9 @@
 
 			<div class="form-group">
 				<label for="date">Date: </label> 
-				<select name="name">
+				<select name="date">
 					<c:forEach items="${dates}" var="date">
-						<option value="date">${date}</option>			
+						<option value="${date}">${date}</option>			
 					</c:forEach>
 				</select>
 			</div>
