@@ -50,11 +50,11 @@
 				<th>Ranking</th>
 				<th>Score</th>
 			</tr>			
-		<c:forEach items="${leagues}" var="league">
+		<c:forEach items="${teams}" var="team">
 			<tr>
-				<td>${league.name}</td>
+				<td>${team.name}</td>
 				<td>Ranking</td>
-				<td>Score</td>
+				<td>${team.points}</td>
 			</tr>
 		</c:forEach>
 		</table>

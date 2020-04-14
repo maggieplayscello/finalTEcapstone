@@ -2,17 +2,17 @@ package com.techelevator.model.Team;
 
 public class Team {
 	private int teamId;
-	private String teamName;
+	private String name;
 	private int leagueId;
 	private int points;
 	
 	public Team() {
 	}
 	
-	public Team(int teamId, String teamName, int leagueId, int points) {
+	public Team(int teamId, String name, int leagueId, int points) {
 		super();
 		this.teamId = teamId;
-		this.teamName = teamName;
+		this.name = name;
 		this.leagueId = leagueId;
 		this.points = points;
 	}
@@ -25,12 +25,12 @@ public class Team {
 		this.teamId = teamId;
 	}
 
-	public String getTeamName() {
-		return teamName;
+	public String getName() {
+		return name;
 	}
 
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getLeagueId() {

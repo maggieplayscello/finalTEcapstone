@@ -23,6 +23,8 @@ import com.techelevator.model.League.League;
 import com.techelevator.model.League.LeagueDAO;
 import com.techelevator.model.Score.Score;
 import com.techelevator.model.Score.ScoreDAO;
+import com.techelevator.model.Team.Team;
+import com.techelevator.model.Team.TeamDAO;
 import com.techelevator.model.TeeTime.TeeTime;
 import com.techelevator.model.TeeTime.TeeTimeDAO;
 import com.techelevator.model.User.UserDAO;
@@ -46,6 +48,9 @@ public class HomeController {
 	
 	@Autowired
 	private LeagueDAO leagueDao;
+	
+	@Autowired
+	private TeamDAO teamDao;
 
 	@RequestMapping(path="/")
 	public String displayHomePage() {
@@ -60,6 +65,7 @@ public class HomeController {
 	@RequestMapping(path="/users/{currentUser}/dashboard")
 	public String displayDashboard(@PathVariable("currentUser") String currentUser, ModelMap map) {
 		List<League> league = leagueDao.getAllLeaguesByUserId(userDao.getIdByUserName(currentUser));
+		List<Team> team = teamDao.getTeamsByUserId(userDao.getIdByUserName(currentUser));
 		List <Score> scores = scoreDao.getAllScoresByUserId(userDao.getIdByUserName(currentUser));
 		for(int x = 0; x < scores.size(); x++) {
 			String courseName = courseDao.getCourseNameByCourseId(scores.get(x).getCourseId());
@@ -77,6 +83,7 @@ public class HomeController {
 		
 		List<TeeTime> teeTimes = teeTimeDao.getTeeTimesByGolferIdPastToday(userDao.getIdByUserName(currentUser));
 		map.put("leagues", league);
+		map.put("teams", team);
 		map.put("teeTimes", teeTimes);
 		map.put("date", todayString);
 		map.put("scores", scores);

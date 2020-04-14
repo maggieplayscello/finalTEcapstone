@@ -8,7 +8,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JDBCTeamDAO implements TeamDAO {
 	
 	private JdbcTemplate jdbcTemplate;
@@ -21,7 +23,7 @@ public class JDBCTeamDAO implements TeamDAO {
 	private Team mapRowToTeam(SqlRowSet results) {
 		Team team = new Team();
 		team.setTeamId(results.getInt("teamid"));
-		team.setTeamName(results.getString("teamname"));
+		team.setName(results.getString("teamname"));
 		team.setLeagueId(results.getInt("leagueid"));
 		team.setPoints(results.getInt("points"));
 		return team;
@@ -60,12 +62,10 @@ public class JDBCTeamDAO implements TeamDAO {
 		return teams;
 	}
 
-	
-	//This one is incomplete
 	@Override
 	public List<Team> getTeamsByUserId(int id) {
 		List <Team> teams = new ArrayList<>();
-		String sqlSelectAllTeams = "SELECT * FROM teams WHERE ";
+		String sqlSelectAllTeams = "SELECT * FROM teams JOIN golfer_team ON teams.teamid = golfer_team.teamid WHERE golfer_team.id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllTeams, id);
 		while (results.next()) {
 			teams.add(mapRowToTeam(results));
