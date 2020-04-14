@@ -24,7 +24,7 @@
 			</tr>	
 		<c:forEach items = "${scores}" var = "score">
 			<tr>
-				<td class="courseCell">${score.courseName}</td>
+				<td>${score.courseName}</td>
 				<td>${score.score}</td>
 				<td>${score.dateString}</td>
 			</tr>
