@@ -10,8 +10,9 @@
 </head>
 <body>
 <div id="wrapper">
-		<c:url var="addCourseUrl" value="/users/${currentUser}/addCourse" />
-		<form:form method="POST" action="${addCourseUrl}" modelAttribute="course">
+
+	<c:url var="addCourseUrl" value="/users/${currentUser}/addCourse" />
+	<form:form method="POST" action="${addCourseUrl}" modelAttribute="course">
 	<div class="row">
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">
@@ -109,16 +110,13 @@
 				<label for="zip">Zip: </label> 
 				<form:input path="zip" placeHolder="Zip"/>
 				<form:errors path="zip" cssClass="error"/>
-			</div>
-					
-			<div class="addButton">
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</div>
+			</div>					
+		<button type="submit" class="btn btn-primary">Submit</button>
 			</div>
 			</div>
 		</form:form>
-				<div class="col-sm-4"></div>
-	</div>	
+	<div class="col-sm-4"></div>
+</div>	
 </body>
 </html>
 

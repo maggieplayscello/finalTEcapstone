@@ -100,16 +100,4 @@ public class UserController {
 		return "redirect:/users/new";
 	}
 	
-	@RequestMapping(path="/users/{currentUser}/myLeagues", method=RequestMethod.GET)
-	public String loadMyLeaguesPage(@PathVariable("currentUser") String currentUser, ModelMap map){
-		List<Course> course = courseDao.getAllCourses();
-		map.put("allCourses", course);
-		List<League> league = leagueDAO.getAllLeagues();
-		map.put("allLeagues", league);
-		List<User> user = userDAO.getAllUsers();
-		map.put("allUsers", user);
-		return "myLeagues";
-	}
-	
-	
 }
