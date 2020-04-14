@@ -41,7 +41,7 @@ public class JDBCLeagueDAO implements LeagueDAO {
 		theLeague.setLeagueId(results.getInt("leagueid"));
 		theLeague.setOwner(results.getString("leagueowner"));
 		theLeague.setName(results.getString("leaguename"));
-		return null;
+		return theLeague;
 	}
 
 	@Override

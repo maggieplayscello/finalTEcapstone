@@ -105,7 +105,7 @@
 					<label for="league">League: </label> 
 					<select name="league">
 						<c:forEach items="${allLeagues}" var="league">
-							<option value="${league.name}">${league.name}</option>			
+							<option value="${league.name}">${league.name}</option>
 						</c:forEach>
 					</select>
 				</div>

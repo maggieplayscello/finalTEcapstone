@@ -1,7 +1,7 @@
 package com.techelevator;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
 
@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 import com.techelevator.model.User.JDBCUserDAO;
+import com.techelevator.model.User.User;
 import com.techelevator.security.PasswordHasher;
 
 public class DAOUserTest {
@@ -89,4 +90,20 @@ public class DAOUserTest {
 //		assertTrue(actual);
 //	}
 	
+	@Test
+	public void testGetUserByUsername() {
+		User expectedUser = new User ();
+		expectedUser.setUserName(USER_NAME);
+		
+		User actualUser = (User) userdao.getUserByUserName(USER_NAME);
+		
+		assertEquals (expectedUser.getUserName(), actualUser.getUserName());
+	}
+	
+	@Test
+	public void testRoleByUsername() {
+		
+		String actual = userdao.getRoleByUserName(USER_NAME);
+		assertEquals (USER_ROLE, actual);
+	}
 }
