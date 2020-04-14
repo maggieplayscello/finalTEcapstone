@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techelevator.model.Course.Course;
 import com.techelevator.model.Course.courseDAO;
@@ -50,17 +52,28 @@ public class MyLeaguesController {
 	}
 	
 //	@RequestMapping (path = "/users/{currentUser}/myLeagues", method = RequestMethod.POST)
-//	public String createLeague(League league, @PathVariable("currentUser") String currentUser) {
-//		leagueDao.saveLeague(league);
+//	public String createLeague(@RequestParam String name, @RequestParam String user, @PathVariable("currentUser") String currentUser) {
+//		League newLeague = new League();
+//		newLeague.setName(name);
+//		//how do we update this for multiple users or do we need to separate it out
+//		leagueDao.saveLeague(newLeague);
 //		return "redirect:/users/{currentUser}/myLeagues";
 //	}
 //	
 //	@RequestMapping (path = "/users/{currentUser}/myLeagues", method = RequestMethod.POST)
-//	public String createMatch(TeeTime teeTime, @PathVariable("currentUser") String currentUser) {
-//		teeTimeDao.saveTeeTime(teeTime);
+//	public String createMatch(@RequestParam LocalDate date, @RequestParam int leagueId, 
+//			@RequestParam int numGolfers, @RequestParam int courseId, 			
+//			@PathVariable("currentUser") String currentUser) {
+//		TeeTime newTeeTime = new TeeTime();
+//		newTeeTime.setTime(date);
+//		newTeeTime.setLeagueId(leagueId);
+//		newTeeTime.setNumGolfers(numGolfers);
+//		newTeeTime.setCourseId(courseId);
+//		
+//		teeTimeDao.saveTeeTime(newTeeTime);
 //		return "redirect:/users/{currentUser}/myLeagues";
 //	}
-//	
-//	
+	
+	
 	
 }

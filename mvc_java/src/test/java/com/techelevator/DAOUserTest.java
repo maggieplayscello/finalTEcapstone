@@ -90,12 +90,6 @@ public class DAOUserTest {
 		assertFalse(actual);
 	}
 	
-//	@Test
-//	public void testSearchUserNameAndPassword() {
-//		boolean actual = userdao.searchForUsernameAndPassword(USER_NAME, USER_PASSWORD);
-//		assertTrue(actual);
-//	}
-	
 	@Test
 	public void testGetUserByUsername() {
 		User expectedUser = new User ();

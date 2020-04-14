@@ -105,24 +105,28 @@
 			<div id="addMatchForm" >
 				<br>
 				<div class="form-group">
-					<label for="league">League: </label> 
-					<select name="league">
+					<label for="leagueId">League: </label> 
+					<select name=leagueId>
 						<c:forEach items="${allLeagues}" var="league">
-							<option value="${league.name}">${league.name}</option>
+							<option value="${league.leagueId}">${league.name}</option>
 						</c:forEach>
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="course">Course: </label> 
-					<select name="course">
+					<label for="courseId">Course: </label> 
+					<select name="courseId">
 						<c:forEach items="${allCourses}" var="course">
-							<option value="${course.name}">${course.name}</option>			
+							<option value="${course.courseId}">${course.name}</option>			
 						</c:forEach>
 					</select>
 				</div>
 					<div class="form-group">
 						<label for="date">Date:</label> 
 						<input name="date" placeHolder="Date"/>
+					</div>	
+					<div class="form-group">
+						<label for="numGolfers">Number of Golfers:</label> 
+						<input name="numGolfers" placeHolder="Number"/>
 					</div>	
 				<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
 			</div>				
