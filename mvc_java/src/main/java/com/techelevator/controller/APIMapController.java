@@ -28,6 +28,7 @@ public String testAPI(HttpServletRequest request, ModelMap map) {
 	List<Course> courseList = courseDao.getAllCourses();
 	
 	map.put("courses", courseList);
+	
     String apiKey = "AIzaSyAU2WLjSJwad6UxAVzMZP9GGfuNRjqmF-4";
 map.addAttribute("request", apiKey);
 return "map";

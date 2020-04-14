@@ -9,25 +9,36 @@
 <script>
 	var map;
 	function initialize() {
-		var myLatLng1 = {lat: 42.3862875, lng: -82.9115567};
-		var myLatLng2 = {lat: 42.3764, lng: -82.9376};
 		var mapOptions = {
-			zoom : 12,
+			zoom : 7,
 			center : new google.maps.LatLng(42.4, -83)
 		};
 		map = new google.maps.Map(document.getElementById('map-canvas'),
 				mapOptions);
 			
-		var marker1 = new google.maps.Marker({
-		    position: myLatLng1,
-		    map: map,
-		    title: 'GP Main Library'
-		  });
-		  var marker2 = new google.maps.Marker({
-		    position: myLatLng2,
-		    map: map,
-		    title: 'GPP City Hall'
-		  });  
+		<%--<c:forEach var="course" items="${courses}"> --%>
+	    for (i=0; i< 10; i++) {
+		var geocoder = new google.maps.Geocoder();
+	    var address = "${course.address} ${course.city}, ${course.state} ${course.zip}";
+	    geocodeAddress(geocoder, map, address);
+	    }
+
+	    <%-- </c:forEach> --%>
+	}
+
+	function geocodeAddress(geocoder, resultsMap, address){
+	     geocoder.geocode({'address': address}, function(results, status) {
+	          if (status === 'OK') {
+	          	for(i=0; i<10; i++){
+	        	 	var marker = new google.maps.Marker({
+	              		map: resultsMap,
+	              		position: results[0].geometry.location
+	            	});
+	          	} 
+	          } else {
+	            alert('Geocode was not successful for the following reason: ' + status);
+	          }
+	        });
 	}
 	
 	google.maps.event.addDomListener(window, 'load', initialize);
