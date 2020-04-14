@@ -86,9 +86,6 @@ public class UserController {
 		return "redirect:/users/" + currentUser + "/adminFunctions";
 	}
 	
-	
-	
-	
 	@RequestMapping(path="/users", method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute User user, BindingResult result, RedirectAttributes flash) {
 		if(result.hasErrors()) {
