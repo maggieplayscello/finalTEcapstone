@@ -67,6 +67,8 @@ public class JDBCCourseDAO implements courseDAO {
 		theCourse.setCity(results.getString("city"));
 		theCourse.setState(results.getString("state"));
 		theCourse.setZip(results.getInt("zip"));
+		theCourse.setLatitude(results.getDouble("latitude"));
+		theCourse.setLongitude(results.getDouble("longitude"));
 		return theCourse;
 	}
 

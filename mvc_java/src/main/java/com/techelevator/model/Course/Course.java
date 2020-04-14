@@ -32,8 +32,25 @@ public class Course {
 	@Min (value = 10000, message = "Must enter valid zip")
 	@Max (value = 99999, message = "Must enter valid zip")
 	private Integer zip;
+	private double latitude;
+	private double longitude;
 	
-	
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
 	public Course() {
 		
 	}
