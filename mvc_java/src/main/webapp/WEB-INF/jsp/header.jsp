@@ -95,9 +95,9 @@
 			</ul>
 		</div>			
 		
-		<div class="dropdown">
+		<ul class="dropdown">
 			<c:if test="${not empty currentUser}">				
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+				<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
    					<c:out value="Welcome ${currentUser} "/>
   					<span class="caret"></span>
  	 			</button>
@@ -122,6 +122,7 @@
 					<li class="nav-item"><a id="logoutLink" href="#">Log Out</a></li>
 				</div>
 			</c:if>
-		</div>	
+		</ul>	
+
 	</nav>								
 </body>

@@ -63,7 +63,7 @@ hr {
 }
 
 li a {
-	font-size: 20px;
+	font-size: 18px;
 	text-decoration: none;
 	display: block;
 	padding: 15px;
@@ -109,8 +109,13 @@ button {
 
 .dropdown .btn {
 	background-color: #113015;	
+	color: #B8C3A3;
 }
 
+.dropdown .btn:hover {
+	background-color: #113015;	
+	color: #B8C3A3;
+}
 
 
 .dropdown-menu {
