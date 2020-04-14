@@ -210,7 +210,6 @@ public class HomeController {
 	@RequestMapping (path = "/users/{currentUser}/scheduleTeeTime", method = RequestMethod.POST)
 	public String submitTeeTimeDateAndCourse(@PathVariable("currentUser") String currentUser, 
 			@RequestParam String course, @RequestParam String date) {
-		System.out.println(course + " " + date);
 		return "redirect:/users/{currentUser}/teeTimeSheet";
 	}
 	@RequestMapping (path = "/users/{currentUser}/teeTimeSheet", method = RequestMethod.GET)
