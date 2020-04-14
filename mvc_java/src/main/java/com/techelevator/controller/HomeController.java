@@ -18,10 +18,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.Course.Course;
 import com.techelevator.model.Course.courseDAO;
+import com.techelevator.model.League.League;
+import com.techelevator.model.League.LeagueDAO;
 import com.techelevator.model.Score.Score;
 import com.techelevator.model.Score.ScoreDAO;
 import com.techelevator.model.TeeTime.TeeTime;
 import com.techelevator.model.TeeTime.TeeTimeDAO;
+import com.techelevator.model.User.User;
 import com.techelevator.model.User.UserDAO;
 
 
@@ -40,6 +43,9 @@ public class HomeController {
 	
 	@Autowired
 	private TeeTimeDAO teeTimeDao;
+	
+	@Autowired
+	private LeagueDAO leagueDao;
 
 	@RequestMapping(path="/")
 	public String displayHomePage() {
@@ -180,8 +186,6 @@ public class HomeController {
 	public String courseConfirmation( @PathVariable("currentUser") String currentUser){
 		return "addCourseConfirmation";
 	}
-	
-	
 	
 }
 	

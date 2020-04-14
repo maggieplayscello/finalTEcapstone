@@ -1,6 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
+
+
 <style>
 
 #addLeagueForm {
@@ -47,13 +50,13 @@
 		} else {
 			document.getElementById('addPlayersForm').style.display = 'none';
 		}
-	}
-	
+	}	
 </script>
+
 
 <html>
 <title>My Leagues</title>
-</head>
+
 <body>
 <div id="wrapper">
 	<h1>Welcome, ${currentUser}!</h1>
@@ -63,27 +66,24 @@
 
 <div class="sidenav">
 	<h1 class = "header_title">View My Leagues</h1>
-
-	<input type="radio" id="league" name="league" value="league">
-		<label for="league">League 1</label><br>
-	<input type="radio" id="league" name="league" value="league">
-		<label for="league">League 2</label><br>
-	<input type="radio" id="league" name="league" value="league">
-		<label for="league">League 3</label><br>
-	<input type="radio" id="league" name="league" value="league">
-		<label for="league">League 4</label><br>
-	<input type="radio" id="league" name="league" value="league">
-		<label for="league">League 5</label><br>
+		<c:forEach items="${allLeagues}" var="league">				
+			<input type="radio" id="league" name="league" value="league">
+			<label for="league">${league.name}</label><br>
+		</c:forEach>
 	<br>
+	
+	<!-- Create League Form -->
 		
 	<c:if test = "${role == 'Admin'}">
-		
+
 		<button type="button" class="btn btn-primary" id="addLeagueBtn" onclick="addLeague()">+ Create a League</button>
 			<div id="addLeagueForm" >
 			<br>
+			<form method="POST" action="${addLeagueUrl}">
+
 				<div class="form-group">
 					<label for="leagueName">League Name:</label> 
-					<input name="leagueName" placeHolder="League Name"/>
+					<input type="text" name="name" placeHolder="League Name"/>
 				</div>
 				<div class="form-group">
 					<label for="users">Add Members: </label> 
@@ -95,8 +95,11 @@
 					</select>
 				</div>
 				<button type="submit" class="btn btn-primary" id="btnSaveLeague">Submit</button>
+			</form>
 			</div>
 		<br><br>
+		
+		<!-- Create Match Form -->
 		
 		<button type="button" class="btn btn-primary" id="addMatchBtn" onclick="addMatch()">+ Add a Match</button>
 			<div id="addMatchForm" >
@@ -131,6 +134,8 @@
 <div class="recentScores">
 	<h1 class = "header_title">League Leaderboard</h1>
 
+	<!-- Add Players to League Form -->
+
 	<c:if test = "${role == 'Admin'}">
 		<button type="button" class="btn btn-primary" id="addPlayersBtn" onclick="addPlayers()">+ Add Players to this League</button>
 			<div id="addPlayersForm" >
@@ -150,13 +155,20 @@
 				</div>
 				<button type="submit" class="btn btn-primary" id="btnSaveLeague">Submit</button>
 			</div>
-		<br><br>
-		
+		<br><br>	
 	</c:if>
 		
+	<!-- League Leaderboard -->
 
 		<hr>
 		<table class="scores">
+			<tr>
+				<th align="left">Ranking</th>
+				<th align="left">Name</th>
+				<th align="left">Point Total</th>
+				<th align="left">Average Score</th>
+			</tr>
+		
 			<tr>
 				<td>1</td>
 				<td>Team 1</td>	
@@ -250,6 +262,9 @@
 				<td>75</td>
 			</tr>
 		</table>
+		
+	<!-- Link to Add Score form -->
+		
 	<c:if test = "${role == 'Admin'}">
 		<br>
 		<div class="btn">
@@ -257,14 +272,10 @@
 			<a href="${addScoreHref}">+ Add a Score</a>
 		</div>
 	</c:if>
-      </div>	
-
-
-
-
-
+</div>	
 
 <!-- Closing Tags -->
+
 </div>
 </div>
 </body>
