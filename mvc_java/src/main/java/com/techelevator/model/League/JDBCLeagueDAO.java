@@ -34,6 +34,19 @@ public class JDBCLeagueDAO implements LeagueDAO {
 		}
 		return leagues;
 	}
+	
+	@Override
+	public List<League> getAllLeaguesByUserId(int id) {
+		List <League> leagues = new ArrayList<>();
+		
+		String sqlSelectAllLeagues = "SELECT l.*, g.* FROM league l JOIN "
+				+ "league_golfer g ON g.leagueid = l.leagueid WHERE g.id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues, id);
+		while (results.next()) {
+			leagues.add(mapRowToLeague(results));
+		}
+		return leagues;
+	}
 
 	private League mapRowToLeague(SqlRowSet results) {
 		League theLeague = new League();
