@@ -19,6 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.Course.Course;
 import com.techelevator.model.Course.courseDAO;
+import com.techelevator.model.League.League;
+import com.techelevator.model.League.LeagueDAO;
 import com.techelevator.model.Score.Score;
 import com.techelevator.model.Score.ScoreDAO;
 import com.techelevator.model.TeeTime.TeeTime;
@@ -41,6 +43,9 @@ public class HomeController {
 	
 	@Autowired
 	private TeeTimeDAO teeTimeDao;
+	
+	@Autowired
+	private LeagueDAO leagueDao;
 
 	@RequestMapping(path="/")
 	public String displayHomePage() {
@@ -54,7 +59,7 @@ public class HomeController {
 	
 	@RequestMapping(path="/users/{currentUser}/dashboard")
 	public String displayDashboard(@PathVariable("currentUser") String currentUser, ModelMap map) {
-		
+		List<League> league = leagueDao.getAllLeaguesByUserId(userDao.getIdByUserName(currentUser));
 		List <Score> scores = scoreDao.getAllScoresByUserId(userDao.getIdByUserName(currentUser));
 		for(int x = 0; x < scores.size(); x++) {
 			String courseName = courseDao.getCourseNameByCourseId(scores.get(x).getCourseId());
@@ -71,7 +76,7 @@ public class HomeController {
 		String todayString = turnDateIntoString(today);
 		
 		List<TeeTime> teeTimes = teeTimeDao.getTeeTimesByGolferIdPastToday(userDao.getIdByUserName(currentUser));
-		
+		map.put("leagues", league);
 		map.put("teeTimes", teeTimes);
 		map.put("date", todayString);
 		map.put("scores", scores);
