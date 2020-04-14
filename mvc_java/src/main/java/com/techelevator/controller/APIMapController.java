@@ -17,10 +17,10 @@ import com.techelevator.model.User.UserDAO;
 public class APIMapController {
 
 @Autowired
-UserDAO userDAO;
+private UserDAO userDAO;
 
 @Autowired
-courseDAO courseDao;
+private courseDAO courseDao;
 
 @RequestMapping (path= "/users/map", method=RequestMethod.GET)
 public String testAPI(HttpServletRequest request, ModelMap map) {

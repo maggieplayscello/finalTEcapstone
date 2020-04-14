@@ -9,9 +9,10 @@
 
 var map;
 function initialize() {
+	
 	var mapOptions = {
 		zoom : 6.5,
-		center : new google.maps.LatLng(43.7, -82.5)
+		center : new google.maps.LatLng(44.5, -86)
 	};
 	var map = new google.maps.Map(document.getElementById('map-canvas'),
 			mapOptions);
@@ -19,9 +20,7 @@ function initialize() {
 	<c:forEach var="course" items="${courses}">
 		var myLatLng = {lat: ${course.latitude}, lng: ${course.longitude}};
 		var name = "${course.name}"
-//		var addressLat = "${course.latitude}"
-//		var addressLng = "${course.longitude}"
-//	console.log("name " +name + " lat: " + addressLat + " Long: " + addressLng)
+
     	var marker = new google.maps.Marker({
     		position: myLatLng,
     		map: map,
@@ -29,7 +28,6 @@ function initialize() {
    	});
 
     </c:forEach>
-
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
@@ -38,7 +36,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <body>
 
 <div id="wrapper">
-  <h1>Map of Detroit</h1>
+  <h1>Golfing in Michigan</h1>
   <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
   <div id="map-canvas" style="height: 500px;; width: auto"></div>
 </div>
