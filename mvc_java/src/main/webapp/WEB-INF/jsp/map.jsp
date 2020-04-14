@@ -17,7 +17,7 @@
 				mapOptions);
 			
 		<%--<c:forEach var="course" items="${courses}"> --%>
-	    for (i=0; i< 10; i++) {
+	    for (i=1; i< 11; i++) {
 		var geocoder = new google.maps.Geocoder();
 	    var address = "${course.address} ${course.city}, ${course.state} ${course.zip}";
 	    geocodeAddress(geocoder, map, address);
@@ -29,7 +29,7 @@
 	function geocodeAddress(geocoder, resultsMap, address){
 	     geocoder.geocode({'address': address}, function(results, status) {
 	          if (status === 'OK') {
-	          	for(i=0; i<10; i++){
+	          	for(i=1; i<11; i++){
 	        	 	var marker = new google.maps.Marker({
 	              		map: resultsMap,
 	              		position: results[0].geometry.location
