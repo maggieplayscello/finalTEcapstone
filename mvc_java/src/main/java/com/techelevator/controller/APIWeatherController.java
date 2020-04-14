@@ -80,15 +80,15 @@ public class WeatherYdnJava {
             "oauth_signature=\"" + signature + "\", " +
             "oauth_version=\"1.0\"";
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url + "?location=detroit,mi&format=json"))
-            .header("Authorization", authorizationLine)
-            .header("X-Yahoo-App-Id", appId)
-            .header("Content-Type", "application/json")
-            .build();
-
-        HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
-        System.out.println(response.body());
+//        HttpClient client = HttpClient.newHttpClient();
+//        HttpRequest request = HttpRequest.newBuilder()
+//            .uri(URI.create(url + "?location=detroit,mi&format=json"))
+//            .header("Authorization", authorizationLine)
+//            .header("X-Yahoo-App-Id", appId)
+//            .header("Content-Type", "application/json")
+//            .build();
+//
+//        HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+//        System.out.println(response.body());
     }
 }
