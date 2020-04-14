@@ -154,10 +154,6 @@ button {
 	width: 100% !important;
 }
 
-#leagueTrue {
-	display: none;
-}
-
 /*   Dashboard: League Standing   */
 
 .standings{
@@ -317,19 +313,12 @@ table td {
 	width: 50%;
 }
 
-.addButton {
-	padding: 10px 10px 10px 0px;
-	background-color: #B2972C;
-}
-.addButton:hover {
-	background-color: #113015;
-}
 
 
 /*   Footer   */
 
 .footer {
-	color: #113015;
+	color: #F1F7ED;
 	padding: 20px;	
 }
 

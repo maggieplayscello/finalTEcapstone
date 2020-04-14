@@ -2,6 +2,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
+<html>
 <title>Home</title>
 </head>
 <body>
@@ -16,20 +17,7 @@
 			You can compete with the scores of your friends via private league leaderboards and set up matches with your friends!
 			You can also search for courses based on a location and view the results on a map. </p>
 		</div>
-	
-<!-- Do we want a homepage course search? It was on the wireframe we presented...
-		<div class="homeSearch">
-			<h1>Search All Courses</h1>
-			<form method="GET" action="${courseSearchVar}">
-				<div class="form-group">
-					<input type="text" name="search" placeHolder="Search" id="search" />
-				</div>
-				<button type="submit" class="btn btn-primary">Search</button>	
-			</form>
-		</div>
- -->
- 
 	</div>
 </body>
-
+</html>
 <c:import url="/WEB-INF/jsp/footer.jsp" />
