@@ -13,7 +13,8 @@
 <!-- User Scoreboard -->
 	
 	<div class="scoreboard">
-		<h3>My Recent Scores</h3>
+		<h1 class = "header_title">My Recent Scores</h1>	
+		<h3>Current Handicap: </h3>
 	    <hr>
 		<table class="scores">
 			<tr>
@@ -23,7 +24,7 @@
 			</tr>	
 		<c:forEach items = "${scores}" var = "score">
 			<tr>
-				<td class="courseCell">${score.courseName}</td>
+				<td>${score.courseName}</td>
 				<td>${score.score}</td>
 				<td>${score.dateString}</td>
 			</tr>
@@ -31,7 +32,7 @@
 		</table>
 		<br>
 
-		<div class="btn">
+		<div class="btn btn-secondary">
 			<c:url var="addScoreHref" value="/users/${currentUser}/addScore"/>
 			<a href="${addScoreHref}">+ Add a Score</a>
 		</div>
@@ -49,23 +50,15 @@
 				<th>Ranking</th>
 				<th>Score</th>
 			</tr>			
+		<c:forEach items="${teams}" var="team">
 			<tr>
-				<td>League 1</td>	
-				<td>3</td>
-				<td>70</td>
+				<td>${team.name}</td>
+				<td>Ranking</td>
+				<td>${team.points}</td>
 			</tr>
-			<tr>
-				<td>Bush League</td>	
-				<td>1</td>
-				<td>1,209,234</td>
-			</tr>
-			<tr>
-				<td>League of Our Own</td>	
-				<td>71</td>
-				<td>-2</td>
-			</tr>
+		</c:forEach>
 		</table>
-      </div>	
+	</div>	
     
 <!-- Calendar -->
 
