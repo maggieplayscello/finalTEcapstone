@@ -37,8 +37,9 @@
 
 	});
 </script>
-
 </head>
+
+
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -50,8 +51,6 @@
 			<c:url var="imgSrc" value="/img/gtlogogreen.png" /> 
 			<a href="${homePageHref}"><img src="${imgSrc}" class="img-fluid" style="height: 65px;" /></a>
 		</a>
-		
-		<!-- Ghost button below, woOOooOOoooOo -->
 		
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
@@ -67,7 +66,6 @@
 					<c:url var = 'homePageHref' value = '/users/${currentUser}/'/>
 				</c:if>
 
-
 				<c:if test="${not empty currentUser}">
 					<c:url var="dashboardHref" value="/users/${currentUser}" />
 
@@ -79,60 +77,51 @@
 
 					<c:url var="courseSearchHref" value="/users/${currentUser}/courseSearch" />
 					<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
-					
+				</c:if>
+			</ul>	
 
-					<!-- Commenting out Messages til we decide if we are going to use them
-					<li class="nav-item"><a class="nav-link" href="${dashboardHref}">Messages</a></li>
-					<c:url var="newMessageHref"
-						value="/users/${currentUser}/messages/new" />
-					
-					<li class="nav-item"><a class="nav-link" href="${newMessageHref}">New Message</a></li>
-					<c:url var="sentMessagesHref"
-						value="/users/${currentUser}/messages" />
-					<li class="nav-item"><a class="nav-link" href="${sentMessagesHref}">Sent Messages</a></li>
-					 -->
-					 
-					 
-
+			<ul class="navbar-nav ml-auto">
+				<c:if test="${empty currentUser}">
+					<li class="nav-item"><a class="nav-link" href="${homePageHref}">Home</a></li>
+					<c:url var="courseSearchHref" value="/courseSearch" />
+					<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
+						
+					<c:url var="newUserHref" value="/users/new" />
+					<li class="nav-item"><a class="nav-link" href="${newUserHref}">Sign Up</a></li>
+						
+					<c:url var="loginHref" value="/login" />
+					<li class="nav-item"><a class="nav-link" href="${loginHref}">Log In</a></li>
+				</c:if>
+			</ul>
+		</div>			
+		
+		<div class="dropdown">
+			<c:if test="${not empty currentUser}">				
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+   					<c:out value="Welcome ${currentUser} "/>
+  					<span class="caret"></span>
+ 	 			</button>
+  				<div class="dropdown-menu dropdown-menu-right">
+  				
+  					<li class="nav-item">Current Role: ${role}</li>
+  					
 					<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
 					<li class="nav-item"><a class="nav-link" href="${changePasswordHref}">Change Password</a></li>
 
-				<c:if test = "${role == 'Admin'}">
-					<c:url var='adminFunctions' value = '/users/${currentUser}/adminFunctions'>
-						<c:param name = 'role' value = '${role}'/>
-					</c:url>
-					<li class = 'nav-item'><a class = 'nav-link' href = "${adminFunctions}">Admin Functions</a>
+					<c:if test = "${role == 'Admin'}">
+						<c:url var='adminFunctions' value = '/users/${currentUser}/adminFunctions'>
+							<c:param name = 'role' value = '${role}'/>
+						</c:url>
+						<li class = 'nav-item'><a class = 'nav-link' href = "${adminFunctions}">Admin Functions</a>
 					</c:if>
-				</c:if>
-			</ul>
-
-			<ul class="navbar-nav ml-auto">
-				<c:choose>
-					<c:when test="${empty currentUser}">
-						<li class="nav-item"><a class="nav-link" href="${homePageHref}">Home</a></li>
-						<c:url var="courseSearchHref" value="/courseSearch" />
-						<li class="nav-item"><a class="nav-link" href="${courseSearchHref}">Course Search</a></li>
-						
-						<c:url var="newUserHref" value="/users/new" />
-						<li class="nav-item"><a class="nav-link" href="${newUserHref}">Sign Up</a></li>
-						
-						<c:url var="loginHref" value="/login" />
-						<li class="nav-item"><a class="nav-link" href="${loginHref}">Log In</a></li>
-					</c:when>
-					<c:otherwise>
-						<c:url var="logoutAction" value="/logout" />
+				
+					<c:url var="logoutAction" value="/logout" />
 						<form id="logoutForm" action="${logoutAction}" method="POST">
 							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 						</form>
-						<li class="nav-item"><a id="logoutLink" href="#">Log Out</a></li>
-					</c:otherwise>
-				</c:choose>
-			</ul>
-		</div>
-
-
-
-
-		
-</nav>
-<div class="container">
+					<li class="nav-item"><a id="logoutLink" href="#">Log Out</a></li>
+				</div>
+			</c:if>
+		</div>	
+	</nav>								
+</body>
