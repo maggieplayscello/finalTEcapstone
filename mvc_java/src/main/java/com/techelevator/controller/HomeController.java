@@ -223,7 +223,7 @@ public class HomeController {
 	@RequestMapping (path = "/users/{currentUser}/scheduleTeeTime", method = RequestMethod.POST)
 	public String submitTeeTimeDateAndCourse(@PathVariable("currentUser") String currentUser, 
 			@RequestParam String course, @RequestParam String date) {
-		List <LocalDateTime> availableTimes = teeTimeDao.getTeeTimesByCourse(course, date);
+//		List <LocalDateTime> availableTimes = teeTimeDao.getTeeTimesByCourse(course, date);
 		
 		return "redirect:/users/{currentUser}/teeTimeSheet";
 	}
