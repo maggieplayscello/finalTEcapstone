@@ -1,6 +1,8 @@
 package com.techelevator.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -22,9 +24,10 @@ import com.techelevator.model.League.League;
 import com.techelevator.model.League.LeagueDAO;
 import com.techelevator.model.Score.Score;
 import com.techelevator.model.Score.ScoreDAO;
+import com.techelevator.model.Team.Team;
+import com.techelevator.model.Team.TeamDAO;
 import com.techelevator.model.TeeTime.TeeTime;
 import com.techelevator.model.TeeTime.TeeTimeDAO;
-import com.techelevator.model.User.User;
 import com.techelevator.model.User.UserDAO;
 
 
@@ -46,6 +49,9 @@ public class HomeController {
 	
 	@Autowired
 	private LeagueDAO leagueDao;
+	
+	@Autowired
+	private TeamDAO teamDao;
 
 	@RequestMapping(path="/")
 	public String displayHomePage() {
@@ -59,7 +65,8 @@ public class HomeController {
 	
 	@RequestMapping(path="/users/{currentUser}/dashboard")
 	public String displayDashboard(@PathVariable("currentUser") String currentUser, ModelMap map) {
-		
+		List<League> league = leagueDao.getAllLeaguesByUserId(userDao.getIdByUserName(currentUser));
+		List<Team> team = teamDao.getTeamsByUserId(userDao.getIdByUserName(currentUser));
 		List <Score> scores = scoreDao.getAllScoresByUserId(userDao.getIdByUserName(currentUser));
 		for(int x = 0; x < scores.size(); x++) {
 			String courseName = courseDao.getCourseNameByCourseId(scores.get(x).getCourseId());
@@ -70,9 +77,22 @@ public class HomeController {
 			int day = Integer.parseInt(dateString.substring(8, 10));
 			LocalDate myDate = LocalDate.of(year, month, day);
 			scores.get(x).setDate(myDate);
+			scores.get(x).setDateString(turnDateIntoString(scores.get(x).getDate()));
 		}
 		LocalDate today = LocalDate.now();
-		String todayString = today.toString();
+		String todayString = turnDateIntoString(today);
+		
+		List<TeeTime> teeTimes = teeTimeDao.getTeeTimesByGolferIdPastToday(userDao.getIdByUserName(currentUser));
+		map.put("leagues", league);
+		map.put("teams", team);
+		map.put("teeTimes", teeTimes);
+		map.put("date", todayString);
+		map.put("scores", scores);
+		return "dashboard";
+	}
+	
+	private String turnDateIntoString(LocalDate date) {
+		String todayString = date.toString();
 		String buildString = "";
 	
 		if (todayString.substring(5, 7).contentEquals("01")) {
@@ -100,13 +120,11 @@ public class HomeController {
 		}else if (todayString.substring(5, 7).contentEquals("12")) {
 			buildString = buildString + "December";
 		}
-		
 		buildString = buildString + " " + todayString.substring(8, 10) + ", " + todayString.substring(0, 4);
-		map.put("date", buildString);
-		map.put("scores", scores);
-		return "dashboard";
+		
+		return buildString;
 	}
-	
+
 	@RequestMapping(path="/users/{currentUser}/addScore", method=RequestMethod.GET)
 	public String displayAddScore(@PathVariable("currentUser") String currentUser, ModelMap map){
 		List<Course> course = courseDao.getAllCourses();
@@ -153,7 +171,6 @@ public class HomeController {
 		return "courseSearch";
 	}
 	
-	
 	@RequestMapping(path="/courseSearchResults")
 	public String displayCourseSearch(@RequestParam(required = false) String searchName, @RequestParam(required = false) String searchCity, ModelMap map) {
 		List<Course> course = courseDao.searchCourses(searchName, searchCity, map);
@@ -184,7 +201,36 @@ public class HomeController {
 	
 	@RequestMapping (path = "/users/{currentUser}/addCourseConfirmation", method = RequestMethod.GET)
 	public String courseConfirmation( @PathVariable("currentUser") String currentUser){
+
 		return "addCourseConfirmation";
+	}
+	
+	@RequestMapping(path = "/users/{currentUser}/scheduleTeeTime", method = RequestMethod.GET)
+	public String scheduleTeetime(@PathVariable("currentUser") String currentUser, ModelMap map) {
+		LocalDate today = LocalDate.now();
+		List<LocalDate> threeWeeks = new ArrayList <> ();
+		for (int x = 0; x <= 21; x++) {
+			threeWeeks.add(today);
+			today = today.plusDays(1);
+		}
+		List<Course> course = courseDao.getAllCourses();
+		map.put("dates", threeWeeks);
+		map.put("allCourses", course);
+		return "scheduleTeeTime";
+		
+	}
+
+	@RequestMapping (path = "/users/{currentUser}/scheduleTeeTime", method = RequestMethod.POST)
+	public String submitTeeTimeDateAndCourse(@PathVariable("currentUser") String currentUser, 
+			@RequestParam String course, @RequestParam String date) {
+		List <LocalDateTime> availableTimes = teeTimeDao.getTeeTimesByCourse(course, date);
+		
+		return "redirect:/users/{currentUser}/teeTimeSheet";
+	}
+	@RequestMapping (path = "/users/{currentUser}/teeTimeSheet", method = RequestMethod.GET)
+	public String displayTeeTimeSheet(@PathVariable("currentUser") String currentUser){
+
+		return "teeTimeSheet";
 	}
 	
 }

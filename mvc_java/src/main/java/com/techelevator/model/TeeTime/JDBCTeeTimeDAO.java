@@ -1,5 +1,10 @@
 package com.techelevator.model.TeeTime;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.model.Score.Score;
+import com.techelevator.model.Course.courseDAO;
 
 @Component
 public class JDBCTeeTimeDAO implements TeeTimeDAO {
@@ -21,6 +26,9 @@ private JdbcTemplate jdbcTemplate;
 	public JDBCTeeTimeDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
+	
+	@Autowired
+	private courseDAO courseDao;
 
 	@Override
 	public void saveTeeTime(TeeTime teeTime) {
@@ -36,6 +44,74 @@ private JdbcTemplate jdbcTemplate;
 	}
 	
 	@Override
+	public List<TeeTime> getTeeTimesByGolferIdPastToday(int id) {
+		List<TeeTime> teeTimes = new ArrayList <> ();
+		String sqlTeeTimes = "SELECT t.*, g.id FROM golfer_teetime g JOIN tee_time t "
+				+ "ON t.teetimeid = g.teetimeid WHERE t.time > current_date AND g.id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlTeeTimes, id);
+		while (results.next()) {
+			teeTimes.add(mapRowToTeeTime(results));
+		}
+		return teeTimes;
+	}
+	
+	private TeeTime mapRowToTeeTime(SqlRowSet results) {
+		TeeTime teeTime = new TeeTime();
+		
+		teeTime.setTeeTimeId(results.getInt("teetimeid"));
+		teeTime.setCourseId(results.getInt("courseid"));
+		teeTime.setCourseName(courseDao.getCourseNameByCourseId(teeTime.getCourseId()));
+		teeTime.setTime(results.getDate("time").toLocalDate());
+		teeTime.setDateString(turnDateIntoString(results.getDate("time").toLocalDate()));
+		teeTime.setTimeString(turnTimeIntoString(results.getTime("time")));
+		teeTime.setNumGolfers(results.getInt("numgolfers"));
+		
+		return teeTime;
+	}
+	
+	private String turnTimeIntoString(Time time) {
+		LocalTime myTime = time.toLocalTime();
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm");
+		String timeNoSeconds = myTime.format(myFormatObj);
+		
+		return timeNoSeconds;
+	}
+
+	private String turnDateIntoString(LocalDate date) {
+		String todayString = date.toString();
+		String buildString = "";
+	
+		if (todayString.substring(5, 7).contentEquals("01")) {
+			buildString = buildString + "January";
+		}else if (todayString.substring(5, 7).contentEquals("02")) {
+			buildString = buildString + "February";
+		}else if (todayString.substring(5, 7).contentEquals("03")) {
+			buildString = buildString + "March";
+		}else if (todayString.substring(5, 7).contentEquals("04")) {
+			buildString = buildString + "April";
+		}else if (todayString.substring(5, 7).contentEquals("05")) {
+			buildString = buildString + "May";
+		}else if (todayString.substring(5, 7).contentEquals("06")) {
+			buildString = buildString + "June";
+		}else if (todayString.substring(5, 7).contentEquals("07")) {
+			buildString = buildString + "July";
+		}else if (todayString.substring(5, 7).contentEquals("08")) {
+			buildString = buildString + "August";
+		}else if (todayString.substring(5, 7).contentEquals("09")) {
+			buildString = buildString + "September";
+		}else if (todayString.substring(5, 7).contentEquals("10")) {
+			buildString = buildString + "October";
+		}else if (todayString.substring(5, 7).contentEquals("11")) {
+			buildString = buildString + "November";
+		}else if (todayString.substring(5, 7).contentEquals("12")) {
+			buildString = buildString + "December";
+		}
+		buildString = buildString + " " + todayString.substring(8, 10) + ", " + todayString.substring(0, 4);
+		
+		return buildString;
+	}
+
+	@Override
 	public int getLastTeeTimeId() {
 		int id = 0;
 		String sqlSelectAllCourses = "SELECT teetimeid FROM tee_time ORDER BY teetimeid DESC LIMIT 1";
@@ -45,5 +121,26 @@ private JdbcTemplate jdbcTemplate;
 		}
 		return id;
 	}
+
+	@Override
+	public List<LocalDateTime> getTeeTimesByCourse(int courseId, String date) {
+		List <LocalDateTime> availableTimes = new ArrayList<>();
+		LocalDateTime firstBooking = LocalDateTime.now();
+		int minutes = firstBooking.getMinute();
+		long minutesToAdd = 0;
+		
+		if (minutes%10 != 0) {
+			minutes++;
+			minutesToAdd++;
+		}
+		
+		firstBooking.plusMinutes(minutesToAdd);
+		
+		availableTimes.add(firstBooking);
+		
+		return availableTimes;
+	}
+	
+	
 	
 }

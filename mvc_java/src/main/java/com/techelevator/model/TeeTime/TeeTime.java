@@ -5,9 +5,12 @@ import java.time.LocalDate;
 public class TeeTime {
 	private int teeTimeId;
 	private LocalDate time;
+	private String dateString;
+	private String timeString;
 	private int leagueId;
 	private int numGolfers;
 	private int courseId;
+	private String courseName;
 	
 	public TeeTime () {
 		this.leagueId = 0;
@@ -42,5 +45,29 @@ public class TeeTime {
 	}
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
+	}
+
+	public String getTimeString() {
+		return timeString;
+	}
+
+	public void setTimeString(String timeString) {
+		this.timeString = timeString;
+	}
+
+	public String getDateString() {
+		return dateString;
+	}
+
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
+
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
 }

@@ -10,6 +10,7 @@ public class Score {
 	private int courseId;
 	private String courseName;
 	private LocalDate date;
+	private String dateString;
 	
 	public Score() {
 		
@@ -55,5 +56,11 @@ public class Score {
 	}
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+	public String getDateString() {
+		return dateString;
+	}
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
 	}
 }

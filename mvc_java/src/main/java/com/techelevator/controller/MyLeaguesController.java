@@ -44,7 +44,7 @@ public class MyLeaguesController {
 	public String loadMyLeaguesPage(@PathVariable("currentUser") String currentUser, ModelMap map){
 		List<Course> course = courseDao.getAllCourses();
 		map.put("allCourses", course);
-		List<League> league = leagueDao.getAllLeagues();
+		List<League> league = leagueDao.getAllLeaguesByUserId(userDao.getIdByUserName(currentUser));
 		map.put("allLeagues", league);
 		List<User> user = userDao.getAllUsers();
 		map.put("allUsers", user);

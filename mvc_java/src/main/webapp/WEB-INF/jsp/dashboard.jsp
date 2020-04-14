@@ -13,7 +13,8 @@
 <!-- User Scoreboard -->
 	
 	<div class="scoreboard">
-		<h3>My Recent Scores</h3>
+		<h1 class = "header_title">My Recent Scores</h1>	
+		<h3>Current Handicap: </h3>
 	    <hr>
 		<table class="scores">
 			<tr>
@@ -23,15 +24,15 @@
 			</tr>	
 		<c:forEach items = "${scores}" var = "score">
 			<tr>
-				<td class="courseCell">${score.courseName}</td>
+				<td>${score.courseName}</td>
 				<td>${score.score}</td>
-				<td>${score.date}</td>
+				<td>${score.dateString}</td>
 			</tr>
 		</c:forEach>
 		</table>
 		<br>
 
-		<div class="btn">
+		<div class="btn btn-secondary">
 			<c:url var="addScoreHref" value="/users/${currentUser}/addScore"/>
 			<a href="${addScoreHref}">+ Add a Score</a>
 		</div>
@@ -49,23 +50,15 @@
 				<th>Ranking</th>
 				<th>Score</th>
 			</tr>			
+		<c:forEach items="${teams}" var="team">
 			<tr>
-				<td>League 1</td>	
-				<td>3</td>
-				<td>70</td>
+				<td>${team.name}</td>
+				<td>Ranking</td>
+				<td>${team.points}</td>
 			</tr>
-			<tr>
-				<td>Bush League</td>	
-				<td>1</td>
-				<td>1,209,234</td>
-			</tr>
-			<tr>
-				<td>League of Our Own</td>	
-				<td>71</td>
-				<td>-2</td>
-			</tr>
+		</c:forEach>
 		</table>
-      </div>	
+	</div>	
     
 <!-- Calendar -->
 
@@ -83,34 +76,20 @@
 		</div>
 		<div class="calendar_events">
 			<p class="ce_title">Upcoming</p>
+			<c:forEach items = "${teeTimes}" var = "teeTime">
+			
 			<div class="event_item">
 				<div class="ei_Dot dot_active"></div>
-				<div class="ei_Title">April 18 2020</div>
-				<div class="ei_Copy">10:30 am</div>
-				<div class="ei_Copy">League 1 Team 1 Match 1</div>
-				<div class="ei_Copy">Alpena Golf Club</div>
+				<div class="ei_Title">${teeTime.dateString}</div>
+				<div class="ei_Copy">${teeTime.timeString}</div>
+				<div class="ei_Copy">${teeTime.courseName}</div>
 			</div>
 			<hr>
-			<div class="event_item">
-				<div class="ei_Dot"></div>
-				<div class="ei_Title">April 19 2020</div>
-				<div class="ei_Copy">12:00 pm</div>
-				<div class="ei_Copy">League 1 Team 1 Match 2</div>
-				<div class="ei_Copy">Alpena Golf Club</div>
-			</div>
-			<hr>
-			<div class="event_item">
-				<div class="ei_Dot"></div>
-				<div class="ei_Title">April 23 2020</div>
-		        <div class="ei_Copy">8:10 am</div>
-        		<div class="ei_Copy">League 2 Team 1 Match 1</div>
-		        <div class="ei_Copy">Arcadia Bluffs Golf Course</div>
-			</div>
-			<hr>
+			</c:forEach>
 			<br>
 		<div class="btn">
-			<c:url var="addScoreHref" value="/users/${currentUser}/dashboard"/>
-			<a href="${addScoreHref}">+ Schedule a Tee Time</a>
+			<c:url var="scheduleTeeTimeHref" value="/users/${currentUser}/scheduleTeeTime"/>
+			<a href="${scheduleTeeTimeHref}">+ Schedule a Tee Time</a>
     	</div>
 		</div>
 	</div>

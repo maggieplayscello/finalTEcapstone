@@ -10,8 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.model.Course.Course;
-
 @Component
 public class JDBCLeagueDAO implements LeagueDAO {
 
@@ -29,6 +27,19 @@ public class JDBCLeagueDAO implements LeagueDAO {
 		
 		String sqlSelectAllLeagues = "SELECT * FROM league";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues);
+		while (results.next()) {
+			leagues.add(mapRowToLeague(results));
+		}
+		return leagues;
+	}
+	
+	@Override
+	public List<League> getAllLeaguesByUserId(int id) {
+		List <League> leagues = new ArrayList<>();
+		
+		String sqlSelectAllLeagues = "SELECT l.*, g.* FROM league l JOIN "
+				+ "league_golfer g ON g.leagueid = l.leagueid WHERE g.id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues, id);
 		while (results.next()) {
 			leagues.add(mapRowToLeague(results));
 		}
