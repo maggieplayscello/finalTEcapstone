@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -210,6 +211,8 @@ public class HomeController {
 	@RequestMapping (path = "/users/{currentUser}/scheduleTeeTime", method = RequestMethod.POST)
 	public String submitTeeTimeDateAndCourse(@PathVariable("currentUser") String currentUser, 
 			@RequestParam String course, @RequestParam String date) {
+		List <LocalDateTime> availableTimes = teeTimeDao.getTeeTimesByCourse(course, date);
+		
 		return "redirect:/users/{currentUser}/teeTimeSheet";
 	}
 	@RequestMapping (path = "/users/{currentUser}/teeTimeSheet", method = RequestMethod.GET)

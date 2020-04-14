@@ -16,7 +16,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.techelevator.model.Course.courseDAO;
-import com.techelevator.model.Score.Score;
 
 @Component
 public class JDBCTeeTimeDAO implements TeeTimeDAO {
@@ -122,5 +121,26 @@ private JdbcTemplate jdbcTemplate;
 		}
 		return id;
 	}
+
+	@Override
+	public List<LocalDateTime> getTeeTimesByCourse(int courseId, String date) {
+		List <LocalDateTime> availableTimes = new ArrayList<>();
+		LocalDateTime firstBooking = LocalDateTime.now();
+		int minutes = firstBooking.getMinute();
+		long minutesToAdd = 0;
+		
+		if (minutes%10 != 0) {
+			minutes++;
+			minutesToAdd++;
+		}
+		
+		firstBooking.plusMinutes(minutesToAdd);
+		
+		availableTimes.add(firstBooking);
+		
+		return availableTimes;
+	}
+	
+	
 	
 }
