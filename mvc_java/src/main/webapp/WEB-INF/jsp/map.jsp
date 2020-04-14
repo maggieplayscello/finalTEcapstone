@@ -11,36 +11,25 @@
 	function initialize() {
 		var mapOptions = {
 			zoom : 7,
-			center : new google.maps.LatLng(42.4, -83)
+			center : new google.maps.LatLng(43.7, -82.5)
 		};
 		map = new google.maps.Map(document.getElementById('map-canvas'),
 				mapOptions);
 			
-		<%--<c:forEach var="course" items="${courses}"> --%>
-	    for (i=1; i< 11; i++) {
-		var geocoder = new google.maps.Geocoder();
-	    var address = "${course.address} ${course.city}, ${course.state} ${course.zip}";
-	    geocodeAddress(geocoder, map, address);
-	    }
+		<c:forEach var="course" items="${courses}">
+			var title = "${course.name}";
+			var address = "%{course.latitude}, ${course.longitude}";
+	    	var marker = new google.maps.Marker({
+        		position: address,
+	    		map: map
+        		title: "title"
+       	});
 
-	    <%-- </c:forEach> --%>
-	}
-
-	function geocodeAddress(geocoder, resultsMap, address){
-	     geocoder.geocode({'address': address}, function(results, status) {
-	          if (status === 'OK') {
-	          	for(i=1; i<11; i++){
-	        	 	var marker = new google.maps.Marker({
-	              		map: resultsMap,
-	              		position: results[0].geometry.location
-	            	});
-	          	} 
-	          } else {
-	            alert('Geocode was not successful for the following reason: ' + status);
-	          }
-	        });
-	}
+	   
+	    </c:forEach>
 	
+
+
 	google.maps.event.addDomListener(window, 'load', initialize);
 	
 	
