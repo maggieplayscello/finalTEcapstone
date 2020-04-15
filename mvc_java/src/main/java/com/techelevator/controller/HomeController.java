@@ -48,8 +48,8 @@ public class HomeController {
 		return "courseSearch";
 	}
 	
-	@RequestMapping(path="/courseSearchResults")
-	public String displayCourseSearch(@RequestParam(required = false) String searchName, @RequestParam(required = false) String searchCity, ModelMap map) {
+	@RequestMapping(path= {"/courseSearchResults", "/users/{currentUser}/courseSearchResults"})
+	public String displayCourseSearch(@PathVariable(required = false) String currentUser, @RequestParam(required = false) String searchName, @RequestParam(required = false) String searchCity, ModelMap map) {
 		List<Course> course = courseDao.searchCourses(searchName, searchCity, map);
 		map.put("allCourses", course);
 		return "courseSearch";

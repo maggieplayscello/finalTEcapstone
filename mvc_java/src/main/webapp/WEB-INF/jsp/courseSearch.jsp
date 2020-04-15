@@ -40,6 +40,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <!-- Search Form -->
 	<div id="courseSearchForm">	
 		<c:url value='/courseSearchResults' var='courseSearchVar' />
+		<c:if test = "${not empty currentUser}">
+			<c:url value = '/users/${currentUser}/courseSearchResults' var = "courseSearchVar"/>
+		</c:if>
 		<div id="courseSearchFields">
 			<form method="GET" action="${courseSearchVar}">
 				<div class="form-group">
