@@ -31,15 +31,35 @@ private JdbcTemplate jdbcTemplate;
 	private courseDAO courseDao;
 
 	@Override
-	public void saveTeeTime(TeeTime teeTime) {
+	public void saveTeeTime(TeeTime teeTime, int playerId) {
+		int teeTimeId = 0;
+		
 		if (teeTime.getLeagueId() == 0) {
 			String sqlAddTeeTime = "INSERT INTO tee_time (time, numgolfers, courseid) VALUES (?, ?, ?)";
 			jdbcTemplate.update(sqlAddTeeTime, teeTime.getTime(), teeTime.getNumGolfers(), teeTime.getCourseId());
+			
+			String sqlFindTeeTimeId = "SELECT teetimeid FROM tee_time WHERE time = ? AND numgolfers = ? AND courseid = ? LIMIT 1;";
+			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindTeeTimeId, teeTime.getTime(), teeTime.getNumGolfers(), teeTime.getCourseId());
+			if (results.next()) {
+				teeTimeId = results.getInt("teetimeid");
+			}
+			
 		}else {
 		String sqlAddTeeTime = "INSERT INTO tee_time VALUES (?, ?, ?, ?)";
 		jdbcTemplate.update(sqlAddTeeTime, 
 				teeTime.getTime(), teeTime.getLeagueId(), teeTime.getNumGolfers(), teeTime.getCourseId());
+		
+		String sqlFindTeeTimeId = "SELECT teetimeid FROM tee_time WHERE time = ? AND numgolfers = ? AND courseid = ? AND leagueid = ? LIMIT 1;";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindTeeTimeId, teeTime.getTime(), teeTime.getNumGolfers(), teeTime.getCourseId(), teeTime.getLeagueId());
+		if (results.next()) {
+			teeTimeId = results.getInt("teetimeid");
 		}
+		}
+		
+
+		
+		String sqlGolferTeeTime = "INSERT INTO golfer_teetime (teetimeid, id) VALUES (?, ?)";
+		jdbcTemplate.update(sqlGolferTeeTime, teeTimeId, playerId);
 		
 	}
 	
@@ -127,7 +147,8 @@ private JdbcTemplate jdbcTemplate;
 		return id;
 	}
 	
-	private LocalDate getDateFromString(String date) {
+	@Override
+	public LocalDate getDateFromString(String date) {
 		LocalDate theDate;
 		
 		String stringYear = date.substring(0,4);
@@ -142,7 +163,8 @@ private JdbcTemplate jdbcTemplate;
 		return theDate;
 	}
 	
-	private LocalTime getTimeFromString(String time) {
+	@Override
+	public LocalTime getTimeFromString(String time) {
 		LocalTime theTime;
 		
 		String stringHour = time.substring(11,13);
