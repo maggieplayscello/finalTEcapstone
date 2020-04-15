@@ -86,6 +86,7 @@ public class MyLeaguesController {
 			@RequestParam int leagueId, @RequestParam String courseName, @RequestParam String date, @RequestParam int numGolfers) {
 		TeeTime newTeeTime = new TeeTime();
 		int courseId = courseDao.getCourseIdByCourseName(courseName);
+		int playerId = userDao.getIdByUserName(currentUser);
 		if(date != "") {
 			int month = Integer.parseInt(date.substring(0, 2));
 			int day = Integer.parseInt(date.substring(3, 5));
@@ -96,7 +97,7 @@ public class MyLeaguesController {
 		newTeeTime.setLeagueId(leagueId);
 		newTeeTime.setNumGolfers(numGolfers);
 		newTeeTime.setCourseId(courseId);
-		teeTimeDao.saveTeeTime(newTeeTime);				
+		teeTimeDao.saveTeeTime(newTeeTime, playerId);				
 	}
 		return "redirect:/users/{currentUser}/myLeagues";
 	}
