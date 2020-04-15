@@ -95,7 +95,7 @@
 			</ul>
 		</div>			
 		
-		<ul class="dropdown">
+		<ul class="dropdown pull-right">
 			<c:if test="${not empty currentUser}">				
 				<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
    					<c:out value="Welcome ${currentUser} "/>
