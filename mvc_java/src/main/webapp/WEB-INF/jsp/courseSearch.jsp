@@ -15,7 +15,7 @@ function initialize() {
 	var map = new google.maps.Map(document.getElementById('map-canvas'),
 			mapOptions);
 		
-	<c:forEach var="course" items="${courses}">
+	<c:forEach var="course" items="${allCourses}">
 		var myLatLng = {lat: ${course.latitude}, lng: ${course.longitude}};
 		var name = "${course.name}"
 
@@ -30,9 +30,9 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
+
 <html>
 <title>Course Search</title>
-
 <body>
 	<div id="wrapper">
 	<h1>Search for Courses</h1>
@@ -52,8 +52,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 				</div>
 				<button type="submit" class="btn btn-primary">Search</button>	
 			</form>
-			<div id="gridButton">
 		<br><br>
+
 		<c:if test = "${role == 'Admin'}">
 			<button type="submit" class="btn btn-secondary">
 				<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
@@ -61,15 +61,15 @@ google.maps.event.addDomListener(window, 'load', initialize);
 			</button>
 		</c:if>
 	</div>
-		</div>
-		<br><br>	
+
+<!-- Course Map -->
+
 	<div id="map-canvas" style="height: 400px; width: 600px"></div>
 </div>
+<br><br>
 
-<!-- Add Course Button for Admins only -->
-
-	<br><br>
 <!-- Course Table -->
+
 		<table id="courseTable">
 			<tr>
 				<th align="left">Name</th>
