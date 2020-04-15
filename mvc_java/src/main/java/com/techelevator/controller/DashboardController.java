@@ -148,7 +148,16 @@ public class DashboardController {
 	public String submitTeeTimeSheet(@PathVariable("currentUser") String currentUser, 
 			@RequestParam String times, @RequestParam int golfers, @RequestParam int course) {
 		
+		int playerId = userDao.getIdByUserName(currentUser);
+		TeeTime booking = new TeeTime();
+		booking.setCourseId(course);
+		booking.setNumGolfers(golfers);
+		LocalDate date = teeTimeDao.getDateFromString(times);
+		LocalTime time = teeTimeDao.getTimeFromString(times);
+		LocalDateTime dateTime = LocalDateTime.of(date, time);
+		booking.setTime(dateTime);
 		
+		teeTimeDao.saveTeeTime(booking, playerId);
 		return "redirect:/users/{currentUser}/teeTimeConfirmation";
 	}
 
@@ -181,7 +190,7 @@ public class DashboardController {
 			myTeeTime.setTime(theDate);
 			myTeeTime.setNumGolfers(1);
 			myTeeTime.setCourseId(courseId);
-			teeTimeDao.saveTeeTime(myTeeTime);
+			teeTimeDao.saveTeeTime(myTeeTime, playerId);
 			int teeTimeId = teeTimeDao.getLastTeeTimeId();
 			myScore.setTeeTimeId(teeTimeId);
 		}else {
