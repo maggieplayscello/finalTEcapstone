@@ -18,11 +18,15 @@ function initialize() {
 	<c:forEach var="course" items="${allCourses}">
 		var myLatLng = {lat: ${course.latitude}, lng: ${course.longitude}};
 		var name = "${course.name}"
-
+			var image = {
+				url: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Map_symbol_golf_course_02.png',
+				scaledSize: new google.maps.Size(30,30)
+		};
     	var marker = new google.maps.Marker({
     		position: myLatLng,
     		map: map,
-    		title: name
+    		title: name,
+    		icon: image
    	});
 
     </c:forEach>

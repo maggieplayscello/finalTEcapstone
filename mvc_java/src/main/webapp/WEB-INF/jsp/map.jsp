@@ -15,17 +15,22 @@ function initialize() {
 	};
 	var map = new google.maps.Map(document.getElementById('map-canvas'),
 			mapOptions);
-		
+	
+
 	<c:forEach var="course" items="${courses}">
 		var myLatLng = {lat: ${course.latitude}, lng: ${course.longitude}};
-		var name = "${course.name}"
-
+		var name = "${course.name}" 
+		var image = {
+				url: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Map_symbol_golf_course_02.png',
+				scaledSize: new google.maps.Size(30,30)
+		};
+		
     	var marker = new google.maps.Marker({
-
-    		
     		position: myLatLng,
+    		type:'info',
     		map: map,
-    		title: name
+    		title: name,
+    		icon: image
    	});
 
     </c:forEach>
@@ -44,7 +49,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </head>
 </head>
 <body>
-<a class="weatherwidget-io" href="https://forecast7.com/en/42d33n83d05/detroit/?unit=us" data-label_1="DETROIT" data-label_2="WEATHER" data-theme="original" >DETROIT WEATHER</a>
+<a class="weatherwidget-io" href="https://forecast7.com/en/42d33n83d05/detroit/?unit=us" data-label_1="DETROIT" data-label_2="WEATHER" data-icons="Climacons Animated" data-days="5" data-theme="weather_one" >DETROIT WEATHER</a>
 
 <div id="wrapper">
   <h1>Golfing in Michigan</h1>
