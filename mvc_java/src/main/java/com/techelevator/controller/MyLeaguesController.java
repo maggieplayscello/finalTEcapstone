@@ -41,6 +41,13 @@ public class MyLeaguesController {
 		return "myLeagues";
 	}
 	
+	@RequestMapping(path = "/users/{currentUser}/addLeague", method = RequestMethod.GET)
+	public String showAddLeaguePage(@PathVariable("currentUser") String currentUser, ModelMap map) {
+		List<User> user = userDao.getAllUsers();
+		map.put("allUsers", user);
+		return "createLeague";
+	}
+	
 	@RequestMapping(path= "/users/{currentUser}/addLeague", method = RequestMethod.POST)
 	public String processAddLeagueForm(@PathVariable("currentUser") String currentUser, 
 			@RequestParam String name, @RequestParam List<String> users) {
@@ -52,6 +59,17 @@ public class MyLeaguesController {
 			leagueDao.addUserToLeague(users.get(x), name);
 		}
 		return "redirect:/users/{currentUser}/myLeagues";
+		
+	}
+	
+	@RequestMapping(path = "/users/{currentUser}/addPlayers", method = RequestMethod.POST)
+	public String processAddPlayersToLeague(@PathVariable("currentUser") String currentUser, 
+			@RequestParam List<String> users) {
+		System.out.println("Got into here");
+		for (int x = 0; x < users.size(); x++) {
+			leagueDao.addUserToLeague(users.get(x), "Bushwood");
+		}
+		return "redirect:/users{currentUser}/myLeagues";
 		
 	}
 	

@@ -76,28 +76,7 @@
 		
 	<c:if test = "${role == 'Admin'}">
 
-		<button type="button" class="btn btn-primary" id="addLeagueBtn" onclick="addLeague()">+ Create a League</button>
-			<div id="addLeagueForm" >
-			<br>
-			<c:url var = "addLeagueUrl" value = "/users/${currentUser}/addLeague"/>
-			<form method="POST" action="${addLeagueUrl}">
-
-				<div class="form-group">
-					<label for="leagueName">League Name:</label> 
-					<input type="text" name="name" placeHolder="League Name"/>
-				</div>
-				<div class="form-group">
-					<label for="users">Add Members: </label> 
-					<p>Press control or command to select multiple users.</p>
-					<select name="users" multiple>
-						<c:forEach items="${allUsers}" var="user">
-							<option value="${user.userName}">${user.userName}</option>			
-						</c:forEach>
-					</select>
-				</div>
-				<button type="submit" class="btn btn-primary" name = "addUsers" id="btnSaveLeague">Submit</button>
-			</form>
-			</div>
+		<a href = "/capstone/users/${currentUser}/addLeague"><button type="button" class="btn btn-primary" id="addLeagueBtn">Create a League</button></a>
 		<br><br>
 		
 		<!-- Create Match Form -->
@@ -144,6 +123,7 @@
 	<c:if test = "${role == 'Admin'}">
 		<button type="button" class="btn btn-primary" id="addPlayersBtn" onclick="addPlayers()">+ Add Players to this League</button>
 			<div id="addPlayersForm" >
+			<form method = "POST" action = "/capstone/users/${currentUser}/addPlayers">
 				<br>
 					<div class="form-group">
 						<label for="leagueName">League Name:</label> 
@@ -152,13 +132,14 @@
 				<div class="form-group">
 					<label for="users">Add Members: </label> 
 					<p>Press control or command to select multiple users.</p>
-					<select name="users" multiple>
+					<select name="player" multiple>
 						<c:forEach items="${allUsers}" var="user">
 							<option value="${user.userName}">${user.userName}</option>			
 						</c:forEach>
 					</select>
 				</div>
 				<button type="submit" class="btn btn-primary" id="btnSaveLeague">Submit</button>
+			</form>
 			</div>
 		<br><br>	
 	</c:if>
