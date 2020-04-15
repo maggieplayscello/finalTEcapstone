@@ -5,6 +5,7 @@ public class Team {
 	private String name;
 	private int leagueId;
 	private int points;
+	private int ranking;
 	
 	public Team() {
 	}
@@ -47,6 +48,14 @@ public class Team {
 
 	public void setPoints(int points) {
 		this.points = points;
+	}
+
+	public int getRanking() {
+		return ranking;
+	}
+
+	public void setRanking(int ranking) {
+		this.ranking = ranking;
 	}
 	
 }

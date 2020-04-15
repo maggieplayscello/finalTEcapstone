@@ -16,7 +16,7 @@
 			<br>
 			<c:url var = "addLeagueUrl" value = "/users/${currentUser}/addLeague"/>
 			<form method="POST" action="${addLeagueUrl}">
-
+			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<div class="form-group">
 					<label for="leagueName">League Name:</label> 
 					<input type="text" name="name" placeHolder="League Name"/>

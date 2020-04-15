@@ -119,5 +119,7 @@ ALTER TABLE scores ADD CONSTRAINT fk_teeTimeId FOREIGN KEY (teeTimeId) REFERENCE
 ALTER TABLE teams ADD CONSTRAINT fk_leagueId FOREIGN KEY (leagueId) REFERENCES league (leagueId);
 ALTER TABLE tee_time ADD CONSTRAINT fk_courseId FOREIGN KEY (courseId) REFERENCES courses (courseId);
 ALTER TABLE tee_time ADD CONSTRAINT fk_leagueId FOREIGN KEY (leagueId) REFERENCES league (leagueId);
+ALTER TABLE tee_time ADD CONSTRAINT fk_teeTimeId FOREIGN KEY (teeTimeId) REFERENCES golfer_teeTime (teeTimeId);
+ALTER TABLE tee_time ADD CONSTRAINT fk_id FOREIGN KEY (id) REFERENCES golfer_teeTime (id);
 
 COMMIT;

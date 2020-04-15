@@ -50,7 +50,13 @@
 		} else {
 			document.getElementById('addPlayersForm').style.display = 'none';
 		}
-	}	
+	}
+	
+	function showSelectedLeague() {
+		var selectedLeague = document.getElementById('radioLeague');
+		console.log(selectedLeague);
+	}
+	
 </script>
 
 
@@ -66,14 +72,19 @@
 
 <div class="sidenav">
 	<h1 class = "header_title">View My Leagues</h1>
-		<c:forEach items="${allLeagues}" var="league">				
-			<input type="radio" id="league" name="league" value="league">
-			<label for="league">${league.name}</label><br>
+		<c:forEach items="${allLeagues}" var="league">
+			<c:url var = "myName" value = "/users/${currentUser}/myLeagues">
+				<c:param name = "leagueName" value = "${league.name}"/>
+			</c:url>				
+			<input type="radio" id="radioLeague" name="league" value="${league.name}">
+			<a href = "${myName}"><label for="league">${league.name}</label></a><br>
 		</c:forEach>
 	<br>
 	
 	<!-- Create League Form -->
-		
+	<c:if test = "${not empty leagueName}">
+	<h1>${leagueName}</h1>
+	</c:if>
 	<c:if test = "${role == 'Admin'}">
 
 		<a href = "/capstone/users/${currentUser}/addLeague"><button type="button" class="btn btn-primary" id="addLeagueBtn">Create a League</button></a>
@@ -83,6 +94,8 @@
 		
 		<button type="button" class="btn btn-primary" id="addMatchBtn" onclick="addMatch()">+ Add a Match</button>
 			<div id="addMatchForm" >
+			<form method = "POST" action = "/capstone/users/${currentUser}/addMatch">
+			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<br>
 				<div class="form-group">
 					<label for="leagueId">League: </label> 
@@ -93,22 +106,23 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="courseId">Course: </label> 
-					<select name="courseId">
+					<label for="courseName">Course: </label> 
+					<select name="courseName">
 						<c:forEach items="${allCourses}" var="course">
-							<option value="${course.courseId}">${course.name}</option>			
+							<option value="${course.name}">${course.name}</option>			
 						</c:forEach>
 					</select>
 				</div>
-					<div class="form-group">
-						<label for="date">Date:</label> 
-						<input name="date" placeHolder="Date"/>
-					</div>	
+				<div class="form-group">
+					<label for="date">Date: </label>
+					<input name="date" placeHolder="Date (mm/dd/yyyy)"/>
+				</div>
 					<div class="form-group">
 						<label for="numGolfers">Number of Golfers:</label> 
 						<input name="numGolfers" placeHolder="Number"/>
 					</div>	
 				<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
+				</form>
 			</div>				
 		</c:if>
 	</div>
@@ -117,16 +131,18 @@
 	
 <div class="recentScores">
 	<h1 class = "header_title">League Leaderboard</h1>
-
+	<div id="selectedLeague"></div>
+	<c:out value="${selectedleague}" />
 	<!-- Add Players to League Form -->
 
 	<c:if test = "${role == 'Admin'}">
 		<button type="button" class="btn btn-primary" id="addPlayersBtn" onclick="addPlayers()">+ Add Players to this League</button>
 			<div id="addPlayersForm" >
 			<form method = "POST" action = "/capstone/users/${currentUser}/addPlayers">
+			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<br>
 					<div class="form-group">
-						<label for="leagueName">League Name:</label> 
+						<label for="leagueName">${league.name}</label> 
 						<input name="leagueName" placeHolder="League Name"/>
 					</div>
 				<div class="form-group">
@@ -154,37 +170,16 @@
 				<th align="left">Point Total</th>
 				<th align="left">Average Score</th>
 			</tr>
-		
-			<tr>
-				<td>1</td>
-				<td>Team 1</td>	
-				<td>18</td>
-				<td>70</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>Team 2</td>	
-				<td>16</td>
-				<td>71</td>
-			</tr>
-			<tr>
-				<td>3</td>			
-				<td>Team 3</td>	
-				<td>13</td>
-				<td>73</td>
-			</tr>
-			<tr>
-				<td>4</td>			
-				<td>Team 4</td>	
-				<td>11</td>
-				<td>75</td>
-			</tr>
-			<tr>
-				<td>5</td>			
-				<td>Team 5</td>	
-				<td>4</td>
-				<td>112</td>
-			</tr>
+			<c:if test = "${not empty teams}">
+				<c:forEach items = "${teams}" var = "team">
+					<tr>
+						<td>Ranking</td>
+						<td>${team.name}</td>
+						<td>${team.points}</td>
+						<td>Average Score</td>
+					</tr>
+				</c:forEach>
+			</c:if>
 		</table>
       </div>	
 

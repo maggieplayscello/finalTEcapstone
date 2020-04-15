@@ -61,6 +61,18 @@ public class JDBCTeamDAO implements TeamDAO {
 		}
 		return teams;
 	}
+	
+	@Override
+	public List<Team> getTeamsByLeagueIdAndUserId(int leagueId, int userId) {
+		List <Team> teams = new ArrayList<>();
+		String sqlSelectAllTeams = "SELECT * FROM teams JOIN league_golfer ON league_golfer.leagueid = "
+				+ "teams.leagueid WHERE leagueid = ? AND league_golfer.id = ? ";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllTeams, leagueId, userId);
+		while (results.next()) {
+			teams.add(mapRowToTeam(results));
+		}
+		return teams;
+	}
 
 	@Override
 	public List<Team> getTeamsByUserId(int id) {
@@ -72,5 +84,35 @@ public class JDBCTeamDAO implements TeamDAO {
 		}
 		return teams;
 	}
+
+	@Override
+	public List<Team> getRankingByLeagueId(int leagueId) {
+		List <Team> rankedTeams = new ArrayList<>();
+		String sqlGetRanking = "SELECT * FROM teams JOIN golfer_team ON teams.teamid = golfer_team.teamid WHERE points >= 0 AND leagueid = ? ORDER BY points DESC";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetRanking, leagueId);
+		while (results.next()) {
+			rankedTeams.add(mapRowToTeam(results));
+		}
+		return rankedTeams;
+	}
+	
+	@Override
+	public int getRankingByUserIdAndLeagueId(int leagueId, int userId) {
+		int ranking = 0;
+		List <Integer> rankedTeams = new ArrayList<>();
+		String sqlGetRanking = "SELECT * FROM teams JOIN golfer_team ON teams.teamid = golfer_team.teamid WHERE points >= 0 AND leagueid = ? ORDER BY points DESC";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetRanking, leagueId);
+		while (results.next()) {
+			rankedTeams.add(results.getInt("userId"));
+		}
+		for(int i = 1; i < rankedTeams.size(); i++) {
+			if (rankedTeams.contains(userId)) {
+				ranking = i;
+			}
+		}
+		return ranking;
+	}
+	
+	
 
 }
