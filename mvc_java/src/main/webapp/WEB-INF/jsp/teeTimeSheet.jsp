@@ -12,8 +12,13 @@
 	<div class="col-sm-4">	
 	<h3>Schedule a Tee Time</h3>
 
-	<c:url var = "submitTeeTimeForm" value = "/users/${currentUser}/teeTimeSheet"/>
 	
+	
+	<c:forEach items="${availableTimes}" var="time">
+		${time.hour}:${time.minute}
+		Test
+	</c:forEach>
+	TEST
 	
 	</div>
 	</div>

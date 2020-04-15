@@ -124,19 +124,35 @@ private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public List<LocalDateTime> getTeeTimesByCourse(int courseId, String date) {
+		String stringYear = date.substring(0,4);
+		String stringMonth = date.substring(5,7);
+		String stringDay = date.substring(8);
+		int year = Integer.parseInt(stringYear);
+		int month = Integer.parseInt(stringMonth);
+		int day = Integer.parseInt(stringDay);
+		
+		LocalDate selectedDate = LocalDate.of(year, month, day);
+		LocalTime times = LocalTime.of(8, 0);
+		
 		List <LocalDateTime> availableTimes = new ArrayList<>();
-		LocalDateTime firstBooking = LocalDateTime.now();
-		int minutes = firstBooking.getMinute();
-		long minutesToAdd = 0;
+//		LocalDateTime firstBooking = LocalDateTime.now();
+//		int minutes = firstBooking.getMinute();
+//		long minutesToAdd = 0;
+//		
+//		if (minutes%10 != 0) {
+//			minutes++;
+//			minutesToAdd++;
+//		}
+//		
+//		firstBooking.plusMinutes(minutesToAdd);
 		
-		if (minutes%10 != 0) {
-			minutes++;
-			minutesToAdd++;
+//		availableTimes.add(firstBooking);
+		
+		for (int x = 0; x<=54; x++) {
+			LocalDateTime addTime = LocalDateTime.of(selectedDate, times);
+			availableTimes.add(addTime);
+			addTime.plusMinutes(10);
 		}
-		
-		firstBooking.plusMinutes(minutesToAdd);
-		
-		availableTimes.add(firstBooking);
 		
 		return availableTimes;
 	}

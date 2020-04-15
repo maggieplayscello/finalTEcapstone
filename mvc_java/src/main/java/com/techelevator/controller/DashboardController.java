@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,12 +126,17 @@ public class DashboardController {
 
 	@RequestMapping (path = "/users/{currentUser}/scheduleTeeTime", method = RequestMethod.POST)
 	public String submitTeeTimeDateAndCourse(@PathVariable("currentUser") String currentUser, 
-			@RequestParam String course, @RequestParam String date) {
-//		List <LocalDateTime> availableTimes = teeTimeDao.getTeeTimesByCourse(course, date);		
+			@RequestParam int course, @RequestParam String date) {		
 		return "redirect:/users/{currentUser}/teeTimeSheet";
 	}
+	
+	
 	@RequestMapping (path = "/users/{currentUser}/teeTimeSheet", method = RequestMethod.GET)
-	public String displayTeeTimeSheet(@PathVariable("currentUser") String currentUser){
+	public String displayTeeTimeSheet(@PathVariable("currentUser") String currentUser, ModelMap map){
+//		System.out.println(course + date);
+//		List <LocalDateTime> availableTimes = teeTimeDao.getTeeTimesByCourse(course, date);
+//		System.out.println(availableTimes.size());
+//		map.put("availableTimes", availableTimes);
 		return "teeTimeSheet";
 	}
 
