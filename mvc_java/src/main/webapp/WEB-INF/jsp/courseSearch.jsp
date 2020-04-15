@@ -2,46 +2,71 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
+<script src="https://maps.googleapis.com/maps/api/js?key=${request}"></script>
+<script>
+
+var map;
+function initialize() {
+	
+	var mapOptions = {
+		zoom : 6.5,
+		center : new google.maps.LatLng(44.5, -86)
+	};
+	var map = new google.maps.Map(document.getElementById('map-canvas'),
+			mapOptions);
+		
+	<c:forEach var="course" items="${allCourses}">
+		var myLatLng = {lat: ${course.latitude}, lng: ${course.longitude}};
+		var name = "${course.name}"
+
+    	var marker = new google.maps.Marker({
+    		position: myLatLng,
+    		map: map,
+    		title: name
+   	});
+
+    </c:forEach>
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+
 <html>
 <title>Course Search</title>
-
 <body>
 	<div id="wrapper">
+	<h1>Search for Courses</h1>
 	
 <!-- Search Form -->
-	
-	<h3>Search for Courses</h3>
-	<div class="row">
-	<div class="col-sm-4"></div>
-	<div class="col-sm-4">	
-	<c:url value='/courseSearchResults' var='courseSearchVar' />
-	<form method="GET" action="${courseSearchVar}">
-		<div class="form-group">
-			<label for="name">Course Name:</label> 
-			<input type="text" name="searchName" placeHolder="Course Name" id="name" />
-		</div>
-		<div class="form-group">
-			<label for="city">City:</label> 
-			<input type="text" name="searchCity" placeholder="City" id="city" />
-		</div>
-		<button type="submit" class="btn btn-primary">Search</button>	
-	</form>
-	<div class="col-sm-4"></div>
-	<br><br>
-	
-<!-- Add Course Button for Admins only -->
+	<div id="courseSearchForm">	
+		<c:url value='/courseSearchResults' var='courseSearchVar' />
+		<div id="courseSearchFields">
+			<form method="GET" action="${courseSearchVar}">
+				<div class="form-group">
+					<label for="name">Course Name:</label> 
+					<input type="text" name="searchName" placeHolder="Course Name" id="name" />
+				</div>
+				<div class="form-group">
+					<label for="city">City:</label> 
+					<input type="text" name="searchCity" placeholder="City" id="city" />
+				</div>
+				<button type="submit" class="btn btn-primary">Search</button>	
+			</form>
+		<br><br>
 
-	<c:if test = "${role == 'Admin'}">
-		<div class="btn" >
-			<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
-			<a href="${addCourseHref}">+ Add a new Course</a>
-		</div>
-	</c:if>
-	
-	<div class="col-sm-4"></div>
+		<c:if test = "${role == 'Admin'}">
+			<button type="submit" class="btn btn-secondary">
+				<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
+				<a href="${addCourseHref}">+ Add a new Course</a>
+			</button>
+		</c:if>
 	</div>
-	</div>
-	<br><br>
+
+<!-- Course Map -->
+
+	<div id="map-canvas" style="height: 400px; width: 600px"></div>
+</div>
+<br><br>
 
 <!-- Course Table -->
 

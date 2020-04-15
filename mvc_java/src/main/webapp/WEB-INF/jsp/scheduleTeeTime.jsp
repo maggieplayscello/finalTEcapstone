@@ -20,7 +20,7 @@
 				<label for="course">Course: </label> 
 				<select name="course">
 					<c:forEach items="${allCourses}" var="course">
-						<option value="${course.name}">${course.name}</option>			
+						<option value="${course.courseId}">${course.name}</option>
 					</c:forEach>
 				</select>
 			</div>
