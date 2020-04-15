@@ -132,7 +132,7 @@ private JdbcTemplate jdbcTemplate;
 		int day = Integer.parseInt(stringDay);
 		
 		LocalDate selectedDate = LocalDate.of(year, month, day);
-		LocalTime times = LocalTime.of(8, 0);
+		LocalTime times = LocalTime.of(8, 00);
 		
 		List <LocalDateTime> availableTimes = new ArrayList<>();
 //		LocalDateTime firstBooking = LocalDateTime.now();
@@ -150,10 +150,8 @@ private JdbcTemplate jdbcTemplate;
 		LocalDateTime addTime = LocalDateTime.of(selectedDate, times);
 		
 		for (int x = 0; x<=54; x++) {
-			long plusMinutes = 10;
 			availableTimes.add(addTime);
-			addTime.plusMinutes(plusMinutes);
-			System.out.println(addTime.toString());
+			addTime = addTime.plusMinutes(10);
 		}
 		
 		return availableTimes;
