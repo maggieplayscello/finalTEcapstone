@@ -179,31 +179,59 @@ private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public List<LocalDateTime> getTeeTimesByCourse(int courseId, String date) {
-
 		LocalDate selectedDate = getDateFromString(date);
-		LocalTime times = LocalTime.of(8, 00);
+		List<LocalTime> bookedTimes = getBookedTimesByCourse(courseId, selectedDate);
+		LocalDate today = LocalDate.now();
+		LocalDateTime firstBooking = LocalDateTime.of(selectedDate, LocalTime.of(8, 0));
 		
 		List <LocalDateTime> availableTimes = new ArrayList<>();
-//		LocalDateTime firstBooking = LocalDateTime.now();
-//		int minutes = firstBooking.getMinute();
-//		long minutesToAdd = 0;
-//		
-//		if (minutes%10 != 0) {
-//			minutes++;
-//			minutesToAdd++;
-//		}
-//		
-//		firstBooking.plusMinutes(minutesToAdd);
 		
-//		availableTimes.add(firstBooking);
-		LocalDateTime addTime = LocalDateTime.of(selectedDate, times);
+		if (selectedDate.equals(today)) {
+			
+			firstBooking = LocalDateTime.now();
+			int minutes = firstBooking.getMinute();
+			long minutesToAdd = 0;
 		
-		for (int x = 0; x<=54; x++) {
-			availableTimes.add(addTime);
-			addTime = addTime.plusMinutes(10);
+			while (minutes%10 != 0) {
+				minutes++;
+				minutesToAdd++;
+			}
+			
+			firstBooking = firstBooking.plusMinutes(minutesToAdd);
+		}
+		
+		while (firstBooking.isBefore(LocalDateTime.of(selectedDate, LocalTime.of(17, 1)))) {
+			boolean available = true;
+			for (int x = 0; x<bookedTimes.size();x++) {
+				if (firstBooking.toLocalTime().equals(bookedTimes.get(x))) {
+					available = false;
+				}
+			}
+			if (available) {
+				availableTimes.add(firstBooking);
+			}
+			firstBooking = firstBooking.plusMinutes(10);
 		}
 		
 		return availableTimes;
+	}
+
+	private List<LocalTime> getBookedTimesByCourse(int courseId, LocalDate date) {
+		List <TeeTime> getBookings = new ArrayList<>();
+		List <LocalTime> bookedTimes = new ArrayList<>();
+		String sqlSelectBookedTimes = "SELECT * FROM tee_time WHERE courseid = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectBookedTimes, courseId);
+		while (results.next()) {
+			getBookings.add(mapRowToTeeTime(results));
+		}
+		for (int x = 0; x<getBookings.size();x++) {
+			LocalDate dateSort = getBookings.get(x).getTime().toLocalDate();
+			LocalTime timeSort = getBookings.get(x).getTime().toLocalTime();
+			if (dateSort.equals(date)) {
+				bookedTimes.add(timeSort);
+			}
+		}
+		return bookedTimes;
 	}
 	
 	

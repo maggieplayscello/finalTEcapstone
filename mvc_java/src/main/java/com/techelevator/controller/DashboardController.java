@@ -119,7 +119,11 @@ public class DashboardController {
 	
 	@RequestMapping(path = "/users/{currentUser}/scheduleTeeTime", method = RequestMethod.GET)
 	public String scheduleTeetime(@PathVariable("currentUser") String currentUser, ModelMap map) {
+		LocalTime now = LocalTime.now();
 		LocalDate today = LocalDate.now();
+		if (now.isAfter(LocalTime.of(17, 0))) {
+			today = today.plusDays(1);
+		}
 		List<LocalDate> threeWeeks = new ArrayList <> ();
 		for (int x = 0; x <= 21; x++) {
 			threeWeeks.add(today);
