@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -126,17 +128,19 @@ public class DashboardController {
 
 	@RequestMapping (path = "/users/{currentUser}/scheduleTeeTime", method = RequestMethod.POST)
 	public String submitTeeTimeDateAndCourse(@PathVariable("currentUser") String currentUser, 
-			@RequestParam int course, @RequestParam String date) {		
+			@RequestParam int course, @RequestParam String date, HttpSession session) {
+		System.out.println(course + date);
+		List <LocalDateTime> availableTimes = teeTimeDao.getTeeTimesByCourse(course, date);
+		System.out.println(availableTimes.size());
+		session.setAttribute("availableTimes", availableTimes);
 		return "redirect:/users/{currentUser}/teeTimeSheet";
 	}
 	
 	
 	@RequestMapping (path = "/users/{currentUser}/teeTimeSheet", method = RequestMethod.GET)
-	public String displayTeeTimeSheet(@PathVariable("currentUser") String currentUser, ModelMap map){
-//		System.out.println(course + date);
-//		List <LocalDateTime> availableTimes = teeTimeDao.getTeeTimesByCourse(course, date);
-//		System.out.println(availableTimes.size());
-//		map.put("availableTimes", availableTimes);
+	public String displayTeeTimeSheet(@PathVariable("currentUser") String currentUser, HttpSession session){
+		session.getAttribute("availableTimes");
+
 		return "teeTimeSheet";
 	}
 
