@@ -67,7 +67,7 @@ private JdbcTemplate jdbcTemplate;
 	public List<TeeTime> getTeeTimesByGolferIdPastToday(int id) {
 		List<TeeTime> teeTimes = new ArrayList <> ();
 		String sqlTeeTimes = "SELECT t.*, g.id FROM golfer_teetime g JOIN tee_time t "
-				+ "ON t.teetimeid = g.teetimeid WHERE t.time > current_date AND g.id = ?";
+				+ "ON t.teetimeid = g.teetimeid WHERE t.time > current_date AND g.id = ? ORDER BY t.time";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlTeeTimes, id);
 		while (results.next()) {
 			teeTimes.add(mapRowToTeeTime(results));
