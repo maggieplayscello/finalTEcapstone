@@ -41,6 +41,13 @@ public class MyLeaguesController {
 		return "myLeagues";
 	}
 	
+	@RequestMapping(path = "/users/{currentUser}/addLeague", method = RequestMethod.GET)
+	public String showAddLeaguePage(@PathVariable("currentUser") String currentUser, ModelMap map) {
+		List<User> user = userDao.getAllUsers();
+		map.put("allUsers", user);
+		return "createLeague";
+	}
+	
 	@RequestMapping(path= "/users/{currentUser}/addLeague", method = RequestMethod.POST)
 	public String processAddLeagueForm(@PathVariable("currentUser") String currentUser, 
 			@RequestParam String name, @RequestParam List<String> users) {
