@@ -23,7 +23,7 @@
 			<select name="times">
 				<c:forEach items="${availableTimes}" var="time">
 					<c:set var = "timeUnformatted" value = "${time}"/>
-					<c:set var = "timeFormatted" value = "${fn:substring(timeUnformatted, 11, 17)}"/>
+					<c:set var = "timeFormatted" value = "${fn:substring(timeUnformatted, 11, 16)}"/>
 					<option value="${time}">${timeFormatted}</option>
 				</c:forEach>
 			</select>
