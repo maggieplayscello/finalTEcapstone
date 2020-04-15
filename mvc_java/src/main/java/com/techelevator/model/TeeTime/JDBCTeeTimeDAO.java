@@ -45,7 +45,7 @@ private JdbcTemplate jdbcTemplate;
 			}
 			
 		}else {
-		String sqlAddTeeTime = "INSERT INTO tee_time VALUES (?, ?, ?, ?)";
+		String sqlAddTeeTime = "INSERT INTO tee_time (time, leagueid, numgolfers, courseid) VALUES (?, ?, ?, ?)";
 		jdbcTemplate.update(sqlAddTeeTime, 
 				teeTime.getTime(), teeTime.getLeagueId(), teeTime.getNumGolfers(), teeTime.getCourseId());
 		

@@ -12,4 +12,6 @@ public interface TeamDAO {
 	
 	public List<Team> getTeamsByUserId(int id);
 
+	List<Team> getTeamsByLeagueIdAndUserId(int leagueId, int userId);
+
 }
