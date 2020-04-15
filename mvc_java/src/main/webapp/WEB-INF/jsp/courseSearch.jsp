@@ -54,13 +54,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					<label for="city">City:</label> 
 					<input type="text" name="searchCity" placeholder="City" id="city" />
 				</div>
-			<br><br>
-			</form>
-<div class="row">
-  <div class="col-md-12 bs-linebreak">
-  </div>
-</div>
-		<button type="submit" class="btn btn-primary pull-right">Search</button>	
+				<div class="row">
+					<div class="col-md-12 bs-linebreak"></div>
+				</div>
+			<button type="submit" class="btn btn-primary pull-right">Search</button>	
+		</form>
 		<br><br>
 		<c:if test = "${role == 'Admin'}">
 			<button type="submit" class="btn btn-secondary pull-right">
