@@ -117,6 +117,7 @@
 						<input name="numGolfers" placeHolder="Number"/>
 					</div>	
 				<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
+				</form>
 			</div>				
 		</c:if>
 	</div>
