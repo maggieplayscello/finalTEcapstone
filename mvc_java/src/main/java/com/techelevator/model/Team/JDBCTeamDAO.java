@@ -108,7 +108,6 @@ public class JDBCTeamDAO implements TeamDAO {
 		for(int i = 1, x = 0; i < rankedTeams.size() + 1; i++, x++) {
 			if (rankedTeams.get(x) == (userId)) {
 				ranking = i;
-				System.out.println(ranking);
 			}
 		}
 		return ranking;
