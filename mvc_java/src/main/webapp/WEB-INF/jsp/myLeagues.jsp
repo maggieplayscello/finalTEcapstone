@@ -123,6 +123,7 @@
 	<c:if test = "${role == 'Admin'}">
 		<button type="button" class="btn btn-primary" id="addPlayersBtn" onclick="addPlayers()">+ Add Players to this League</button>
 			<div id="addPlayersForm" >
+			<form method = "POST" action = "/capstone/users/${currentUser}/addPlayers">
 				<br>
 					<div class="form-group">
 						<label for="leagueName">League Name:</label> 
@@ -131,13 +132,14 @@
 				<div class="form-group">
 					<label for="users">Add Members: </label> 
 					<p>Press control or command to select multiple users.</p>
-					<select name="users" multiple>
+					<select name="player" multiple>
 						<c:forEach items="${allUsers}" var="user">
 							<option value="${user.userName}">${user.userName}</option>			
 						</c:forEach>
 					</select>
 				</div>
 				<button type="submit" class="btn btn-primary" id="btnSaveLeague">Submit</button>
+			</form>
 			</div>
 		<br><br>	
 	</c:if>

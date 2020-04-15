@@ -30,7 +30,7 @@
 						</c:forEach>
 					</select>
 				</div>
-				<button type="submit" class="btn btn-primary" name = "addUsers" id="btnSaveLeague">Submit</button>
+				<button type="submit" class="btn btn-primary" id="btnSaveLeague">Submit</button>
 			</form>
 			</div>
 		</div>
