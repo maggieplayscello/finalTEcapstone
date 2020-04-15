@@ -46,20 +46,24 @@ google.maps.event.addDomListener(window, 'load', initialize);
 			<h1>Search for Courses</h1>
 			<br><br>
 			<form method="GET" action="${courseSearchVar}">
-				<div class="form-group">
+				<div class="form-group pull-right">
 					<label for="name">Course Name:</label> 
 					<input type="text" name="searchName" placeHolder="Course Name" id="name" />
 				</div>
-				<div class="form-group">
+				<div class="form-group pull-right">
 					<label for="city">City:</label> 
 					<input type="text" name="searchCity" placeholder="City" id="city" />
 				</div>
-				<button type="submit" class="btn btn-primary">Search</button>	
+			<br><br>
 			</form>
+<div class="row">
+  <div class="col-md-12 bs-linebreak">
+  </div>
+</div>
+		<button type="submit" class="btn btn-primary pull-right">Search</button>	
 		<br><br>
-
 		<c:if test = "${role == 'Admin'}">
-			<button type="submit" class="btn btn-secondary">
+			<button type="submit" class="btn btn-secondary pull-right">
 				<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
 				<a href="${addCourseHref}">+ Add a new Course</a>
 			</button>
