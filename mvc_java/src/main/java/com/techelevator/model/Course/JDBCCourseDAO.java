@@ -35,7 +35,7 @@ public class JDBCCourseDAO implements courseDAO {
 	}
 	
 	@Override
-	public List<Course> searchCourses(@RequestParam(required = false) String searchName, @RequestParam(required = false) String searchCity, ModelMap map) {
+	public List<Course> searchCourses(@RequestParam(required = false) String searchName, @RequestParam(required = false) String searchCity) {
 		List<Course> courses = new ArrayList<>();
 		if (searchName == "" && searchCity != "") {
 			searchName = "LKJDLKJDLKJDLKJDF";

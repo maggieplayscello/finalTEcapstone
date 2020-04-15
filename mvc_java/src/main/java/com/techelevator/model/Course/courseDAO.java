@@ -8,7 +8,7 @@ public interface courseDAO {
 
 	public List<Course> getAllCourses();
 	
-	public List<Course> searchCourses(String searchName, String searchCity, ModelMap map);
+	public List<Course> searchCourses(String searchName, String searchCity);
 
 	public void addCourseToDatabase(Course theCourse);
 

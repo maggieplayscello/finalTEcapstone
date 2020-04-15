@@ -11,13 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.techelevator.model.Course.Course;
 import com.techelevator.model.Course.courseDAO;
-import com.techelevator.model.User.UserDAO;
 
 @Controller
 public class APIMapController {
 
-@Autowired
-private UserDAO userDAO;
 
 @Autowired
 private courseDAO courseDao;
