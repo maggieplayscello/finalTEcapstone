@@ -54,7 +54,7 @@
 	
 	function showSelectedLeague() {
 		var selectedLeague = document.getElementById('radioLeague');
-		var leagueName = selectedLeague;
+		console.log(selectedLeague);
 	}
 	
 </script>
@@ -73,7 +73,7 @@
 <div class="sidenav">
 	<h1 class = "header_title">View My Leagues</h1>
 		<c:forEach items="${allLeagues}" var="league">				
-			<input type="radio" id="radioLeague" name="league" value="league" onchange="showSelectedLeague()">
+			<input type="radio" id="radioLeague" name="league" value="league" onclick="showSelectedLeague()">
 			<label for="league">${league.name}</label><br>
 		</c:forEach>
 	<br>
@@ -126,7 +126,8 @@
 	
 <div class="recentScores">
 	<h1 class = "header_title">League Leaderboard</h1>
-
+	<div id="selectedLeague"></div>
+	<c:out value="${selectedleague}" />
 	<!-- Add Players to League Form -->
 
 	<c:if test = "${role == 'Admin'}">
