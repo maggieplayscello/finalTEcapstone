@@ -83,6 +83,8 @@
 		
 		<button type="button" class="btn btn-primary" id="addMatchBtn" onclick="addMatch()">+ Add a Match</button>
 			<div id="addMatchForm" >
+			<form method = "POST" action = "/capstone/users/${currentUser}/addMatch">
+			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<br>
 				<div class="form-group">
 					<label for="leagueId">League: </label> 
@@ -93,17 +95,17 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="courseId">Course: </label> 
-					<select name="courseId">
+					<label for="courseName">Course: </label> 
+					<select name="courseName">
 						<c:forEach items="${allCourses}" var="course">
-							<option value="${course.courseId}">${course.name}</option>			
+							<option value="${course.name}">${course.name}</option>			
 						</c:forEach>
 					</select>
 				</div>
-					<div class="form-group">
-						<label for="date">Date:</label> 
-						<input name="date" placeHolder="Date"/>
-					</div>	
+				<div class="form-group">
+					<label for="date">Date: </label>
+					<input name="date" placeHolder="Date (mm/dd/yyyy)"/>
+				</div>
 					<div class="form-group">
 						<label for="numGolfers">Number of Golfers:</label> 
 						<input name="numGolfers" placeHolder="Number"/>
@@ -124,6 +126,7 @@
 		<button type="button" class="btn btn-primary" id="addPlayersBtn" onclick="addPlayers()">+ Add Players to this League</button>
 			<div id="addPlayersForm" >
 			<form method = "POST" action = "/capstone/users/${currentUser}/addPlayers">
+			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<br>
 					<div class="form-group">
 						<label for="leagueName">League Name:</label> 
