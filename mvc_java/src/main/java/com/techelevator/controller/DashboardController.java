@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,10 +130,9 @@ public class DashboardController {
 	@RequestMapping (path = "/users/{currentUser}/scheduleTeeTime", method = RequestMethod.POST)
 	public String submitTeeTimeDateAndCourse(@PathVariable("currentUser") String currentUser, 
 			@RequestParam int course, @RequestParam String date, HttpSession session) {
-		System.out.println(course + date);
 		List <LocalDateTime> availableTimes = teeTimeDao.getTeeTimesByCourse(course, date);
-		System.out.println(availableTimes.size());
 		session.setAttribute("availableTimes", availableTimes);
+		session.setAttribute("course", course);
 		return "redirect:/users/{currentUser}/teeTimeSheet";
 	}
 	
@@ -140,10 +140,22 @@ public class DashboardController {
 	@RequestMapping (path = "/users/{currentUser}/teeTimeSheet", method = RequestMethod.GET)
 	public String displayTeeTimeSheet(@PathVariable("currentUser") String currentUser, HttpSession session){
 		session.getAttribute("availableTimes");
-
+		session.getAttribute("course");
 		return "teeTimeSheet";
 	}
+	
+	@RequestMapping (path = "/users/{currentUser}/teeTimeSheet", method = RequestMethod.POST)
+	public String submitTeeTimeSheet(@PathVariable("currentUser") String currentUser, 
+			@RequestParam String times, @RequestParam int golfers, @RequestParam int course) {
+		
+		
+		return "redirect:/users/{currentUser}/teeTimeConfirmation";
+	}
 
+	@RequestMapping (path = "/users/{currentUser}/teeTimeConfirmation", method = RequestMethod.GET)
+	public String displayTeeTimeConfirmation( @PathVariable("currentUser") String currentUser) {
+		return "teeTimeConfirmation";
+	}
 	
 	@RequestMapping(path="/users/{currentUser}/addScore", method=RequestMethod.GET)
 	public String displayAddScore(@PathVariable("currentUser") String currentUser, ModelMap map){
@@ -165,7 +177,8 @@ public class DashboardController {
 			int day = Integer.parseInt(date.substring(3, 5));
 			int year = Integer.parseInt(date.substring(6, 10));
 			LocalDate myDate = LocalDate.of(year, month, day);
-			myTeeTime.setTime(myDate);
+			LocalDateTime theDate = LocalDateTime.of(myDate, LocalTime.of(0, 0));
+			myTeeTime.setTime(theDate);
 			myTeeTime.setNumGolfers(1);
 			myTeeTime.setCourseId(courseId);
 			teeTimeDao.saveTeeTime(myTeeTime);

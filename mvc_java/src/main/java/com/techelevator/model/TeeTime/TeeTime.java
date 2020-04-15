@@ -1,10 +1,10 @@
 package com.techelevator.model.TeeTime;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class TeeTime {
 	private int teeTimeId;
-	private LocalDate time;
+	private LocalDateTime time;
 	private String dateString;
 	private String timeString;
 	private int leagueId;
@@ -22,10 +22,10 @@ public class TeeTime {
 	public void setTeeTimeId(int teeTimeId) {
 		this.teeTimeId = teeTimeId;
 	}
-	public LocalDate getTime() {
+	public LocalDateTime getTime() {
 		return time;
 	}
-	public void setTime(LocalDate time) {
+	public void setTime(LocalDateTime time) {
 		this.time = time;
 	}
 	public int getLeagueId() {

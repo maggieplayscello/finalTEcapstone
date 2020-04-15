@@ -10,9 +10,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import com.techelevator.model.User.UserDAO;
+
 @Component
 public class JDBCLeagueDAO implements LeagueDAO {
 
+	@Autowired
+	private UserDAO userDao;
 	
 	private JdbcTemplate jdbcTemplate;
 	
@@ -66,12 +70,33 @@ public class JDBCLeagueDAO implements LeagueDAO {
 		}
 		return league;
 	}
+	
+	@Override
+	public int getLeagueIdByLeagueName(String name) {
+		int id = 0;
+
+		String sqlSelectAllLeagues = "SELECT leagueid FROM league WHERE leaguename = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues, name);
+		if (results.next()) {
+			id = results.getInt("leagueid");
+		}
+		return id;
+	}
 
 	@Override
 	public void saveLeague(League league) {
 		String sqlAddLeague = "INSERT INTO league (leaguename, leagueowner) VALUES (?, ?)";
-		jdbcTemplate.update(sqlAddLeague, league.getName(), league.getOwner());	
+		int leagueid = userDao.getIdByUserName(league.getOwner());
+		jdbcTemplate.update(sqlAddLeague, league.getName(), leagueid);	
 		
+	}
+	
+	@Override
+	public void addUserToLeague(String user, String leagueName) {
+		String sqlAddLeague = "INSERT INTO league_golfer (id, leagueid) VALUES (?, ?)";
+		int id = userDao.getIdByUserName(user);
+		int leagueId = getLeagueIdByLeagueName(leagueName);
+		jdbcTemplate.update(sqlAddLeague, id, leagueId);	
 	}
 
 }

@@ -61,14 +61,19 @@ private JdbcTemplate jdbcTemplate;
 		teeTime.setTeeTimeId(results.getInt("teetimeid"));
 		teeTime.setCourseId(results.getInt("courseid"));
 		teeTime.setCourseName(courseDao.getCourseNameByCourseId(teeTime.getCourseId()));
-		teeTime.setTime(results.getDate("time").toLocalDate());
+		String dateTime = results.getString("time");
+		LocalDate theDate = getDateFromString(dateTime);
+		LocalTime theTime = getTimeFromString(dateTime);
+		LocalDateTime dateAndTime = LocalDateTime.of(theDate, theTime);
+		teeTime.setTime(dateAndTime);
+
 		teeTime.setDateString(turnDateIntoString(results.getDate("time").toLocalDate()));
 		teeTime.setTimeString(turnTimeIntoString(results.getTime("time")));
 		teeTime.setNumGolfers(results.getInt("numgolfers"));
 		
 		return teeTime;
 	}
-	
+
 	private String turnTimeIntoString(Time time) {
 		LocalTime myTime = time.toLocalTime();
 		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm");
@@ -121,18 +126,40 @@ private JdbcTemplate jdbcTemplate;
 		}
 		return id;
 	}
-
-	@Override
-	public List<LocalDateTime> getTeeTimesByCourse(int courseId, String date) {
+	
+	private LocalDate getDateFromString(String date) {
+		LocalDate theDate;
+		
 		String stringYear = date.substring(0,4);
 		String stringMonth = date.substring(5,7);
-		String stringDay = date.substring(8);
+		String stringDay = date.substring(8, 10);
 		int year = Integer.parseInt(stringYear);
 		int month = Integer.parseInt(stringMonth);
 		int day = Integer.parseInt(stringDay);
 		
-		LocalDate selectedDate = LocalDate.of(year, month, day);
-		LocalTime times = LocalTime.of(8, 0);
+		theDate = LocalDate.of(year,  month,  day);
+		
+		return theDate;
+	}
+	
+	private LocalTime getTimeFromString(String time) {
+		LocalTime theTime;
+		
+		String stringHour = time.substring(11,13);
+		String stringMinutes = time.substring(14, 16);
+		int hour = Integer.parseInt(stringHour);
+		int minutes = Integer.parseInt(stringMinutes);
+		
+		theTime = LocalTime.of(hour, minutes);
+		
+		return theTime;
+	}
+
+	@Override
+	public List<LocalDateTime> getTeeTimesByCourse(int courseId, String date) {
+
+		LocalDate selectedDate = getDateFromString(date);
+		LocalTime times = LocalTime.of(8, 00);
 		
 		List <LocalDateTime> availableTimes = new ArrayList<>();
 //		LocalDateTime firstBooking = LocalDateTime.now();
@@ -150,10 +177,8 @@ private JdbcTemplate jdbcTemplate;
 		LocalDateTime addTime = LocalDateTime.of(selectedDate, times);
 		
 		for (int x = 0; x<=54; x++) {
-			long plusMinutes = 10;
 			availableTimes.add(addTime);
-			addTime.plusMinutes(plusMinutes);
-			System.out.println(addTime.toString());
+			addTime = addTime.plusMinutes(10);
 		}
 		
 		return availableTimes;

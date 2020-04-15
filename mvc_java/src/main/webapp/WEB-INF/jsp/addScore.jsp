@@ -2,6 +2,16 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
+
+<style>
+
+#leagueTrue {
+	display: none;
+}
+
+</style>
+
+
 <script type="text/JavaScript">
 	function isInLeague() {
 		var leagueBool = document.getElementById('leagueBool');
