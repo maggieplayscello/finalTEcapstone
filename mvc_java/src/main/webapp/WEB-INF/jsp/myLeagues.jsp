@@ -50,7 +50,13 @@
 		} else {
 			document.getElementById('addPlayersForm').style.display = 'none';
 		}
-	}	
+	}
+	
+	function showSelectedLeague() {
+		var selectedLeague = document.getElementById('radioLeague');
+		var leagueName = selectedLeague;
+	}
+	
 </script>
 
 
@@ -67,7 +73,7 @@
 <div class="sidenav">
 	<h1 class = "header_title">View My Leagues</h1>
 		<c:forEach items="${allLeagues}" var="league">				
-			<input type="radio" id="league" name="league" value="league">
+			<input type="radio" id="radioLeague" name="league" value="league" onchange="showSelectedLeague()">
 			<label for="league">${league.name}</label><br>
 		</c:forEach>
 	<br>
@@ -129,7 +135,7 @@
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<br>
 					<div class="form-group">
-						<label for="leagueName">League Name:</label> 
+						<label for="leagueName">${league.name}</label> 
 						<input name="leagueName" placeHolder="League Name"/>
 					</div>
 				<div class="form-group">
