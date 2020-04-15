@@ -4,7 +4,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<script src="https://maps.googleapis.com/maps/api/js?key=${request}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU2WLjSJwad6UxAVzMZP9GGfuNRjqmF-4"></script>
 <script>
 
 var map;

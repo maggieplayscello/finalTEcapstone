@@ -77,23 +77,13 @@ public class MyLeaguesController {
 		return "redirect:/users/{currentUser}/myLeagues";
 	}
 	
-//	I think this is now obsolete bc of below method but I don't want to delete it yet -maggie
-//	@RequestMapping(path = "/users/{currentUser}/addPlayers", method = RequestMethod.POST)
-//	public String processAddPlayersToNewLeague(@PathVariable("currentUser") String currentUser, 
-//			@RequestParam List<String> users) {
-//		for (int x = 0; x < users.size(); x++) {
-//			leagueDao.addUserToLeague(users.get(x), "Bushwood");
-//		}
-//		return "redirect:/users{currentUser}/myLeagues";
-//	}
-	
 	@RequestMapping(path = "/users/{currentUser}/addPlayers", method = RequestMethod.POST)
 	public String processAddPlayersToLeague(@PathVariable("currentUser") String currentUser, 
-			@RequestParam List<String> users, @RequestParam String leagueName) {
+			@RequestParam List<String> users, @RequestParam(required = false) String leagueNames) {
 		for (int x = 0; x < users.size(); x++) {
-			leagueDao.addUserToLeague(users.get(x), leagueName);
+			leagueDao.addUserToLeague(users.get(x), leagueNames);
 		}
-		return "redirect:/users{currentUser}/myLeagues";
+		return "redirect:/users/{currentUser}/myLeagues";
 	}
 	
 	@RequestMapping(path = "/users/{currentUser}/addMatch", method = RequestMethod.POST)
