@@ -26,7 +26,7 @@ function initialize() {
    	});
 
     </c:forEach>
-}
+};
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
@@ -35,12 +35,13 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <title>Course Search</title>
 <body>
 	<div id="wrapper">
-	<h1>Search for Courses</h1>
 	
 <!-- Search Form -->
 	<div id="courseSearchForm">	
 		<c:url value='/courseSearchResults' var='courseSearchVar' />
 		<div id="courseSearchFields">
+			<h1>Search for Courses</h1>
+			<br><br>
 			<form method="GET" action="${courseSearchVar}">
 				<div class="form-group">
 					<label for="name">Course Name:</label> 

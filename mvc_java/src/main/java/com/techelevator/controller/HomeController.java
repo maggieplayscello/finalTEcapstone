@@ -38,6 +38,7 @@ public class HomeController {
 		return "home";
 	}
 
+
 	
 	@RequestMapping(path= {"/courseSearch", "/users/{currentUser}/courseSearch"}, method=RequestMethod.GET)
 	public String displayCourse(@PathVariable(required = false) String currentUser, HttpServletRequest request, ModelMap map) {
