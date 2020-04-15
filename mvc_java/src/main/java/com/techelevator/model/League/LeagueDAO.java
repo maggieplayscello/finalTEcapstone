@@ -10,5 +10,9 @@ public interface LeagueDAO {
 	public void saveLeague(League league);
 
 	List<League> getAllLeaguesByUserId(int id);
+
+	int getLeagueIdByLeagueName(String name);
+
+	void addUserToLeague(String user, String leagueName);
 	
 }

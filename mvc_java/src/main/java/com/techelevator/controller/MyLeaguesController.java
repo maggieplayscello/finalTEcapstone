@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techelevator.model.Course.Course;
 import com.techelevator.model.Course.courseDAO;
@@ -38,6 +39,20 @@ public class MyLeaguesController {
 		List<User> user = userDao.getAllUsers();
 		map.put("allUsers", user);
 		return "myLeagues";
+	}
+	
+	@RequestMapping(path= "/users/{currentUser}/addLeague", method = RequestMethod.POST)
+	public String processAddLeagueForm(@PathVariable("currentUser") String currentUser, 
+			@RequestParam String name, @RequestParam List<String> users) {
+		League myLeague = new League();
+		myLeague.setName(name);
+		myLeague.setOwner(currentUser);
+		leagueDao.saveLeague(myLeague);
+		for (int x = 0; x < users.size(); x++) {
+			leagueDao.addUserToLeague(users.get(x), name);
+		}
+		return "redirect:/users/{currentUser}/myLeagues";
+		
 	}
 	
 //	@RequestMapping (path = "/users/{currentUser}/myLeagues", method = RequestMethod.POST)

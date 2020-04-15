@@ -79,6 +79,7 @@
 		<button type="button" class="btn btn-primary" id="addLeagueBtn" onclick="addLeague()">+ Create a League</button>
 			<div id="addLeagueForm" >
 			<br>
+			<c:url var = "addLeagueUrl" value = "/users/${currentUser}/addLeague"/>
 			<form method="POST" action="${addLeagueUrl}">
 
 				<div class="form-group">
@@ -94,7 +95,7 @@
 						</c:forEach>
 					</select>
 				</div>
-				<button type="submit" class="btn btn-primary" id="btnSaveLeague">Submit</button>
+				<button type="submit" class="btn btn-primary" name = "addUsers" id="btnSaveLeague">Submit</button>
 			</form>
 			</div>
 		<br><br>
