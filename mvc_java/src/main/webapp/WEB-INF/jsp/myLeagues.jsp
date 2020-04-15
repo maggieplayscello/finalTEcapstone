@@ -137,7 +137,10 @@
 	<c:if test = "${role == 'Admin'}">
 		<button type="button" class="btn btn-primary" id="addPlayersBtn" onclick="addPlayers()">+ Add Players to this League</button>
 			<div id="addPlayersForm" >
-			<form method = "POST" action = "/capstone/users/${currentUser}/addPlayers">
+			<c:url var = "addPlayersUrl" value = "/users/${currentUser}/addPlayers">
+			<c:param name = "leagueNames" value = "Bushwood"/>
+			</c:url>
+			<form method = "POST" action = "${addPlayersUrl}">
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<br>
 					<input type="hidden" name="leagueName">${leagueName}

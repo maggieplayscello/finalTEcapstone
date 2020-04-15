@@ -54,6 +54,10 @@ public class DashboardController {
 	public String displayDashboard(@PathVariable("currentUser") String currentUser, ModelMap map) {
 		List<League> league = leagueDao.getAllLeaguesByUserId(userDao.getIdByUserName(currentUser));
 		List<Team> team = teamDao.getTeamsByUserId(userDao.getIdByUserName(currentUser));
+		for(int x = 0; x < team.size(); x++) {
+			int ranking = teamDao.getRankingByUserIdAndLeagueId(team.get(x).getLeagueId(), userDao.getIdByUserName(currentUser));
+			team.get(x).setRanking(ranking);
+		}
 		List <Score> scores = scoreDao.getAllScoresByUserId(userDao.getIdByUserName(currentUser));
 		for(int x = 0; x < scores.size(); x++) {
 			String courseName = courseDao.getCourseNameByCourseId(scores.get(x).getCourseId());

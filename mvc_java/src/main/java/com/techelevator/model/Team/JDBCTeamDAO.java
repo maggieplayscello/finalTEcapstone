@@ -99,15 +99,17 @@ public class JDBCTeamDAO implements TeamDAO {
 	@Override
 	public int getRankingByUserIdAndLeagueId(int leagueId, int userId) {
 		int ranking = 0;
+		System.out.println(userId);
 		List <Integer> rankedTeams = new ArrayList<>();
 		String sqlGetRanking = "SELECT * FROM teams JOIN golfer_team ON teams.teamid = golfer_team.teamid WHERE points >= 0 AND leagueid = ? ORDER BY points DESC";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetRanking, leagueId);
 		while (results.next()) {
-			rankedTeams.add(results.getInt("userId"));
+			rankedTeams.add(results.getInt("id"));
 		}
-		for(int i = 1; i < rankedTeams.size(); i++) {
-			if (rankedTeams.contains(userId)) {
+		for(int i = 1, x = 0; i < rankedTeams.size() + 1; i++, x++) {
+			if (rankedTeams.get(x) == (userId)) {
 				ranking = i;
+				System.out.println(ranking);
 			}
 		}
 		return ranking;
