@@ -86,7 +86,8 @@ public class JDBCLeagueDAO implements LeagueDAO {
 	@Override
 	public void saveLeague(League league) {
 		String sqlAddLeague = "INSERT INTO league (leaguename, leagueowner) VALUES (?, ?)";
-		jdbcTemplate.update(sqlAddLeague, league.getName(), league.getOwner());	
+		int leagueid = userDao.getIdByUserName(league.getOwner());
+		jdbcTemplate.update(sqlAddLeague, league.getName(), leagueid);	
 		
 	}
 	
