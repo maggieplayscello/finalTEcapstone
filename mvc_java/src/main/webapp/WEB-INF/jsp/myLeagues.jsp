@@ -72,14 +72,19 @@
 
 <div class="sidenav">
 	<h1 class = "header_title">View My Leagues</h1>
-		<c:forEach items="${allLeagues}" var="league">				
-			<input type="radio" id="radioLeague" name="league" value="league" onclick="showSelectedLeague()">
-			<label for="league">${league.name}</label><br>
+		<c:forEach items="${allLeagues}" var="league">
+			<c:url var = "myName" value = "/users/${currentUser}/myLeagues">
+				<c:param name = "leagueName" value = "${league.name}"/>
+			</c:url>				
+			<input type="radio" id="radioLeague" name="league" value="${league.name}">
+			<a href = "${myName}"><label for="league">${league.name}</label></a><br>
 		</c:forEach>
 	<br>
 	
 	<!-- Create League Form -->
-		
+	<c:if test = "${not empty leagueName}">
+	<h1>${leagueName}</h1>
+	</c:if>
 	<c:if test = "${role == 'Admin'}">
 
 		<a href = "/capstone/users/${currentUser}/addLeague"><button type="button" class="btn btn-primary" id="addLeagueBtn">Create a League</button></a>
@@ -165,37 +170,16 @@
 				<th align="left">Point Total</th>
 				<th align="left">Average Score</th>
 			</tr>
-		
-			<tr>
-				<td>1</td>
-				<td>Team 1</td>	
-				<td>18</td>
-				<td>70</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>Team 2</td>	
-				<td>16</td>
-				<td>71</td>
-			</tr>
-			<tr>
-				<td>3</td>			
-				<td>Team 3</td>	
-				<td>13</td>
-				<td>73</td>
-			</tr>
-			<tr>
-				<td>4</td>			
-				<td>Team 4</td>	
-				<td>11</td>
-				<td>75</td>
-			</tr>
-			<tr>
-				<td>5</td>			
-				<td>Team 5</td>	
-				<td>4</td>
-				<td>112</td>
-			</tr>
+			<c:if test = "${not empty teams}">
+				<c:forEach items = "${teams}" var = "team">
+					<tr>
+						<td>Ranking</td>
+						<td>${team.name}</td>
+						<td>${team.points}</td>
+						<td>Average Score</td>
+					</tr>
+				</c:forEach>
+			</c:if>
 		</table>
       </div>	
 

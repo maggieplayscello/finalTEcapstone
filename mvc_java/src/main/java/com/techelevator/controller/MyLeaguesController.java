@@ -17,6 +17,8 @@ import com.techelevator.model.Course.Course;
 import com.techelevator.model.Course.courseDAO;
 import com.techelevator.model.League.League;
 import com.techelevator.model.League.LeagueDAO;
+import com.techelevator.model.Team.Team;
+import com.techelevator.model.Team.TeamDAO;
 import com.techelevator.model.TeeTime.TeeTime;
 import com.techelevator.model.TeeTime.TeeTimeDAO;
 import com.techelevator.model.User.User;
@@ -37,9 +39,15 @@ public class MyLeaguesController {
 	@Autowired
 	private TeeTimeDAO teeTimeDao;
 	
+	@Autowired
+	private TeamDAO teamDao;
 	
 	@RequestMapping(path="/users/{currentUser}/myLeagues", method=RequestMethod.GET)
-	public String loadMyLeaguesPage(@PathVariable("currentUser") String currentUser, ModelMap map){
+	public String loadMyLeaguesPage(@PathVariable("currentUser") String currentUser, 
+			@RequestParam(required = false) String leagueName, ModelMap map){
+		List<Team> teams = teamDao.getTeamsByLeagueId(leagueDao.getLeagueIdByLeagueName(leagueName));
+		map.put("leagueName", leagueName);
+		map.put("teams", teams);
 		List<Course> course = courseDao.getAllCourses();
 		map.put("allCourses", course);
 		List<League> league = leagueDao.getAllLeaguesByUserId(userDao.getIdByUserName(currentUser));
@@ -73,12 +81,10 @@ public class MyLeaguesController {
 	@RequestMapping(path = "/users/{currentUser}/addPlayers", method = RequestMethod.POST)
 	public String processAddPlayersToLeague(@PathVariable("currentUser") String currentUser, 
 			@RequestParam List<String> users) {
-		System.out.println("Got into here");
 		for (int x = 0; x < users.size(); x++) {
 			leagueDao.addUserToLeague(users.get(x), "Bushwood");
 		}
 		return "redirect:/users{currentUser}/myLeagues";
-		
 	}
 	
 	@RequestMapping(path = "/users/{currentUser}/addMatch", method = RequestMethod.POST)
@@ -97,7 +103,7 @@ public class MyLeaguesController {
 		newTeeTime.setLeagueId(leagueId);
 		newTeeTime.setNumGolfers(numGolfers);
 		newTeeTime.setCourseId(courseId);
-		teeTimeDao.saveTeeTime(newTeeTime, playerId);				
+		teeTimeDao.saveTeeTime(newTeeTime, playerId);		
 	}
 		return "redirect:/users/{currentUser}/myLeagues";
 	}
