@@ -320,12 +320,23 @@ table td {
 	padding: 20px 30px 20px 30px; 	
 }
 
+.sidenav li {
+	list-style: none;
+}
+
+.sidenav li a {
+	color: #536B4E;
+	text-decoration: none;
+	border-bottom: 1px solid rgb(83,107,78);
+}
+
+
 .recentScores {
 	grid-area: 1 / 2 / 3 / 4;
 	background-color: #F1F7ED;
 	box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
 	padding: 20px 30px 20px 30px;
-	color:#363b41;
+	color: #363b41;
 }
 
 .matches {
