@@ -180,10 +180,8 @@ private JdbcTemplate jdbcTemplate;
 	@Override
 	public List<LocalDateTime> getTeeTimesByCourse(int courseId, String date) {
 		LocalDate selectedDate = getDateFromString(date);
-		
 		List<LocalTime> bookedTimes = getBookedTimesByCourse(courseId, selectedDate);
 		LocalDate today = LocalDate.now();
-		
 		LocalDateTime firstBooking = LocalDateTime.of(selectedDate, LocalTime.of(8, 0));
 		
 		List <LocalDateTime> availableTimes = new ArrayList<>();
@@ -226,7 +224,6 @@ private JdbcTemplate jdbcTemplate;
 		while (results.next()) {
 			getBookings.add(mapRowToTeeTime(results));
 		}
-		System.out.println(getBookings.size());
 		for (int x = 0; x<getBookings.size();x++) {
 			LocalDate dateSort = getBookings.get(x).getTime().toLocalDate();
 			LocalTime timeSort = getBookings.get(x).getTime().toLocalTime();
