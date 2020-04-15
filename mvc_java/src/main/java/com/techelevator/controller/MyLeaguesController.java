@@ -75,14 +75,23 @@ public class MyLeaguesController {
 			leagueDao.addUserToLeague(users.get(x), name);
 		}
 		return "redirect:/users/{currentUser}/myLeagues";
-		
 	}
+	
+//	I think this is now obsolete bc of below method but I don't want to delete it yet -maggie
+//	@RequestMapping(path = "/users/{currentUser}/addPlayers", method = RequestMethod.POST)
+//	public String processAddPlayersToNewLeague(@PathVariable("currentUser") String currentUser, 
+//			@RequestParam List<String> users) {
+//		for (int x = 0; x < users.size(); x++) {
+//			leagueDao.addUserToLeague(users.get(x), "Bushwood");
+//		}
+//		return "redirect:/users{currentUser}/myLeagues";
+//	}
 	
 	@RequestMapping(path = "/users/{currentUser}/addPlayers", method = RequestMethod.POST)
 	public String processAddPlayersToLeague(@PathVariable("currentUser") String currentUser, 
-			@RequestParam List<String> users) {
+			@RequestParam List<String> users, @RequestParam String leagueName) {
 		for (int x = 0; x < users.size(); x++) {
-			leagueDao.addUserToLeague(users.get(x), "Bushwood");
+			leagueDao.addUserToLeague(users.get(x), leagueName);
 		}
 		return "redirect:/users{currentUser}/myLeagues";
 	}
@@ -108,29 +117,7 @@ public class MyLeaguesController {
 		return "redirect:/users/{currentUser}/myLeagues";
 	}
 	
-//	@RequestMapping (path = "/users/{currentUser}/myLeagues", method = RequestMethod.POST)
-//	public String createLeague(@RequestParam String name, @RequestParam String user, @PathVariable("currentUser") String currentUser) {
-//		League newLeague = new League();
-//		newLeague.setName(name);
-//		//how do we update this for multiple users or do we need to separate it out
-//		leagueDao.saveLeague(newLeague);
-//		return "redirect:/users/{currentUser}/myLeagues";
-//	}
-//	
-//	@RequestMapping (path = "/users/{currentUser}/myLeagues", method = RequestMethod.POST)
-//	public String createMatch(@RequestParam LocalDate date, @RequestParam int leagueId, 
-//			@RequestParam int numGolfers, @RequestParam int courseId, 			
-//			@PathVariable("currentUser") String currentUser) {
-//		TeeTime newTeeTime = new TeeTime();
-//		newTeeTime.setTime(date);
-//		newTeeTime.setLeagueId(leagueId);
-//		newTeeTime.setNumGolfers(numGolfers);
-//		newTeeTime.setCourseId(courseId);
-//		
-//		teeTimeDao.saveTeeTime(newTeeTime);
-//		return "redirect:/users/{currentUser}/myLeagues";
-//	}
-	
+
 	
 	
 	}

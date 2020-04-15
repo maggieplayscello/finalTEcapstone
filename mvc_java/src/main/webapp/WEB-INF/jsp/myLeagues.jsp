@@ -75,17 +75,16 @@
 		<c:forEach items="${allLeagues}" var="league">
 			<c:url var = "myName" value = "/users/${currentUser}/myLeagues">
 				<c:param name = "leagueName" value = "${league.name}"/>
-			</c:url>				
-			<input type="radio" id="radioLeague" name="league" value="${league.name}">
-			<a href = "${myName}"><label for="league">${league.name}</label></a><br>
+			</c:url>
+			<h3>				
+				<a href = "${myName}"><label for="league">${league.name}</label></a><br>
+			</h3>
 		</c:forEach>
-	<br>
+		<br>
 	
 	<!-- Create League Form -->
-	<c:if test = "${not empty leagueName}">
-	<h1>${leagueName}</h1>
-	</c:if>
-	<c:if test = "${role == 'Admin'}">
+
+		<c:if test = "${role == 'Admin'}">
 
 		<a href = "/capstone/users/${currentUser}/addLeague"><button type="button" class="btn btn-primary" id="addLeagueBtn">Create a League</button></a>
 		<br><br>
@@ -130,9 +129,9 @@
 <!-- League Leaderboard -->
 	
 <div class="recentScores">
-	<h1 class = "header_title">League Leaderboard</h1>
+	<h1 class = "header_title">${leagueName} Leaderboard</h1>
 	<div id="selectedLeague"></div>
-	<c:out value="${selectedleague}" />
+
 	<!-- Add Players to League Form -->
 
 	<c:if test = "${role == 'Admin'}">
@@ -141,14 +140,11 @@
 			<form method = "POST" action = "/capstone/users/${currentUser}/addPlayers">
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<br>
-					<div class="form-group">
-						<label for="leagueName">${league.name}</label> 
-						<input name="leagueName" placeHolder="League Name"/>
-					</div>
+					<input type="hidden" name="leagueName">${leagueName}
 				<div class="form-group">
 					<label for="users">Add Members: </label> 
 					<p>Press control or command to select multiple users.</p>
-					<select name="player" multiple>
+					<select name="users" multiple>
 						<c:forEach items="${allUsers}" var="user">
 							<option value="${user.userName}">${user.userName}</option>			
 						</c:forEach>
