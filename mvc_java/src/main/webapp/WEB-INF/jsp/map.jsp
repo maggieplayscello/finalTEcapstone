@@ -35,8 +35,7 @@ function initialize() {
 
     </c:forEach>
     
-
-}
+};
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 

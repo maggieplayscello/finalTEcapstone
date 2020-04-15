@@ -1,4 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
@@ -21,7 +23,7 @@ function initialize() {
 			var image = {
 				url: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Map_symbol_golf_course_02.png',
 				scaledSize: new google.maps.Size(30,30)
-		};
+		};	
     	var marker = new google.maps.Marker({
     		position: myLatLng,
     		map: map,
@@ -30,6 +32,8 @@ function initialize() {
    	});
 
     </c:forEach>
+    
+    
 };
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
@@ -39,10 +43,12 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <title>Course Search</title>
 <body>
 	<div id="wrapper">
-	
+		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 <!-- Search Form -->
 	<div id="courseSearchForm">	
-		<c:url value='/courseSearchResults' var='courseSearchVar' />
+		<c:url value='/courseSearchResults' var='courseSearchVar'>
+		<c:param name='request' value="${request}"/>
+		</c:url>
 		<c:if test = "${not empty currentUser}">
 			<c:url value = '/users/${currentUser}/courseSearchResults' var = "courseSearchVar"/>
 		</c:if>
