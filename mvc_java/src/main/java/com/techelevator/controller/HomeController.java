@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,12 @@ public class HomeController {
 	}
 
 	
-	@RequestMapping(path= {"/courseSearch", "/users/{currentUser}/courseSearch"})
-	public String displayCourse(@PathVariable(required = false) String currentUser, ModelMap map) {
+	@RequestMapping(path= {"/courseSearch", "/users/{currentUser}/courseSearch"}, method=RequestMethod.GET)
+	public String displayCourse(@PathVariable(required = false) String currentUser, HttpServletRequest request, ModelMap map) {
 		List<Course> course = courseDao.getAllCourses();
 		map.put("allCourses", course);
+	    String apiKey = "AIzaSyAU2WLjSJwad6UxAVzMZP9GGfuNRjqmF-4";
+	    map.addAttribute("request", apiKey);
 		return "courseSearch";
 	}
 	
