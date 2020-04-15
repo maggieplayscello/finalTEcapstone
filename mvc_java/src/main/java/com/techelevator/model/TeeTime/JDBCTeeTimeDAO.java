@@ -147,11 +147,13 @@ private JdbcTemplate jdbcTemplate;
 //		firstBooking.plusMinutes(minutesToAdd);
 		
 //		availableTimes.add(firstBooking);
+		LocalDateTime addTime = LocalDateTime.of(selectedDate, times);
 		
 		for (int x = 0; x<=54; x++) {
-			LocalDateTime addTime = LocalDateTime.of(selectedDate, times);
+			long plusMinutes = 10;
 			availableTimes.add(addTime);
-			addTime.plusMinutes(10);
+			addTime.plusMinutes(plusMinutes);
+			System.out.println(addTime.toString());
 		}
 		
 		return availableTimes;
