@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -93,7 +95,7 @@ public class MyLeaguesController {
 	
 	@RequestMapping(path = "/users/{currentUser}/addMatch", method = RequestMethod.POST)
 	public String processAddMatchForm(@PathVariable("currentUser") String currentUser, 
-			@RequestParam int leagueId, @RequestParam String courseName, @RequestParam String date, @RequestParam int numGolfers) {
+			@RequestParam int leagueId, @RequestParam String courseName, @RequestParam String date, @RequestParam int numGolfers, HttpSession session) {
 		TeeTime newTeeTime = new TeeTime();
 		int courseId = courseDao.getCourseIdByCourseName(courseName);
 		int playerId = userDao.getIdByUserName(currentUser);
@@ -109,10 +111,18 @@ public class MyLeaguesController {
 		newTeeTime.setCourseId(courseId);
 		teeTimeDao.saveTeeTime(newTeeTime, playerId);		
 	}
-		return "redirect:/users/{currentUser}/myLeagues";
+		List <Team> teamsInLeague = teamDao.getTeamsByLeagueId(leagueId);
+		
+		session.setAttribute("teamsInLeague", teamsInLeague);
+		return "redirect:/users/{currentUser}/addNewMatch";
 	}
 	
-
+	@RequestMapping(path = "/users/{currentUser}/addNewMatch", method = RequestMethod.GET)
+	public String processAddNewMatch(@PathVariable("currentUser") String currentUser, HttpSession session) {
+		session.getAttribute("teamsInLeague");
+		
+		return "addNewMatch";
+	}
 	
 	
 	}

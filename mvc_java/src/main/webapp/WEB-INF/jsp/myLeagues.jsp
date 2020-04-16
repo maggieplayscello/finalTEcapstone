@@ -137,10 +137,8 @@
 					<label for="date">Date: </label>
 					<input name="date" placeHolder="Date (mm/dd/yyyy)"/>
 				</div>
-					<div class="form-group">
-						<label for="numGolfers">Number of Golfers:</label> 
-						<input name="numGolfers" placeHolder="Number"/>
-					</div>	
+				
+				<input type="hidden" id="numGolfers" name="numGolfers" value="4">		
 				<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
 				</form>
 			</div>				
