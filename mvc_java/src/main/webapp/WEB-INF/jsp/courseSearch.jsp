@@ -37,7 +37,7 @@ function initialize() {
 };
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-
+<input type="hidden" name="request" value="${request}"/>
 
 <html>
 <title>Course Search</title>
