@@ -296,7 +296,6 @@ public class DashboardController {
 		LocalDate now = LocalDate.now();
 		String buildDate = "";
 		buildDate = buildDate + date.substring(6, 10) + "-" + date.substring(0, 2) + "-" + date.substring(3, 5);
-		System.out.println(buildDate);
 		LocalDate aDate = LocalDate.parse(buildDate);
 		
 		if(aDate.isBefore(now)) {
