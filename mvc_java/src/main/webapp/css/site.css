@@ -182,7 +182,6 @@ button {
 	margin: auto;
 	height: 100%; 
 	width: 100%;
-	table-layout: auto;
 }
 
 #courseTable {
@@ -434,6 +433,7 @@ input[type=number]::-webkit-outer-spin-button {
 	background-color: white;
 	color: #B8C3A3;
 }
+
 
 
 /*   Footer   */
