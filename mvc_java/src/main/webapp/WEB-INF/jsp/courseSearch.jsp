@@ -68,30 +68,40 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					<div class="col-md-12 bs-linebreak"></div>
 				</div>
 			<button type="submit" class="btn btn-primary pull-right">Search</button>	
-		</form>
-		<br><br>
-		<c:if test = "${role == 'Admin'}">
-			<button type="submit" class="btn btn-secondary pull-right">
-				<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
-				<a href="${addCourseHref}">+ Add a new Course</a>
-			</button>
-		</c:if>
-	</div>
+			</form>
+			<br><br>
+			<c:if test = "${role == 'Admin'}">
+				<button type="submit" class="btn btn-primary pull-right">
+					<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
+					<a href="${addCourseHref}">+ Add a new Course</a>
+				</button>
+			</c:if>		
+			<br><br><br><br>
+			<c:if test = "${not empty currentUser}">
+				<c:url var="largeMapHref" value="/users/${currentUser}/map"/>		
+			</c:if>
+			<c:if test="${empty currentUser}">
+				<c:url var="largeMapHref" value="/map"/>
+			</c:if>
+			<div class="pull-right" id="mapLink">
+				<a href="${largeMapHref}">Click here to view an enlarged map</a>
+			</div>
+		</div>
 
 <!-- Course Map -->
 
-	<div id="map-canvas" style="height: 400px; width: 600px"></div>
-		<c:url var="largeMapHref" value="/users/map"/>
-	<a href="${largeMapHref}">Click here to view an enlarged map</a>
-</div>
-<br><br>
+		<div id="map-canvas" style="height: 400px; width: 600px"></div>
+	</div>
+	<br><br>
 
 <!-- Course Table -->
 
 		<table id="courseTable">
 			<tr>
 				<th align="left">Name</th>
-				<th align="left">Location</th>
+				<th align="left">Address</th>
+				<th align="left">City</th>
+				<th align="left">State</th>
 				<th align="left">Par</th>
 				<th align="left">Slope</th>
 				<th align="left">Rating</th> 
@@ -99,7 +109,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		<c:forEach items="${allCourses}" var="course">
 			<tr>
 				<td><c:out value="${course.name}" /></td>
+				<td><c:out value="${course.address}" /></td>
 				<td><c:out value="${course.city}" /></td>
+				<td><c:out value="${course.state}" /></td>
 				<td><c:out value="${course.par}" /></td>
 				<td><c:out value="${course.slope}" /></td>
 				<td><c:out value="${course.rating}" /></td>

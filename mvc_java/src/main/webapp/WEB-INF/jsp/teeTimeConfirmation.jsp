@@ -11,7 +11,21 @@
 </head>
 <body>
 	<div id="wrapper">
-You have successfully added a Tee Time!
+		<div class="textblock">
+			<br>
+			<p><em>You have successfully added a Tee Time!</em></p>
+			<button type="submit" class="btn btn-primary">
+				<c:url var="dashboardHref" value="/users/${currentUser}/dashboard"/>
+				<a href="${dashboardHref}">Back to My Dashboard</a>
+			</button>
+			<button type="submit" class="btn btn-primary">
+				<c:url var="myLeaguesHref" value="/users/${currentUser}/myLeagues"/>
+				<a href="${myLeaguesHref}">Go to My Leagues</a>
+			</button>
+			<br>
+		</div>
+		<c:url var="imgSrc" value="/img/treetops_Michael_Hiller.jpg" /> 
+		<img src="${imgSrc}" class="homeImg"/>
 	</div>
 </body>
 </html>
