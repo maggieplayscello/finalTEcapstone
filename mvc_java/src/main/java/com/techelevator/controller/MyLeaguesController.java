@@ -52,6 +52,8 @@ public class MyLeaguesController {
 		map.put("allCourses", course);
 		List<League> league = leagueDao.getAllLeaguesByUserId(userDao.getIdByUserName(currentUser));
 		map.put("allLeagues", league);
+		List<League> ownedLeagues = leagueDao.getAllLeaguesByOwner(userDao.getIdByUserName(currentUser));
+		map.put("ownedLeagues", ownedLeagues);
 		List<User> user = userDao.getAllUsers();
 		map.put("allUsers", user);
 		return "myLeagues";

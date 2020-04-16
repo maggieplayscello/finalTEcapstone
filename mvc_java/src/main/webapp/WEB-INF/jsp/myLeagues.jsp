@@ -120,7 +120,7 @@
 				<div class="form-group">
 					<label for="leagueId">League: </label> 
 					<select name=leagueId>
-						<c:forEach items="${allLeagues}" var="league">
+						<c:forEach items="${ownedLeagues}" var="league">
 							<option value="${league.leagueId}">${league.name}</option>
 						</c:forEach>
 					</select>

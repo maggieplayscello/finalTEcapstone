@@ -15,4 +15,6 @@ public interface LeagueDAO {
 
 	void addUserToLeague(String user, String leagueName);
 	
+	List<League> getAllLeaguesByOwner(int id);
+	
 }
