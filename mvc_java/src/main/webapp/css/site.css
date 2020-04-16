@@ -182,7 +182,6 @@ button {
 	margin: auto;
 	height: 100%; 
 	width: 100%;
-	table-layout: auto;
 }
 
 #courseTable {
