@@ -84,7 +84,6 @@
 	
 	<!-- Create League Form -->
 
-		<c:if test = "${role == 'Admin'}">
 
 	<button type="button" class="btn btn-primary" id="addLeagueBtn" onclick="addLeague()">+ Create a League</button>
 		<div id="addLeagueForm" >
@@ -111,6 +110,7 @@
 		<br><br>
 		
 		<!-- Create Match Form -->
+		<c:if test = "${role == 'Admin' or role == 'League Admin'}">
 		
 		<button type="button" class="btn btn-primary" id="addMatchBtn" onclick="addMatch()">+ Add a Match</button>
 			<div id="addMatchForm" >
@@ -155,7 +155,7 @@
 
 	<!-- Add Players to League Form -->
 
-	<c:if test = "${role == 'Admin'}">
+	<c:if test = "${role == 'Admin' or role == 'League Admin'}">
 		<button type="button" class="btn btn-primary" id="addPlayersBtn" onclick="addPlayers()">+ Add Players to this League</button>
 			<div id="addPlayersForm" >
 			<c:url var = "addPlayersUrl" value = "/users/${currentUser}/addPlayers">
