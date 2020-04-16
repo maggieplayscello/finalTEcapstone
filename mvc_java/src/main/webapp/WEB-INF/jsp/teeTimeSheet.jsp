@@ -4,6 +4,21 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
+<style>
+.dangerDiv {
+	text-align: center;
+	background-color: #113015;
+	color: #B2972C;
+	font-size: 20px;
+  	animation-name: flash;
+  	animation-delay: -2s;
+	animation-duration: 5s;
+	animation-iteration-count: 2;
+	margin-top: 10px;
+}
+</style>
+
+<html>
 <title>Schedule a Tee Time</title>
 </head>
 
@@ -12,7 +27,6 @@
 	<div class="row">
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">	
-	<h3>Pick a tee time from the available list below</h3>
 	
 	<c:url var = "submitTeeTime" value = "/users/${currentUser}/teeTimeSheet"/>
 	<form method="POST" action="${submitTeeTime}">
@@ -21,10 +35,14 @@
 	<c:set var ="message" value = ""/>
 	<c:forEach items ="${bookings}" var= "dates">
 		<c:if test = "${dates == date}">
-			<c:set var="message" value = "You already have a Tee Time This Day"/>
+			<c:set var="message" value = "You already have a tee time this day."/>
 		</c:if>
 	</c:forEach>
-		<h3><b><c:out value = "${message}"/></b></h3>
+	<div class="dangerDiv">
+		<c:out value = "${message}"/>
+	</div>
+	
+	<h3>Choose a tee time below: </h3>
 		<div class="form-group">
 			<label for="times">Available Times: </label> 
 			<select name="times">
@@ -35,6 +53,7 @@
 				</c:forEach>
 			</select>
 		</div>
+		
 		<div class="form-group">
 			<label for="golfers">How Many Golfers in your Party?</label> 
 				<select name="golfers">
@@ -44,6 +63,7 @@
 					<option value="4">4</option>			
 				</select>
 		</div>
+		
 		<input type="hidden" id="course" name="course" value="${course}">
 		<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
 	</div>
