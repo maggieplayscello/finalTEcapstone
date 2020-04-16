@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.techelevator.model.Course.Course;
-import com.techelevator.model.Course.courseDAO;
+import com.techelevator.model.Course.CourseDAO;
 
 @Controller
 public class APIMapController {
 
 
 @Autowired
-private courseDAO courseDao;
+private CourseDAO courseDao;
 
 @RequestMapping (path= "/users/map", method=RequestMethod.GET)
 public String testAPI(HttpServletRequest request, ModelMap map) {

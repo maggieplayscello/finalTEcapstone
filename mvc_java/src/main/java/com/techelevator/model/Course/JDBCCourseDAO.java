@@ -13,7 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Component
-public class JDBCCourseDAO implements courseDAO {
+public class JDBCCourseDAO implements CourseDAO {
 	
 	private JdbcTemplate jdbcTemplate;
 	

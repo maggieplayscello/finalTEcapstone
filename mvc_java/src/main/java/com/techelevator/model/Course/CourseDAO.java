@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.ui.ModelMap;
 
-public interface courseDAO {
+public interface CourseDAO {
 
 	public List<Course> getAllCourses();
 	

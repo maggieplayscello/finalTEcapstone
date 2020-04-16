@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.Course.Course;
-import com.techelevator.model.Course.courseDAO;
+import com.techelevator.model.Course.CourseDAO;
 
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	private courseDAO courseDao;
+	private CourseDAO courseDao;
 	
 	@RequestMapping(path="/")
 	public String displayHomePage() {

@@ -15,7 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.model.Course.courseDAO;
+import com.techelevator.model.Course.CourseDAO;
 
 @Component
 public class JDBCTeeTimeDAO implements TeeTimeDAO {
@@ -28,7 +28,7 @@ private JdbcTemplate jdbcTemplate;
 	}
 	
 	@Autowired
-	private courseDAO courseDao;
+	private CourseDAO courseDao;
 
 	@Override
 	public void saveTeeTime(TeeTime teeTime, int playerId) {

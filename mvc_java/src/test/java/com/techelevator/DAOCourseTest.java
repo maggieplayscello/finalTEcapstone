@@ -102,7 +102,7 @@ public class DAOCourseTest {
 		Course expectedCourse = new Course(COURSE_NAME, COURSE_PAR, COURSE_SLOPE, COURSE_RATING, COURSE_ADDRESS, COURSE_CITY, COURSE_STATE, COURSE_ZIP);
 		expected.add(expectedCourse);
 		ModelMap map = null;
-		List <Course> actual = coursedao.searchCourses(COURSE_NAME, COURSE_CITY, map);
+		List <Course> actual = coursedao.searchCourses(COURSE_NAME, COURSE_CITY);
 		assertCoursesEqual(expected.get(0), actual.get(0)); //method that takes value of both courses and asserts they are all equal
 	}
 	

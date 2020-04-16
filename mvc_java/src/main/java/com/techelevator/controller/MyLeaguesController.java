@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techelevator.model.Course.Course;
-import com.techelevator.model.Course.courseDAO;
+import com.techelevator.model.Course.CourseDAO;
 import com.techelevator.model.League.League;
 import com.techelevator.model.League.LeagueDAO;
 import com.techelevator.model.Team.Team;
@@ -31,7 +31,7 @@ public class MyLeaguesController {
 	private UserDAO userDao;
 	
 	@Autowired
-	private courseDAO courseDao;
+	private CourseDAO courseDao;
 	
 	@Autowired
 	private LeagueDAO leagueDao;
