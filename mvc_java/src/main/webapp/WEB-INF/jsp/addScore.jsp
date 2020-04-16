@@ -21,7 +21,20 @@
 		} else {
 			document.getElementById('leagueTrue').style.display = 'none';
 		}
-	}
+	};
+	
+	function validate(){  
+		console.log("validating....");
+		var num = document.myform.score.value;  
+		if (isNaN(score)){  
+		  document.getElementById("numloc").innerHTML="Enter Numeric value only"; 
+		  console.log("is not number");
+		  return false;  
+		}else{  
+		console.log("is number");
+		  return true;  
+		  }  
+		};
 </script>
 
 
@@ -36,7 +49,7 @@
 	<h3>Add a Score</h3>
 	<c:url var = "newScoreSubmitVar" value = "/users/${currentUser}/addScore"/>
 
-	<form method="POST" action="${newScoreSubmitVar}">
+	<form name = 'myform' method="POST" action="${newScoreSubmitVar}" onsubmit = "return validate()">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 
 			<div class="form-group">
@@ -50,7 +63,7 @@
 
 			<div class="form-group">
 				<label for="score">Score:</label> 
-				<input name="score" placeHolder="Score"/>
+				<input name="score" placeHolder="Score"/><span id="numloc"></span>
 			</div>
 			
 			<div class = "form-group">

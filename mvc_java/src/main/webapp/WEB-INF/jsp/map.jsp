@@ -48,10 +48,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </head>
 </head>
 <body>
-<a class="weatherwidget-io" href="https://forecast7.com/en/42d33n83d05/detroit/?unit=us" data-label_1="DETROIT" data-label_2="WEATHER" data-icons="Climacons Animated" data-days="5" data-theme="weather_one" >DETROIT WEATHER</a>
 
 <div id="wrapper">
   <h1>Golfing in Michigan</h1>
+<a class="weatherwidget-io" href="https://forecast7.com/en/42d33n83d05/detroit/?unit=us" data-label_1="DETROIT" data-label_2="WEATHER" data-icons="Climacons Animated" data-days="5" data-theme="weather_one" >DETROIT WEATHER</a>
   <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
   <div id="map-canvas" style="height: 500px;; width: auto"></div>
 </div>
