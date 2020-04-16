@@ -35,6 +35,19 @@ private JdbcTemplate jdbcTemplate;
 		}
 		return scores;
 	}
+	
+	@Override
+	public List<Integer> getAllScoresByLeagueIdAndUserId(int leagueId, int userId) {
+		List <Integer> scores = new ArrayList<>();
+		
+		String sqlSelectAllCourses = "SELECT score FROM scores s JOIN tee_time t "
+				+ "ON t.teetimeid = s.teetimeid WHERE t.leagueid = ? AND id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllCourses, leagueId, userId);
+		while (results.next()) {
+			scores.add(results.getInt("score"));
+		}
+		return scores;
+	}
 
 	private Score mapRowToScore(SqlRowSet results) {
 		Score theScore = new Score();

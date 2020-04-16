@@ -59,7 +59,7 @@ public class JDBCTeamDAO implements TeamDAO {
 	@Override
 	public List<Team> getTeamsByLeagueId(int leagueId) {
 		List <Team> teams = new ArrayList<>();
-		String sqlSelectAllTeams = "SELECT * FROM teams WHERE leagueid = ?";
+		String sqlSelectAllTeams = "SELECT * FROM teams WHERE leagueid = ? ORDER BY points DESC";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllTeams, leagueId);
 		while (results.next()) {
 			teams.add(mapRowToTeam(results));

@@ -186,16 +186,16 @@
 				<th align="left">Ranking</th>
 				<th align="left">Name</th>
 				<th align="left">Point Total</th>
-				<th align="left">Average Score</th>
 			</tr>
 			<c:if test = "${not empty teams}">
+				<c:set var = 'count' value = '1'/>
 				<c:forEach items = "${teams}" var = "team">
 					<tr>
-						<td>Ranking</td>
+						<td>${count}</td>
 						<td>${team.name}</td>
 						<td>${team.points}</td>
-						<td>Average Score</td>
 					</tr>
+				<c:set var = 'count' value = '${count + 1}'/>
 				</c:forEach>
 			</c:if>
 		</table>

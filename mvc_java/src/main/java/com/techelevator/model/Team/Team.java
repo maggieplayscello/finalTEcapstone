@@ -6,6 +6,7 @@ public class Team {
 	private int leagueId;
 	private int points;
 	private int ranking;
+	private double averageScore;
 	
 	public Team() {
 	}
@@ -56,6 +57,14 @@ public class Team {
 
 	public void setRanking(int ranking) {
 		this.ranking = ranking;
+	}
+
+	public double getAverageScore() {
+		return averageScore;
+	}
+
+	public void setAverageScore(double averageScore) {
+		this.averageScore = averageScore;
 	}
 	
 }

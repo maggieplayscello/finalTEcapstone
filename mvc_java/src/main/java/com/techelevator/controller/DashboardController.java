@@ -60,6 +60,18 @@ public class DashboardController {
 		for(int x = 0; x < team.size(); x++) {
 			int ranking = teamDao.getRanking(team.get(x).getLeagueId(), userDao.getIdByUserName(currentUser));
 			team.get(x).setRanking(ranking);
+			List<Integer> scoresByLeague = scoreDao.getAllScoresByLeagueIdAndUserId(team.get(x).getLeagueId(), userDao.getIdByUserName(currentUser));
+			double scoreTotal = 0;
+			int count = 0;
+			for (int i = 0; i < scoresByLeague.size(); i++) {
+				count++;
+				scoreTotal = scoreTotal + scoresByLeague.get(i);
+			}
+			double averageScore = scoreTotal / count;
+			if(scoresByLeague.size() == 0) {
+				averageScore = 0;
+			}
+			team.get(x).setAverageScore(averageScore);
 		}
 		List <Score> scores = scoreDao.getAllScoresByUserId(userDao.getIdByUserName(currentUser));
 		for(int x = 0; x < scores.size(); x++) {

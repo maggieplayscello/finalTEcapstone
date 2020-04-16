@@ -19,6 +19,8 @@ import com.techelevator.model.Course.Course;
 import com.techelevator.model.Course.CourseDAO;
 import com.techelevator.model.League.League;
 import com.techelevator.model.League.LeagueDAO;
+import com.techelevator.model.Score.Score;
+import com.techelevator.model.Score.ScoreDAO;
 import com.techelevator.model.Team.Team;
 import com.techelevator.model.Team.TeamDAO;
 import com.techelevator.model.TeeTime.TeeTime;
@@ -39,6 +41,9 @@ public class MyLeaguesController {
 	private LeagueDAO leagueDao;
 	
 	@Autowired
+	private ScoreDAO scoreDao;
+	
+	@Autowired
 	private TeeTimeDAO teeTimeDao;
 	
 	@Autowired
@@ -48,6 +53,7 @@ public class MyLeaguesController {
 	public String loadMyLeaguesPage(@PathVariable("currentUser") String currentUser, 
 			@RequestParam(required = false) String leagueName, ModelMap map){
 		List<Team> teams = teamDao.getTeamsByLeagueId(leagueDao.getLeagueIdByLeagueName(leagueName));
+		
 		map.put("leagueName", leagueName);
 		map.put("teams", teams);
 		List<Course> course = courseDao.getAllCourses();
