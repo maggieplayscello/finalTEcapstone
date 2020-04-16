@@ -28,7 +28,7 @@ private JdbcTemplate jdbcTemplate;
 		List <Score> scores = new ArrayList<>();
 		
 		String sqlSelectAllCourses = "SELECT s.*, t.time FROM scores s "
-				+ "JOIN tee_time t ON t.teetimeid = s.teetimeid WHERE id = ? ORDER BY time DESC LIMIT 20;";
+				+ "JOIN tee_time t ON t.teetimeid = s.teetimeid WHERE id = ? ORDER BY time DESC";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllCourses, id);
 		while (results.next()) {
 			scores.add(mapRowToScore(results));
