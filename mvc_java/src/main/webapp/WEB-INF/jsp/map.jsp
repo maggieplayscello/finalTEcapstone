@@ -40,7 +40,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
 <script>
-!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+//!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+//<a class="weatherwidget-io" href="https://forecast7.com/en/42d33n83d05/detroit/?unit=us" data-label_1="DETROIT" data-label_2="WEATHER" data-icons="Climacons Animated" data-days="5" data-theme="weather_one" >DETROIT WEATHER</a>
 </script>
 
 
@@ -51,7 +52,22 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 <div id="wrapper">
   <h1>Golfing in Michigan</h1>
-<a class="weatherwidget-io" href="https://forecast7.com/en/42d33n83d05/detroit/?unit=us" data-label_1="DETROIT" data-label_2="WEATHER" data-icons="Climacons Animated" data-days="5" data-theme="weather_one" >DETROIT WEATHER</a>
+  
+  <div style="width: 850px;">
+  <iframe style="display: block;
+  " src="https://cdnres.willyweather.com/widget/loadView.html?id=122053" 
+  width="850" 
+  height="92" 
+  frameborder="0" 
+  scrolling="no">
+  </iframe><a style="text-indent: -9999em;
+  height: 92px;float: right;
+  position: relative;
+  margin: -92px 0 0 0;
+  z-index: 1;
+  width: 20px" href="https://www.willyweather.com/mi/wayne-county/detroit.html" rel="nofollow">willyweather</a>
+  </div>
+
   <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
   <div id="map-canvas" style="height: 500px;; width: auto"></div>
 </div>
