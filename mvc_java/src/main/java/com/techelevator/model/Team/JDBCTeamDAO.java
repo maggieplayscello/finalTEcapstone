@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import com.techelevator.model.User.User;
 import com.techelevator.model.User.UserDAO;
 
 @Component
@@ -59,7 +60,7 @@ public class JDBCTeamDAO implements TeamDAO {
 	@Override
 	public List<Team> getTeamsByLeagueId(int leagueId) {
 		List <Team> teams = new ArrayList<>();
-		String sqlSelectAllTeams = "SELECT * FROM teams WHERE leagueid = ?";
+		String sqlSelectAllTeams = "SELECT * FROM teams WHERE leagueid = ? ORDER BY points DESC";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllTeams, leagueId);
 		while (results.next()) {
 			teams.add(mapRowToTeam(results));
@@ -147,6 +148,8 @@ public class JDBCTeamDAO implements TeamDAO {
 		ranking = ranking + 1;
 		return ranking;
 	}
+
+
 	
 	
 

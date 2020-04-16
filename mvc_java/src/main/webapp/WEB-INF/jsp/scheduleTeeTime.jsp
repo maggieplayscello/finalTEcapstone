@@ -47,3 +47,5 @@
 		
 </body>
 </html>
+
+<c:import url="/WEB-INF/jsp/footer.jsp" />

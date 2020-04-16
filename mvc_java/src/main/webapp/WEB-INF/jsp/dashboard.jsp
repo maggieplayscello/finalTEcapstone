@@ -83,12 +83,14 @@
 				<th>League</th>
 				<th>Ranking</th>
 				<th>Score</th>
+				<th>Average Score</th>
 			</tr>			
 		<c:forEach items="${teams}" var="team">
 			<tr>
 				<td>${team.name}</td>
 				<td>${team.ranking}</td>
 				<td>${team.points}</td>
+				<td>${team.averageScore}</td>
 			</tr>
 		</c:forEach>
 		</table>

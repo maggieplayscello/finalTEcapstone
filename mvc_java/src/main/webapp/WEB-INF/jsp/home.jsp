@@ -9,9 +9,10 @@
 	<div id="wrapper">
 		<h1>Golf Tracker</h1>
 
-		<c:url var="imgSrc" value="/img/michgolf.jpg" /> 
-		<img src="${imgSrc}" class="homeImg"/><br> <br>
-
+		<div class="container">
+			<c:url var="imgSrc" value="/img/michgolf.jpg" /> 
+			<img src="${imgSrc}" class="homeImg"/><br> <br>			
+		</div>
 		<div class="textblock">
 			<p> Welcome to Golf Tracker! This site will help you track your scores over the course of a season. 
 			You can compete with the scores of your friends via private league leaderboards and set up matches with your friends!

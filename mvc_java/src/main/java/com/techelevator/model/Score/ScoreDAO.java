@@ -13,4 +13,6 @@ public interface ScoreDAO {
 	public String getDateFromScoreId(int id);
 
 	Course getCourseRatingAndSlopeFromScoreID(int scoreId);
+
+	List<Integer> getAllScoresByLeagueIdAndUserId(int leagueId, int userId);
 }
