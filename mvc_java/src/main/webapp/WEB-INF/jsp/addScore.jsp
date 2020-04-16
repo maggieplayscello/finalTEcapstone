@@ -15,17 +15,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script type="text/JavaScript">
 
-//Hidden Fields
-	function isInLeague() {
-		var leagueBool = document.getElementById('leagueBool');
-		var selectedValue = leagueBool.options[leagueBool.selectedIndex].value;
-		if (selectedValue === 'true') {
-			document.getElementById('leagueTrue').style.display = 'block';
-		} else {
-			document.getElementById('leagueTrue').style.display = 'none';
-		}
-	};
-
 //Incrementor Functions
 	function increaseValue() {
 		var value = parseInt(document.getElementById('number').value, 10);
@@ -52,7 +41,8 @@
 		container: container,
 		todayHighlight: true,
 		autoclose: true,
-		maxDate: 'now'
+		maxDate: 'now',
+		orientation: "left bottom"
 		};
 		date_input.datepicker(options);
 		});
@@ -90,12 +80,10 @@
  				<div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
 			</div>
 			
-
-				<div class="form-group">
-					<label class="control-label" for="date">Date</label>
-					<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" data-date-end-date="0d"/>
-				</div>
-
+			<div class="form-group">
+				<label class="control-label" for="date">Date</label>
+				<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" data-date-end-date="0d"/>
+			</div>
 			<br>
 			
 		<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
