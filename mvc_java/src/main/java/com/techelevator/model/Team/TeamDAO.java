@@ -18,4 +18,8 @@ public interface TeamDAO {
 	
 	public int getRankingByUserIdAndLeagueId(int leagueId, int userId);
 
+	int getTeamIdByUserId(int userId);
+
+	int getRanking(int leagueId, int userId);
+
 }

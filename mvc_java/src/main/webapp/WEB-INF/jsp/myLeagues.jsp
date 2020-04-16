@@ -76,9 +76,9 @@
 			<c:url var = "myName" value = "/users/${currentUser}/myLeagues">
 				<c:param name = "leagueName" value = "${league.name}"/>
 			</c:url>
-			<h3>				
+			<li>				
 				<a href = "${myName}"><label for="league">${league.name}</label></a><br>
-			</h3>
+			</li>
 		</c:forEach>
 		<br>
 	
@@ -86,7 +86,28 @@
 
 		<c:if test = "${role == 'Admin'}">
 
-		<a href = "/capstone/users/${currentUser}/addLeague"><button type="button" class="btn btn-primary" id="addLeagueBtn">Create a League</button></a>
+	<button type="button" class="btn btn-primary" id="addLeagueBtn" onclick="addLeague()">+ Create a League</button>
+		<div id="addLeagueForm" >
+			<br>
+			<c:url var = "addLeagueUrl" value = "/users/${currentUser}/addLeague"/>
+			<form method="POST" action="${addLeagueUrl}">
+			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+				<div class="form-group">
+					<label for="leagueName">League Name:</label> 
+					<input type="text" name="name" placeHolder="League Name"/>
+				</div>
+				<div class="form-group">
+					<label for="users">Add Members: </label> 
+					<p>Press control or command to select multiple users.</p>
+					<select name="users" multiple>
+						<c:forEach items="${allUsers}" var="user">
+							<option value="${user.userName}">${user.userName}</option>			
+						</c:forEach>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-primary" id="btnSaveLeague">Submit</button>
+			</form>
+			</div>
 		<br><br>
 		
 		<!-- Create Match Form -->
@@ -137,7 +158,10 @@
 	<c:if test = "${role == 'Admin'}">
 		<button type="button" class="btn btn-primary" id="addPlayersBtn" onclick="addPlayers()">+ Add Players to this League</button>
 			<div id="addPlayersForm" >
-			<form method = "POST" action = "/capstone/users/${currentUser}/addPlayers">
+			<c:url var = "addPlayersUrl" value = "/users/${currentUser}/addPlayers">
+			<c:param name = "leagueNames" value = "Bushwood"/>
+			</c:url>
+			<form method = "POST" action = "${addPlayersUrl}">
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<br>
 					<input type="hidden" name="leagueName">${leagueName}

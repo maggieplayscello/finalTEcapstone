@@ -54,6 +54,10 @@ public class DashboardController {
 	public String displayDashboard(@PathVariable("currentUser") String currentUser, ModelMap map) {
 		List<League> league = leagueDao.getAllLeaguesByUserId(userDao.getIdByUserName(currentUser));
 		List<Team> team = teamDao.getTeamsByUserId(userDao.getIdByUserName(currentUser));
+		for(int x = 0; x < team.size(); x++) {
+			int ranking = teamDao.getRanking(team.get(x).getLeagueId(), userDao.getIdByUserName(currentUser));
+			team.get(x).setRanking(ranking);
+		}
 		List <Score> scores = scoreDao.getAllScoresByUserId(userDao.getIdByUserName(currentUser));
 		for(int x = 0; x < scores.size(); x++) {
 			String courseName = courseDao.getCourseNameByCourseId(scores.get(x).getCourseId());
@@ -137,14 +141,25 @@ public class DashboardController {
 		List <LocalDateTime> availableTimes = teeTimeDao.getTeeTimesByCourse(course, date);
 		session.setAttribute("availableTimes", availableTimes);
 		session.setAttribute("course", course);
+		session.setAttribute("date", date);
 		return "redirect:/users/{currentUser}/teeTimeSheet";
 	}
 	
 	
 	@RequestMapping (path = "/users/{currentUser}/teeTimeSheet", method = RequestMethod.GET)
-	public String displayTeeTimeSheet(@PathVariable("currentUser") String currentUser, HttpSession session){
+	public String displayTeeTimeSheet(@PathVariable("currentUser") String currentUser, HttpSession session, ModelMap map){
 		session.getAttribute("availableTimes");
 		session.getAttribute("course");
+		session.getAttribute("date");
+		int playerId = userDao.getIdByUserName(currentUser);
+		List <TeeTime> userBookings = teeTimeDao.getTeeTimesByGolferIdPastToday(playerId);
+		List <String> bookings = new ArrayList<>();
+		for (int x=0; x<userBookings.size();x++) {
+			bookings.add(userBookings.get(x).getTime().toLocalDate().toString());
+		}
+		map.put("bookings", bookings);
+		
+		
 		return "teeTimeSheet";
 	}
 	

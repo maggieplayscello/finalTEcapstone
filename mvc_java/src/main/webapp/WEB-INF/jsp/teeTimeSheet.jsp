@@ -17,7 +17,14 @@
 	<c:url var = "submitTeeTime" value = "/users/${currentUser}/teeTimeSheet"/>
 	<form method="POST" action="${submitTeeTime}">
 	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-
+	
+	<c:set var ="message" value = ""/>
+	<c:forEach items ="${bookings}" var= "dates">
+		<c:if test = "${dates == date}">
+			<c:set var="message" value = "You already have a Tee Time This Day"/>
+		</c:if>
+	</c:forEach>
+		<h3><b><c:out value = "${message}"/></b></h3>
 		<div class="form-group">
 			<label for="times">Available Times: </label> 
 			<select name="times">

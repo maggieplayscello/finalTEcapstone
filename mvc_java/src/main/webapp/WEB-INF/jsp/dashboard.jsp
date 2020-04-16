@@ -53,7 +53,7 @@
 		<c:forEach items="${teams}" var="team">
 			<tr>
 				<td>${team.name}</td>
-				<td>Ranking</td>
+				<td>${team.ranking}</td>
 				<td>${team.points}</td>
 			</tr>
 		</c:forEach>
