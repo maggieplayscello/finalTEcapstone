@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,7 +20,6 @@ import com.techelevator.model.Course.Course;
 import com.techelevator.model.Course.CourseDAO;
 import com.techelevator.model.League.League;
 import com.techelevator.model.League.LeagueDAO;
-import com.techelevator.model.Score.Score;
 import com.techelevator.model.Score.ScoreDAO;
 import com.techelevator.model.Team.Team;
 import com.techelevator.model.Team.TeamDAO;
@@ -75,13 +75,14 @@ public class MyLeaguesController {
 	}
 	
 	@RequestMapping(path= "/users/{currentUser}/addLeague", method = RequestMethod.POST)
-	public String processAddLeagueForm(@PathVariable("currentUser") String currentUser, 
+	public String processAddLeagueForm(@PathVariable("currentUser") String currentUser,
 			@RequestParam String name, @RequestParam List<String> users) {
 		League myLeague = new League();
 		myLeague.setName(name);
 		myLeague.setOwner(currentUser);
 		leagueDao.saveLeague(myLeague);
-		if (userDao.getRoleByUserName(currentUser) != "Admin") {
+		String role = userDao.getRoleByUserName(currentUser);
+		if (role.contentEquals("Golfer")) {
 			userDao.updateRole(currentUser, "League Admin");
 		}
 		for (int x = 0; x < users.size(); x++) {
@@ -124,11 +125,23 @@ public class MyLeaguesController {
 	}
 	
 	@RequestMapping(path = "/users/{currentUser}/addNewMatch", method = RequestMethod.GET)
-	public String processAddNewMatch(@PathVariable("currentUser") String currentUser, HttpSession session) {
+	public String getAddNewMatch(@PathVariable("currentUser") String currentUser, HttpSession session) {
 		session.getAttribute("teamsInLeague");
 		
 		return "addNewMatch";
 	}
 	
-	
+	@RequestMapping(path = "/users/{currentUser}/addNewMatch", method = RequestMethod.POST)
+	public String processAddNewMatch (@PathVariable("currentUser") String currentUser, @RequestParam int team1Id, @RequestParam int team2Id) {
+		List<User> team1Golfers = new ArrayList<>();
+		List<User> team2Golfers = new ArrayList<>();
+
+		
+		return "redirect:/users/{currentUser}/addNewMatchPlayers";
 	}
+	
+	@RequestMapping(path = "/users/{currentUser}/addNewMatchPlayers", method = RequestMethod.GET)
+	public String getNewMatchPlayers(@PathVariable("currentUser") String currentUser) {
+		return "addNewMatchPlayers";
+	}
+}
