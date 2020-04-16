@@ -10,6 +10,40 @@
 	<h1 class="userHeader">Welcome, ${currentUser}!</h1>
 	<div class=dashboardGrid>
 
+<!-- Calendar -->
+
+	<div class="calendar">
+		<h1 class = "header_title">My Scheduled Tee Times</h1>
+		<hr>
+		<div class="calendar_plan">
+			<div class="cl_plan">
+				<div class="cl_title">Today is</div>
+				<div class="cl_copy">${date}</div>
+				<div class="cl_add">
+					<i class="fas fa-plus"></i>
+				</div>
+			</div>
+		</div>
+		<div class="calendar_events">
+			<p class="ce_title">Upcoming Tee Times</p>
+			<c:forEach items = "${teeTimes}" var = "teeTime">
+			
+			<div class="event_item">
+				<div class="ei_Dot dot_active"></div>
+				<div class="ei_Title">${teeTime.dateString}</div>
+				<div class="ei_Copy">${teeTime.timeString}</div>
+				<div class="ei_Copy">${teeTime.courseName}</div>
+			</div>
+			<hr>
+			</c:forEach>
+			<br>
+		<div class="btn btn-secondary pull-right">
+			<c:url var="scheduleTeeTimeHref" value="/users/${currentUser}/scheduleTeeTime"/>
+			<a href="${scheduleTeeTimeHref}">+ Schedule a Tee Time</a>
+    	</div>
+		</div>
+	</div>
+
 <!-- User Scoreboard -->
 	
 	<div class="scoreboard">
@@ -32,7 +66,7 @@
 		</table>
 		<br>
 
-		<div class="btn btn-secondary">
+		<div class="btn btn-secondary pull-right">
 			<c:url var="addScoreHref" value="/users/${currentUser}/addScore"/>
 			<a href="${addScoreHref}">+ Add a Score</a>
 		</div>
@@ -59,40 +93,6 @@
 		</c:forEach>
 		</table>
 	</div>	
-    
-<!-- Calendar -->
-
-	<div class="calendar">
-		<h1 class = "header_title">My Scheduled Tee Times</h1>
-		<hr>
-		<div class="calendar_plan">
-			<div class="cl_plan">
-				<div class="cl_title">Today is</div>
-				<div class="cl_copy">${date}</div>
-				<div class="cl_add">
-					<i class="fas fa-plus"></i>
-				</div>
-			</div>
-		</div>
-		<div class="calendar_events">
-			<p class="ce_title">Upcoming</p>
-			<c:forEach items = "${teeTimes}" var = "teeTime">
-			
-			<div class="event_item">
-				<div class="ei_Dot dot_active"></div>
-				<div class="ei_Title">${teeTime.dateString}</div>
-				<div class="ei_Copy">${teeTime.timeString}</div>
-				<div class="ei_Copy">${teeTime.courseName}</div>
-			</div>
-			<hr>
-			</c:forEach>
-			<br>
-		<div class="btn">
-			<c:url var="scheduleTeeTimeHref" value="/users/${currentUser}/scheduleTeeTime"/>
-			<a href="${scheduleTeeTimeHref}">+ Schedule a Tee Time</a>
-    	</div>
-		</div>
-	</div>
 	
 <!-- Closing tags -->  
 
