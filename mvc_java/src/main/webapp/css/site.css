@@ -182,7 +182,7 @@ button {
 	margin: auto;
 	height: 100%; 
 	width: 100%;
-	table-layout: auto;
+	
 }
 
 #courseTable {
@@ -190,6 +190,7 @@ button {
 	font-size: 15px;
 	margin: auto;
 	border: 1px solid rgb(184,195,163);
+	table-layout: auto;
 }
 
 table th {
