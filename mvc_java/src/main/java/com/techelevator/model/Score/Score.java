@@ -15,6 +15,14 @@ public class Score {
 	public Score() {
 		
 	}
+	
+	public Score (int score, int teeTimeId, int courseId, int id) {
+		this.score = score;
+		this.teeTimeId = teeTimeId;
+		this.courseId = courseId;
+		this.id = id;
+	}
+	
 	public int getScoreId() {
 		return scoreId;
 	}
