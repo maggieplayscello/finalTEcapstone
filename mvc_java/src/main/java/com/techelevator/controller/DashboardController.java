@@ -293,27 +293,35 @@ public class DashboardController {
 		TeeTime myTeeTime = new TeeTime();
 		int courseId = courseDao.getCourseIdByCourseName(name);
 		int playerId = userDao.getIdByUserName(currentUser);
+		LocalDate now = LocalDate.now();
+		String buildDate = "";
+		buildDate = buildDate + date.substring(6, 10) + "-" + date.substring(0, 2) + "-" + date.substring(3, 5);
+		System.out.println(buildDate);
+		LocalDate aDate = LocalDate.parse(buildDate);
 		
-		if(date != "") {
-			int month = Integer.parseInt(date.substring(0, 2));
-			int day = Integer.parseInt(date.substring(3, 5));
-			int year = Integer.parseInt(date.substring(6, 10));
-			LocalDate myDate = LocalDate.of(year, month, day);
-			LocalDateTime theDate = LocalDateTime.of(myDate, LocalTime.of(0, 0));
-			myTeeTime.setTime(theDate);
-			myTeeTime.setNumGolfers(1);
-			myTeeTime.setCourseId(courseId);
-			teeTimeDao.saveTeeTime(myTeeTime, playerId);
-			int teeTimeId = teeTimeDao.getLastTeeTimeId();
-			myScore.setTeeTimeId(teeTimeId);
-		}else {
-			//this is where we will pull data from tee times table
-			myScore.setTeeTimeId(1);
+		if(aDate.isBefore(now)) {
+			if(date != "") {
+				int month = Integer.parseInt(date.substring(0, 2));
+				int day = Integer.parseInt(date.substring(3, 5));
+				int year = Integer.parseInt(date.substring(6, 10));
+				LocalDate myDate = LocalDate.of(year, month, day);
+				LocalDateTime theDate = LocalDateTime.of(myDate, LocalTime.of(0, 0));
+				myTeeTime.setTime(theDate);
+				myTeeTime.setNumGolfers(1);
+				myTeeTime.setCourseId(courseId);
+				teeTimeDao.saveTeeTime(myTeeTime, playerId);
+				int teeTimeId = teeTimeDao.getLastTeeTimeId();
+				myScore.setTeeTimeId(teeTimeId);
+			}else {
+				//this is where we will pull data from tee times table
+				myScore.setTeeTimeId(1);
+			}
+			myScore.setCourseId(courseId);
+			myScore.setId(playerId);
+			myScore.setScore(score);
+			scoreDao.saveScore(myScore);		
 		}
-		myScore.setCourseId(courseId);
-		myScore.setId(playerId);
-		myScore.setScore(score);
-		scoreDao.saveScore(myScore);		
+		
 		return "redirect:/users/{currentUser}/dashboard";
 	}
 
