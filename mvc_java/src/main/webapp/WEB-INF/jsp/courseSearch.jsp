@@ -44,6 +44,22 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <body>
 	<div id="wrapper">
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
+
+<div style="width: 850px;">
+  <iframe style="display: block;
+  " src="https://cdnres.willyweather.com/widget/loadView.html?id=122053" 
+  width="850" 
+  height="92" 
+  frameborder="0" 
+  scrolling="no">
+  </iframe><a style="text-indent: -9999em;
+  height: 92px;float: right;
+  position: relative;
+  margin: -92px 0 0 0;
+  z-index: 1;
+  width: 20px" href="https://www.willyweather.com/mi/wayne-county/detroit.html" rel="nofollow">willyweather</a>
+  </div>
+
 <!-- Search Form -->
 	<div id="courseSearchForm">	
 		<c:url value='/courseSearchResults' var='courseSearchVar'>
