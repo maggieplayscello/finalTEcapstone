@@ -10,8 +10,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import com.techelevator.model.User.UserDAO;
+
 @Component
 public class JDBCTeamDAO implements TeamDAO {
+	
+	@Autowired
+	private UserDAO userDao;
 	
 	private JdbcTemplate jdbcTemplate;
 	
@@ -63,6 +68,17 @@ public class JDBCTeamDAO implements TeamDAO {
 	}
 	
 	@Override
+	public int getTeamIdByUserId(int userId) {
+		int teamId = 0;
+		String sqlSelectAllTeams = "SELECT teamId FROM golfer_team WHERE Id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllTeams, userId);
+		if (results.next()) {
+			teamId = results.getInt("teamId");
+		}
+		return teamId;
+	}
+	
+	@Override
 	public List<Team> getTeamsByLeagueIdAndUserId(int leagueId, int userId) {
 		List <Team> teams = new ArrayList<>();
 		String sqlSelectAllTeams = "SELECT * FROM teams JOIN league_golfer ON league_golfer.leagueid = "
@@ -99,18 +115,36 @@ public class JDBCTeamDAO implements TeamDAO {
 	@Override
 	public int getRankingByUserIdAndLeagueId(int leagueId, int userId) {
 		int ranking = 0;
-		List <Integer> rankedTeams = new ArrayList<>();
+		List <Team> rankedTeams = new ArrayList<>();
 		String sqlGetRanking = "SELECT * FROM teams JOIN golfer_team ON teams.teamid = golfer_team.teamid WHERE points >= 0 AND leagueid = ? ORDER BY points DESC";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetRanking, leagueId);
 		while (results.next()) {
-			rankedTeams.add(results.getInt("id"));
+			rankedTeams.add(mapRowToTeam(results));
 		}
-		for(int i = 1, x = 0; i < rankedTeams.size() + 1; i++, x++) {
-			if (rankedTeams.get(x) == (userId)) {
-				ranking = i;
-				System.out.println(ranking);
+		for (int x = 1; x < rankedTeams.size() + 1; x++) {
+			if (rankedTeams.get(x).getTeamId() == getTeamIdByUserId(userId)) {
+				ranking = x;
 			}
 		}
+		return ranking;
+	}
+	
+	@Override
+	public int getRanking(int leagueId, int userId) {
+		int points = 0;
+		int ranking = 0;
+		String sqlGetPointsByUserId = "SELECT points FROM teams JOIN golfer_team ON teams.teamid = golfer_team.teamid "
+				+ "WHERE golfer_team.id = ? AND teams.leagueid = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetPointsByUserId, userId, leagueId);
+		if (results.next()) {
+			points = results.getInt("points");
+		}
+		String sqlGetPoints = "SELECT COUNT(*) as total FROM teams WHERE points > ? AND leagueId = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetPoints, points, leagueId);
+		if (result.next()) {
+			ranking = result.getInt("total");
+		}
+		ranking = ranking + 1;
 		return ranking;
 	}
 	

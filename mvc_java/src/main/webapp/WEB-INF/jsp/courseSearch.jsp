@@ -81,6 +81,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <!-- Course Map -->
 
 	<div id="map-canvas" style="height: 400px; width: 600px"></div>
+		<c:url var="largeMapHref" value="/users/map"/>
+	<a href="${largeMapHref}">Click here to view an enlarged map</a>
 </div>
 <br><br>
 
