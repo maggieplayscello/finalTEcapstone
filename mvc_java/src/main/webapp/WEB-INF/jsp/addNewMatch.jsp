@@ -7,9 +7,17 @@
 <title>Team Selection</title>
 </head>
 <body>
+<div id="wrapper">
+	<div class="row">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-4">	
+	<h3>Select the teams playing in this match</h3>
+	
+			<form method = "POST" action = "/capstone/users/${currentUser}/addNewMatch">
+			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 
 				<div class="form-group">
-					<label for="team1Name">Team: </label> 
+					<label for="team1Name">Team 1: </label> 
 					<select name="team1Name">
 						<c:forEach items="${teamsInLeague}" var="team1">
 							<option value="${team1.name}">${team1.name}</option>			
@@ -17,5 +25,19 @@
 					</select>
 				</div>
 				
+				<div class="form-group">
+					<label for="team2Name">Team 2: </label> 
+					<select name="team2Name">
+						<c:forEach items="${teamsInLeague}" var="team2">
+							<option value="${team2.name}">${team2.name}</option>			
+						</c:forEach>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-primary" id="btnSaveTeams">Submit</button>
+			
+			</form>	
+</div>
+</div>
+</div>
 </body>
 </html>
