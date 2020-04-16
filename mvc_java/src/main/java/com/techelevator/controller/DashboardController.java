@@ -56,7 +56,6 @@ public class DashboardController {
 		List<Team> team = teamDao.getTeamsByUserId(userDao.getIdByUserName(currentUser));
 		for(int x = 0; x < team.size(); x++) {
 			int ranking = teamDao.getRanking(team.get(x).getLeagueId(), userDao.getIdByUserName(currentUser));
-			System.out.println(ranking);
 			team.get(x).setRanking(ranking);
 		}
 		List <Score> scores = scoreDao.getAllScoresByUserId(userDao.getIdByUserName(currentUser));

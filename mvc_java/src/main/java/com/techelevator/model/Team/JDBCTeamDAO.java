@@ -139,7 +139,6 @@ public class JDBCTeamDAO implements TeamDAO {
 		if (results.next()) {
 			points = results.getInt("points");
 		}
-		System.out.println(points);
 		String sqlGetPoints = "SELECT COUNT(*) as total FROM teams WHERE points > ? AND leagueId = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetPoints, points, leagueId);
 		if (result.next()) {
