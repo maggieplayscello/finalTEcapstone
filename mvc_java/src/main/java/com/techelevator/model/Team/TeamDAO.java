@@ -20,4 +20,6 @@ public interface TeamDAO {
 
 	int getTeamIdByUserId(int userId);
 
+	int getRanking(int leagueId, int userId);
+
 }

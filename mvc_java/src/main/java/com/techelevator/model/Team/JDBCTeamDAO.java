@@ -129,6 +129,26 @@ public class JDBCTeamDAO implements TeamDAO {
 		return ranking;
 	}
 	
+	@Override
+	public int getRanking(int leagueId, int userId) {
+		int points = 0;
+		int ranking = 0;
+		String sqlGetPointsByUserId = "SELECT points FROM teams JOIN golfer_team ON teams.teamid = golfer_team.teamid "
+				+ "WHERE golfer_team.id = ? AND teams.leagueid = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetPointsByUserId, userId, leagueId);
+		if (results.next()) {
+			points = results.getInt("points");
+		}
+		System.out.println(points);
+		String sqlGetPoints = "SELECT COUNT(*) as total FROM teams WHERE points > ? AND leagueId = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlGetPoints, points, leagueId);
+		if (result.next()) {
+			ranking = result.getInt("total");
+		}
+		ranking = ranking + 1;
+		return ranking;
+	}
+	
 	
 
 }
