@@ -85,7 +85,7 @@
 				<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" data-date-end-date="0d"/>
 			</div>
 			<br>
-			
+						
 		<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
 		</form>
 		</div>
