@@ -81,8 +81,7 @@ public class MyLeaguesController {
 		myLeague.setName(name);
 		myLeague.setOwner(currentUser);
 		leagueDao.saveLeague(myLeague);
-		String role = userDao.getRoleByUserName(currentUser);
-		if (role.contentEquals("Golfer")) {
+		if (userDao.getRoleByUserName(currentUser) != "Admin") {
 			userDao.updateRole(currentUser, "League Admin");
 		}
 		for (int x = 0; x < users.size(); x++) {
