@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
@@ -11,8 +12,10 @@
 
 </style>
 
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script type="text/JavaScript">
+
+//Hidden Fields
 	function isInLeague() {
 		var leagueBool = document.getElementById('leagueBool');
 		var selectedValue = leagueBool.options[leagueBool.selectedIndex].value;
@@ -22,34 +25,38 @@
 			document.getElementById('leagueTrue').style.display = 'none';
 		}
 	};
-	
-	function increaseValue() {
-		  var value = parseInt(document.getElementById('number').value, 10);
-		  value = isNaN(value) ? 0 : value;
-		  value++;
-		  document.getElementById('number').value = value;
-		}
 
-		function decreaseValue() {
-		  var value = parseInt(document.getElementById('number').value, 10);
-		  value = isNaN(value) ? 0 : value;
-		  value < 1 ? value = 1 : '';
-		  value--;
-		  document.getElementById('number').value = value;
+//Incrementor Functions
+	function increaseValue() {
+		var value = parseInt(document.getElementById('number').value, 10);
+		value = isNaN(value) ? 0 : value;
+		value > 144 ? value = 144 : '';
+		value++;
+		document.getElementById('number').value = value;
+	}
+
+	function decreaseValue() {
+		var value = parseInt(document.getElementById('number').value, 10);
+		value = isNaN(value) ? 0 : value;
+		value < 55 ? value = 55 : '';
+		value--;
+		document.getElementById('number').value = value;
+	};
+
+//Calendar Input
+	$(document).ready(function(){
+		var date_input=$('input[name="date"]');
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		var options={
+		format: 'mm/dd/yyyy',
+		container: container,
+		todayHighlight: true,
+		autoclose: true,
+		maxDate: 'now'
 		};
-	
-	function validate(){  
-		console.log("validating....");
-		var num = document.myform.score.value;  
-		if (isNaN(score)){  
-		  document.getElementById("numloc").innerHTML="Enter Numeric value only"; 
-		  console.log("is not number");
-		  return false;  
-		}else{  
-		console.log("is number");
-		  return true;  
-		  }  
-		};
+		date_input.datepicker(options);
+		});
+
 </script>
 
 
@@ -76,44 +83,27 @@
 				</select>
 			</div>
 
-			<div class="form-group">
+			<div class="incrementButton">
 				<label for="score">Score:</label> 
-				<input name="score" placeHolder="Score"/><span id="numloc"></span>
+				<div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+					<input type="number" name="score" id="number" value="72" />
+ 				<div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
 			</div>
 			
-			<div class = "form-group">
-				<label for = "date">Date: </label>
-				<input name = "date" placeHolder = "Date (mm/dd/yyyy)"/>
-			</div>
-			<hr>
+
+				<div class="form-group">
+					<label class="control-label" for="date">Date</label>
+					<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" data-date-end-date="0d"/>
+				</div>
+
 			<br>
-			<label for="leagueBool"> Was this part of a match:</label>
-				<select id="leagueBool" onclick="isInLeague()">
-					<option>Select...</option>
-					<option value="true" >Yes</option>
-					<option value="false">No</option>
-				</select>
-				
-			<!-- Fields below will only appear if user selects "Yes" -->	
 			
-				<div id="leagueTrue" >
-				<br>
-					<div class="form-group">
-						<label for="league">League:</label> 
-						<input name="league" placeHolder="Score"/>
-					</div>
-					<div class="form-group">
-						<label for="match">Match:</label> 
-						<input name="match" placeHolder="Match"/>
-					</div>	
-				</div>			
-				
-			<br><br>
-			<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
-			</form>
+		<button type="submit" class="btn btn-primary" id="btnSaveScore">Submit</button>
+		</form>
 		</div>
-	</div>
-</div>
-		
+		</div>
+	</div>		
 </body>
 </html>
+
+<c:import url="/WEB-INF/jsp/footer.jsp" />

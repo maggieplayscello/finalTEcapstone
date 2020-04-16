@@ -378,6 +378,64 @@ table td {
 
 
 
+/*   Add Score Form   */
+
+.incrementButton {
+	margin: 10px;
+	margin-left: 0px;
+}
+
+.value-button {
+	display: inline-block;
+	background-color: #F1F7ED;
+	margin: 0px;
+	width: 40px;
+	height: 20px;
+	text-align: center;
+	vertical-align: middle;
+	user-select: none;
+}
+
+.value-button:hover {
+  cursor: pointer;
+}
+
+form #decrease {
+  margin-right: -4px;
+  border-radius: 8px 0 0 8px;
+}
+
+form #increase {
+  margin-left: -4px;
+  border-radius: 0 8px 8px 0;
+}
+
+form #input-wrap {
+  margin: 0px;
+  padding: 0px;
+}
+
+input#number {
+  text-align: center;
+  border: none;
+  border: 1px solid #536B4E;
+  margin: 0px;
+  width: 40px;
+  height: 40px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.datepicker th {
+	background-color: white;
+	color: #B8C3A3;
+}
+
+
 /*   Footer   */
 
 .footer {

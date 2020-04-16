@@ -24,7 +24,7 @@
 			</button>
 			<br>
 		</div>
-	<c:url var="imgSrc" value="/img/treetops_michael_hiller.jpg" /> 
+	<c:url var="imgSrc" value="/img/treetops.jpg" /> 
 	<img src="${imgSrc}" class="homeImg"/>
 </body>
 </html>
