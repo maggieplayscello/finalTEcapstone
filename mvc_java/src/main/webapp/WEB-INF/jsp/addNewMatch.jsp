@@ -17,19 +17,19 @@
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 
 				<div class="form-group">
-					<label for="team1Name">Team 1: </label> 
-					<select name="team1Name">
+					<label for="team1Id">Team 1: </label> 
+					<select name="team1Id">
 						<c:forEach items="${teamsInLeague}" var="team1">
-							<option value="${team1.name}">${team1.name}</option>			
+							<option value="${team1.teamId}">${team1.name}</option>			
 						</c:forEach>
 					</select>
 				</div>
 				
 				<div class="form-group">
-					<label for="team2Name">Team 2: </label> 
-					<select name="team2Name">
+					<label for="team2Id">Team 2: </label> 
+					<select name="team2Id">
 						<c:forEach items="${teamsInLeague}" var="team2">
-							<option value="${team2.name}">${team2.name}</option>			
+							<option value="${team2.teamId}">${team2.name}</option>			
 						</c:forEach>
 					</select>
 				</div>

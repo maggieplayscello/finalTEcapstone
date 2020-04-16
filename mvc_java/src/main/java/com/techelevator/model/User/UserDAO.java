@@ -21,5 +21,7 @@ public interface UserDAO {
 	public int getIdByUserName(String userName);
 	
 	public List<User> getAllUsers();
+	
+	List<User> getGolfersByTeamId(int teamId);
 
 }

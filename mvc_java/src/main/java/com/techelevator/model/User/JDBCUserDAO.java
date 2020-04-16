@@ -164,4 +164,16 @@ public class JDBCUserDAO implements UserDAO {
 		
 		return theUser;
 	}
+
+	@Override
+	public List<User> getGolfersByTeamId(int teamId) {
+		List <User> users = new ArrayList<>();
+		
+		String sqlSelectAllUsers = "SELECT a.* FROM golfer_team t JOIN app_user a ON t.id = a.id WHERE teamid = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllUsers, teamId);
+		while (results.next()) {
+			users.add(mapRowToUser(results));
+		}
+		return users;
+	}
 }
