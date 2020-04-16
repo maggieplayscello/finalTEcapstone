@@ -48,7 +48,7 @@
 	
 	<div class="scoreboard">
 		<h1 class = "header_title">My Recent Scores</h1>	
-		<h3>Current Handicap: </h3>
+		<h3>Current Handicap: ${handicap}</h3>
 	    <hr>
 		<table class="scores">
 			<tr>

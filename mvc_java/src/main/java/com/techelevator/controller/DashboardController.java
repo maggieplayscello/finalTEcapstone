@@ -1,9 +1,12 @@
 package com.techelevator.controller;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -73,6 +76,29 @@ public class DashboardController {
 		LocalDate today = LocalDate.now();
 		String todayString = turnDateIntoString(today);
 		
+		List<Double> differentialList = new ArrayList<>();
+		
+		for(int x = 0; x < scores.size(); x++) {
+			Course myCourse = scoreDao.getCourseRatingAndSlopeFromScoreID(scores.get(x).getScoreId());
+			double differential = calculateDifferential(scores.get(x).getScore(), myCourse.getRating(), myCourse.getSlope());
+			differentialList.add(differential);
+		}
+		Collections.sort(differentialList);
+		double differentialAverage = differentialTotal(differentialList);
+		double handicap = calculateHandicap(differentialAverage);
+		double newHandicap = 0;
+		
+		if (scores.size() >= 5) {
+			BigDecimal bd = BigDecimal.valueOf(handicap);
+			bd = bd.setScale(2, RoundingMode.HALF_UP);
+			newHandicap = bd.doubleValue();
+			map.put("handicap", newHandicap);
+		}else {
+			map.put("handicap", "You must have at least 5 scores for a handicap");
+		}
+		
+		
+		
 		List<TeeTime> teeTimes = teeTimeDao.getTeeTimesByGolferIdPastToday(userDao.getIdByUserName(currentUser));
 		map.put("leagues", league);
 		map.put("teams", team);
@@ -80,6 +106,74 @@ public class DashboardController {
 		map.put("date", todayString);
 		map.put("scores", scores);
 		return "dashboard";
+	}
+	
+	private double calculateHandicap(double differentialAverage) {
+		double handicap = differentialAverage * 0.96;
+		return handicap;
+	}
+	
+	private double differentialTotal(List<Double> differentialList) {
+		double differentialTotal = 0;
+		int differentialCount = 0;
+		if (differentialList.size() >= 20) {
+			for(int x = 0; x < 10; x++) {
+				differentialTotal += differentialList.get(x);
+				differentialCount++;
+			}
+		}else if (differentialList.size() == 19) {
+			for(int x = 0; x < 9; x++) {
+				differentialTotal += differentialList.get(x);
+				differentialCount++;
+			}
+		}else if (differentialList.size() == 18) {
+			for(int x = 0; x < 8; x++) {
+				differentialTotal += differentialList.get(x);
+				differentialCount++;
+			}
+		}else if (differentialList.size() == 17) {
+			for(int x = 0; x < 7; x++) {
+				differentialTotal += differentialList.get(x);
+				differentialCount++;
+			}
+		}else if (differentialList.size() == 16 || differentialList.size() == 15) {
+			for(int x = 0; x < 6; x++) {
+				differentialTotal += differentialList.get(x);
+				differentialCount++;
+			}
+		}else if (differentialList.size() == 14 || differentialList.size() == 13) {
+			for(int x = 0; x < 5; x++) {
+				differentialTotal += differentialList.get(x);
+				differentialCount++;
+			}
+		}else if (differentialList.size() == 12 || differentialList.size() == 11) {
+			for(int x = 0; x < 4; x++) {
+				differentialTotal += differentialList.get(x);
+				differentialCount++;
+			}
+		}else if (differentialList.size() == 10 || differentialList.size() == 9) {
+			for(int x = 0; x < 3; x++) {
+				differentialTotal += differentialList.get(x);
+				differentialCount++;
+			}
+		}else if (differentialList.size() == 8 || differentialList.size() == 7) {
+			for(int x = 0; x < 2; x++) {
+				differentialTotal += differentialList.get(x);
+				differentialCount++;
+			}
+		}else if (differentialList.size() == 6 || differentialList.size() == 5) {
+			for(int x = 0; x < 1; x++) {
+				differentialTotal += differentialList.get(x);
+				differentialCount++;
+			}
+		}
+		double differentialAverage = differentialTotal / differentialCount;
+		return differentialAverage;
+	}
+	
+	private double calculateDifferential(int score, double courseRating, int slope) {
+		double differential = ((score - courseRating) * 113) / slope;
+		return differential;
 	}
 	
 	private String turnDateIntoString(LocalDate date) {

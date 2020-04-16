@@ -64,5 +64,17 @@ private JdbcTemplate jdbcTemplate;
 		}
 		return time;
 	}
+	
+	@Override
+	public Course getCourseRatingAndSlopeFromScoreID(int scoreId) {
+		Course myCourse = new Course();
+		String sqlMySql = "SELECT rating, slope FROM courses JOIN scores ON scores.courseid = courses.courseid WHERE scoreid = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlMySql, scoreId);
+		if (results.next()) {
+			myCourse.setSlope(results.getInt("slope"));
+			myCourse.setRating(results.getDouble("rating"));
+		}
+		return myCourse;
+	}
 
 }
