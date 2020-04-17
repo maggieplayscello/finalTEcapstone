@@ -4,13 +4,6 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<style>
-.localImg {
-	max-height: 500px;
-	margin: auto;
-	display: block;
-}
-</style>
 
 <html>
 <title>Match Succesfully Added</title>
@@ -31,9 +24,8 @@
 			</button>
 			<br><br>
 		</div>
-		<c:url var="imgSrc" value="/img/tullymorepjkoenig.jpg" /> 
-		<img src="${imgSrc}" class="localImg" alt="Tullymore Golf Club (photo by Patrick Koenig)" title="Tullymore Golf Club (photo by Patrick Koenig)"/>
-		<p class="hoverText">Tullymore Golf Club (photo by Patrick Koenig)</p>
+		<c:url var="imgSrc" value="/img/boynehighlandspjkoenig.jpg" /> 
+		<img src="${imgSrc}" class="localImg" alt="Boyne Highlands: Arthur Hills (photo by Patrick Koenig)" title="Boyne Highlands: Arthur Hills (photo by Patrick Koenig)"/><br> <br>			
 	<br><br><br>
 </div>
 </body>

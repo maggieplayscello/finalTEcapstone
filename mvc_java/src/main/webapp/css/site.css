@@ -39,6 +39,12 @@ hr {
 	border: none;
 }
 
+.localImg {
+	max-height: 500px;
+	margin: auto;
+	display: block;
+}
+
 
 
 /*   Header   */

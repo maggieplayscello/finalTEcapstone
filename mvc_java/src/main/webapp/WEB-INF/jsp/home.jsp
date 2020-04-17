@@ -10,7 +10,7 @@
 		<h1>Golf Tracker</h1>
 
 		<div class="container">
-			<c:url var="imgSrc" value="/img/michgolf.jpg" /> 
+			<c:url var="imgSrc" value="/img/treetops.jpg" /> 
 			<img src="${imgSrc}" class="homeImg" alt="Treetops Resort in Gaylord, MI" title="Treetops Resort in Gaylord, MI"/><br> <br>			
 		</div>
 		<div class="textblock">

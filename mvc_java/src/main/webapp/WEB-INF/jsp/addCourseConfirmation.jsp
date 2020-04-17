@@ -4,13 +4,6 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<style>
-.localImg {
-	max-height: 500px;
-	margin: auto;
-	display: block;
-}
-</style>
 
 <html>
 <title>Course Succesfully Added</title>

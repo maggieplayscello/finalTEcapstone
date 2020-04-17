@@ -9,7 +9,7 @@
 </head>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
-<h1>These are all functions only available to admins.</h1>
+
 
 <body>
 
@@ -20,6 +20,7 @@
 		<c:url var="changeRole" value="/users/${currentUser}/adminFunctions/${role}"/>
 		<form method="POST" action="${changeRole}">
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+		<h3 style="margin-left: -10px">Change User Role:</h3>
 			<div class="form-group">
 				<label for="userName">User Name: </label>
 				<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" />
@@ -32,12 +33,17 @@
 					<option value = 'Golfer'>Golfer</option>
 				</select>
 			</div>
-			<button type="submit" class="btn btn-primary">Change Role</button>
+			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
-		<c:url var = "addCourseUrl" value = "/users/${currentUser}/addCourse"/>
-		<a href = "${addCourseUrl}">Click here to add a course to our Database</a>
+		<br>
+		<hr>
+		<br>
+		<button type="submit" class="btn btn-primary">
+			<c:url var = "addCourseUrl" value = "/users/${currentUser}/addCourse"/>
+			<a href = "${addCourseUrl}">+ Click here to add a course to the Database</a>
+		</button>
+	<br><br><br>
 	</div>
-	<div class="col-sm-4"></div>
 </div>
 </div>
 <c:import url="/WEB-INF/jsp/footer.jsp" />
