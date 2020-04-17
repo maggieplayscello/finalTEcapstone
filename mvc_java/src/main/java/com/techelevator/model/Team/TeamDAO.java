@@ -22,4 +22,6 @@ public interface TeamDAO {
 
 	int getRanking(int leagueId, int userId);
 
+	List<String> getUserIdsByTeamId(int teamId);
+
 }

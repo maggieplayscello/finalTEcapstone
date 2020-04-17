@@ -35,6 +35,19 @@ public class JDBCTeamDAO implements TeamDAO {
 		return team;
 	}
 	
+	@Override 
+	public List<String> getUserIdsByTeamId(int teamId){
+		List<String> userIds = new ArrayList <> ();
+		String sql = "SELECT user_name FROM teams t JOIN golfer_team g ON t.teamid = g.teamid"
+				+ " JOIN app_user a ON a.id = g.id WHERE t.teamid = ?";
+		System.out.println("Got SQL");
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, teamId);
+		while (results.next()) {
+			userIds.add(results.getString("user_name"));
+		}
+		return userIds;
+	}
+	
 	@Override
 	public List<Team> getAllTeams() {
 		List <Team> teams = new ArrayList<>();

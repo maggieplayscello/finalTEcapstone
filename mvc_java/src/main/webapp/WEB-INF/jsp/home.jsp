@@ -11,7 +11,7 @@
 
 		<div class="container">
 			<c:url var="imgSrc" value="/img/michgolf.jpg" /> 
-			<img src="${imgSrc}" class="homeImg"/><br> <br>			
+			<img src="${imgSrc}" class="homeImg" alt="Treetops Resort in Gaylord, MI" title="Treetops Resort in Gaylord, MI"/><br> <br>			
 		</div>
 		<div class="textblock">
 			<p> Welcome to Golf Tracker! This site will help you track your scores over the course of a season. 

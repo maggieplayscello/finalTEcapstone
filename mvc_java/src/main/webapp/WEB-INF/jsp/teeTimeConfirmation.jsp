@@ -4,10 +4,18 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
+<style>
+.localImg {
+	max-height: 500px;
+	margin: auto;
+	display: block;
+}
+</style>
 
+<html>
 <meta charset="ISO-8859-1">
 <head>
-<title>Tee Time added Confirmation</title>
+<title>Course Succesfully Added</title>
 </head>
 <body>
 	<div id="wrapper">
@@ -18,14 +26,16 @@
 				<c:url var="dashboardHref" value="/users/${currentUser}/dashboard"/>
 				<a href="${dashboardHref}">Back to My Dashboard</a>
 			</button>
+			
 			<button type="submit" class="btn btn-primary">
 				<c:url var="myLeaguesHref" value="/users/${currentUser}/myLeagues"/>
 				<a href="${myLeaguesHref}">Go to My Leagues</a>
 			</button>
-			<br>
+			<br><br>
 		</div>
-	<c:url var="imgSrc" value="/img/treetops.jpg" /> 
-	<img src="${imgSrc}" class="homeImg"/>
+	<c:url var="imgSrc" value="/img/arcadiabluffspjkoenig.jpg"  /> 
+	<img src="${imgSrc}" class="localImg" alt="Arcadia Bluffs Golf Course (photo by Patrick Koenig)" title="Arcadia Bluffs Golf Course (photo by Patrick Koenig)"/>
+</div>
 </body>
 </html>
 
