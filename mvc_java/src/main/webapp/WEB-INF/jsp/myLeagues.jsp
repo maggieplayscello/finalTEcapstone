@@ -205,7 +205,13 @@
 	
 	<div class="matches">
 		<h1 class = "header_title">League Roster</h1>
+		<hr>
 		<table class="scores">
+			<tr>
+				<th align = "left">Team Name</th>
+				<th align = "left">Player 1</th>
+				<th align = "left">Player 2</th>
+			</tr>
 		<c:forEach items = "${teams}" var = "team">
 					<tr>
 						<td>${team.name}: </td>
