@@ -45,7 +45,11 @@ hr {
 	display: block;
 }
 
-
+.textblock {
+color: #0B6623;
+font-size: 20px;
+text-align: center;
+}
 
 /*   Header   */
 
