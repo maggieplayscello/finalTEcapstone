@@ -204,73 +204,16 @@
 <!-- Matches -->    
 	
 	<div class="matches">
-		<h1 class = "header_title">Most Recent Match</h1>
-		<label for="previousMatch">View Another Match:</label>
-			<select name="state">
-				<option value="AL">Match April 7 2020</option>
-				<option value="AL">Match April 6 2020</option>
-				<option value="AL">Match April 2 2020</option>
-				<option value="AL">Match April 1 2020</option>
-			</select>
-		<hr>
-		
+		<h1 class = "header_title">League Roster</h1>
 		<table class="scores">
-			<tr>
-				<td>Team 1</td>	
-				<td>1</td>
-				<td>71</td>
-			</tr>
-			<tr>
-				<td></td>	
-				<td>Player 1</td>
-				<td>70</td>
-			</tr>
-			<tr>
-				<td></td>	
-				<td>Player 2</td>
-				<td>72</td>
-			</tr>
-			<tr>
-				<td>Team 2</td>	
-				<td>3</td>
-				<td>72</td>
-			</tr>
-			<tr>
-				<td></td>	
-				<td>Player 1</td>
-				<td>71</td>
-			</tr>
-			<tr>
-				<td></td>	
-				<td>Player 2</td>
-				<td>73</td>
-			</tr>
+		<c:forEach items = "${teams}" var = "team">
 					<tr>
-				<td>Team 3</td>	
-				<td>3</td>
-				<td>74</td>
-			</tr>
-			<tr>
-				<td></td>	
-				<td>Player 1</td>
-				<td>73</td>
-			</tr>
-			<tr>
-				<td></td>	
-				<td>Player 2</td>
-				<td>75</td>
-			</tr>
+						<td>${team.name}: </td>
+						<td>${team.player1}</td>
+						<td>${team.player2}</td>
+					</tr>
+		</c:forEach>
 		</table>
-		
-	<!-- Link to Add Score form -->
-		
-	<c:if test = "${role == 'Admin'}">
-		<br>
-		<div class="btn">
-			<c:url var="addScoreHref" value="/users/${currentUser}/addScore"/>
-			<a href="${addScoreHref}">+ Add a Score</a>
-		</div>
-	</c:if>
 </div>	
 
 <!-- Closing Tags -->

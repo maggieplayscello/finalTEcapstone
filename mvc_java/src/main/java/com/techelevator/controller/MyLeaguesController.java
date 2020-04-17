@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -53,7 +54,18 @@ public class MyLeaguesController {
 	public String loadMyLeaguesPage(@PathVariable("currentUser") String currentUser, 
 			@RequestParam(required = false) String leagueName, ModelMap map){
 		List<Team> teams = teamDao.getTeamsByLeagueId(leagueDao.getLeagueIdByLeagueName(leagueName));
-		
+		List<String> players = new ArrayList<>();
+		for(int x = 0; x < teams.size(); x++) {
+			List<String> names = teamDao.getUserIdsByTeamId(teams.get(x).getTeamId());
+			System.out.println(names);
+			players.add(names.get(0));
+			players.add(names.get(1));
+		}
+		for(int x = 0, i = 0; x < teams.size(); x++, i = i + 2) {	
+				teams.get(x).setPlayer1(players.get(i));
+				teams.get(x).setPlayer2(players.get(i + 1));
+				System.out.println(players.get(i) + players.get(i + 1));
+		}
 		map.put("leagueName", leagueName);
 		map.put("teams", teams);
 		List<Course> course = courseDao.getAllCourses();
