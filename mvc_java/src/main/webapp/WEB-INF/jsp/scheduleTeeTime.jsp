@@ -11,7 +11,22 @@
 
 <body>
 <div id="wrapper">
-<a class="weatherwidget-io" href="https://forecast7.com/en/42d33n83d05/detroit/?unit=us" data-label_1="DETROIT" data-label_2="WEATHER" data-icons="Climacons Animated" data-days="5" data-theme="weather_one" >DETROIT WEATHER</a>
+
+<div id="weather" style="width: 100%;">
+  <iframe style="display: block;
+  " src="https://cdnres.willyweather.com/widget/loadView.html?id=122053" 
+  width=100% 
+  height="92" 
+  frameborder="0" 
+  scrolling="no">
+  </iframe><a style="text-indent: -9999em;
+  height: 92px;float: right;
+  position: relative;
+  margin: -92px 0 0 0;
+  z-index: 1;
+  width: 20px" href="https://www.willyweather.com/mi/wayne-county/detroit.html" rel="nofollow">willyweather</a>
+  </div>
+
 
 	<div class="row">
 	<div class="col-sm-4"></div>

@@ -45,10 +45,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
 	<div id="wrapper">
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}" />
 
-<div style="width: 850px;">
+<div id="weather" style="width: 100%;">
   <iframe style="display: block;
   " src="https://cdnres.willyweather.com/widget/loadView.html?id=122053" 
-  width="850" 
+  width=100% 
   height="92" 
   frameborder="0" 
   scrolling="no">
@@ -105,7 +105,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		</div>
 
 <!-- Course Map -->
-
+	
 		<div id="map-canvas" style="height: 400px; width: 600px"></div>
 	</div>
 	<br><br>
