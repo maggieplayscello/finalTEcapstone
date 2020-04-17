@@ -127,29 +127,6 @@ button {
 	margin: auto;
 }
 
-.container {
-  position: relative;
-  text-align: center;
-}
-
-.bottom-right {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background-color: black;
-  color: white;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-
-.textblock {
-	color: #0B6623;
-	font-size: 20px;
-	text-align: center;
-}
-
 
 
 /*   Course Search   */
@@ -191,14 +168,15 @@ button {
 	grid-area: 1 / 4 / 6 / 9;
 	margin: auto;	
 	height: 100%; 
-	width: 100%;
+	width: 80%;
 }
 
-#courseTable {
-	background-color: #F1F7ED;
+.courseTable {
+	width: 90%;
+	background-color: #FCFDFB;
 	font-size: 15px;
 	margin: auto;
-	border: 1px solid rgb(184,195,163);
+	border-bottom: 1px solid rgb(184,195,163);
 }
 
 table th {
@@ -211,7 +189,7 @@ table th {
 table td {
 	width: auto;
 	padding: 2px 10px 2px 10px;
-	border-bottom: 1px solid rgb(83,107,78);
+	border-bottom: 1px solid rgb(184,195,163);
 }
 
 

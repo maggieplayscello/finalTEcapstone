@@ -76,6 +76,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					<label for="name">Course Name:</label> 
 					<input type="text" name="searchName" placeHolder="Course Name" id="name" />
 				</div>
+				<div class="row">
+					<div class="col-md-12 bs-linebreak"></div>
+				</div>
 				<div class="form-group pull-right">
 					<label for="city">City:</label> 
 					<input type="text" name="searchCity" placeholder="City" id="city" />
@@ -85,7 +88,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
 				</div>
 			<button type="submit" class="btn btn-primary pull-right">Search</button>	
 			</form>
-			<br><br>
+				<div class="row">
+					<div class="col-md-12 bs-linebreak"></div>
+				</div>
 			<c:if test = "${role == 'Admin'}">
 				<button type="submit" class="btn btn-primary pull-right">
 					<c:url var="addCourseHref" value="/users/${currentUser}/addCourse"/>
@@ -106,13 +111,13 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 <!-- Course Map -->
 	
-		<div id="map-canvas" style="height: 400px; width: 600px"></div>
+		<div id="map-canvas"></div>
 	</div>
 	<br><br>
 
 <!-- Course Table -->
 
-		<table id="courseTable">
+		<table class="courseTable">
 			<tr>
 				<th align="left">Name</th>
 				<th align="left">Address</th>
