@@ -4,18 +4,39 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<title>Team Selection</title>
+<style>
+.localImg {
+	max-height: 500px;
+	margin: auto;
+	display: block;
+}
+</style>
+
+<html>
+<title>Match Succesfully Added</title>
 </head>
 <body>
 <div id="wrapper">
-	<div class="row">
-	<div class="col-sm-4"></div>
-	<div class="col-sm-4">	
-	
-	<h3>You have successfully added a Match!</h3>
-
-</div>
-</div>
+		<div class="textblock">
+			<br>
+			<p><em>You have successfully added a Match!</em></p>
+			<button type="submit" class="btn btn-primary">
+				<c:url var="dashboardHref" value="/users/${currentUser}/dashboard"/>
+				<a href="${dashboardHref}">Go to My Dashboard</a>
+			</button>
+			
+			<button type="submit" class="btn btn-primary">
+				<c:url var="myLeaguesHref" value="/users/${currentUser}/myLeagues"/>
+				<a href="${myLeaguesHref}">Back to My Leagues</a>
+			</button>
+			<br><br>
+		</div>
+		<c:url var="imgSrc" value="/img/tullymorepjkoenig.jpg" /> 
+		<img src="${imgSrc}" class="localImg" alt="Tullymore Golf Club (photo by Patrick Koenig)" title="Tullymore Golf Club (photo by Patrick Koenig)"/>
+		<p class="hoverText">Tullymore Golf Club (photo by Patrick Koenig)</p>
+	<br><br><br>
 </div>
 </body>
 </html>
+
+<c:import url="/WEB-INF/jsp/footer.jsp" />
